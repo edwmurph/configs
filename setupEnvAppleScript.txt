@@ -1,0 +1,70 @@
+on run {input, parameters}
+	if application "Notes" is not running then
+		tell application "Notes" to activate
+	end if
+	if application "Insomnia" is not running then
+		tell application "Insomnia" to activate
+	end if
+	if application "Safari" is not running then
+		tell application "Safari" to activate
+	end if
+	if application "iTerm" is not running then
+		tell application "iTerm" to activate
+	end if
+	if application "Microsoft Outlook" is not running then
+		tell application "Microsoft Outlook" to activate
+	end if
+	
+	tell application "System Events"	
+		tell process "Notes"
+			set frontmost to true
+		end tell
+		keystroke "c" using {option down, command down}
+		keystroke "l" using {control down, command down, shift down}
+		keystroke "l" using {control down, command down, shift down}
+		keystroke "l" using {control down, command down, shift down}
+		delay 1
+
+
+		tell process "Insomnia"
+			set frontmost to true
+		end tell
+		keystroke "c" using {option down, command down}
+		keystroke "r" using {option down, command down}
+		keystroke "r" using {option down, command down}
+		delay 1
+		
+		tell process "Safari"
+			set frontmost to true
+		end tell
+		keystroke "c" using {option down, command down}
+		keystroke "r" using {option down, command down}
+		keystroke "r" using {option down, command down}
+		delay 1
+
+		tell process "Slack"
+			set frontmost to true
+		end tell
+		keystroke "c" using {option down, command down}
+		keystroke "l" using {control down, command down}
+		keystroke "l" using {control down, command down}
+		keystroke "l" using {control down, command down}
+		delay 1
+		
+		tell process "Webex Teams"
+			set frontmost to true
+		end tell
+		keystroke "c" using {option down, command down}
+		keystroke "l" using {control down, command down}
+		keystroke "l" using {control down, command down}
+		keystroke "l" using {control down, command down}
+		delay 1
+		
+		tell process "iTerm2"
+			set frontmost to true
+		end tell
+		keystroke "r" using {control down, option down, command down}
+		keystroke "c" using {option down, command down}
+		keystroke "f" using {option down, command down}
+	end tell
+end run

@@ -1,0 +1,26 @@
+# not sure if this is needed
+.git
+
+# node modules
+node_modules
+
+# local configs
+config/local.js
+
+# Apple
+.DS_Store
+
+# scratch pad file for testing ideas
+test.js
+
+# no need to keep package-lock.json in source control
+package-lock.json
+
+# local files
+scratch.txt
+
+# work files
+.npmrc
+
+# temp files
+.godaddyHeaders.txt

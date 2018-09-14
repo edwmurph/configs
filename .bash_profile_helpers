@@ -1,0 +1,8 @@
+#!/bin/bash
+
+function sourceIfExists () {
+  path="${1?Must pass a path to sourceIfExists}"
+  if [[ -f "$path" ]]; then
+    . "$path"
+  fi
+}

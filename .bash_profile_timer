@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Source this in your .bash_profile to see the execution time of the previous command on the terminal prompt.
+
+YELLOW="\[\033[0;33m\]"
+GREEN="\[\033[0;32m\]"
+WHITE="\[\033[0;37m\]"
+RED="\[\033[0;31m\]"
+BLUE="\[\033[1;34m\]"
+GIT_PS1_SHOWDIRTYSTATE=true
+
+function timer_start {
+  timer=${timer:-$SECONDS}
+}
+
+function timer_stop {
+  timer_show=$(($SECONDS - $timer))
+  unset timer
+}
+
+trap 'timer_start' DEBUG
+PROMPT_COMMAND=timer_stop
+
+PS1="${BLUE}"'$(
+  if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    echo "\u@\h "
+  fi
+)'"${GREEN}\t \${timer_show}s${WHITE} [\w]"'$(
+  if [[ $(__git_ps1) =~ \\*\)$ ]]; then
+    echo "'${RED}'$(__git_ps1 " (%s)")"
+  elif [[ $(__git_ps1) =~ \+\)$ ]]; then
+    echo "'${YELLOW}'$(__git_ps1 " (%s)")"
+  elif [ -n $(__git_ps1) ]; then
+    echo "'${GREEN}'$(__git_ps1 " (%s)")"
+  else
+    echo ""
+  fi
+)'"${WHITE} $ "
+
