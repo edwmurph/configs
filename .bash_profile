@@ -7,10 +7,9 @@
 
 . ~/code/configs/.bash_profile_helpers
 
-sourceIfExists ~/.secrets/.secrets
-sourceIfExists ~/.env
+sourceIfExists ~/.secrets/secrets.sh
+sourceIfExists ~/.secrets/env.sh
 sourceIfExists ~/code/configs/.bash_profile_cisco
-sourceIfExists ~/code/configs/.git-prompt.sh
 sourceIfExists ~/code/configs/.bash_profile_timer
 
 
@@ -162,3 +161,9 @@ function kc() {
   kubectl "$@"
 }
 
+function gfc() {
+  # TODO add logic to make this detect error of not being on local network and automatically try using the rourter's IP
+  path_on_remote="${1?arg1 missing: path to file on Celery}"
+  local_destination_path="${2?arg2 missing: path to where to transfer file to on local machine}"
+  scp "edwmurph@${CELERY_IP}:${path_on_remote} ${local_destination_path}"
+}

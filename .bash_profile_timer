@@ -2,6 +2,8 @@
 
 # Source this in your .bash_profile to see the execution time of the previous command on the terminal prompt.
 
+sourceIfExists ~/code/configs/.git-prompt.sh
+
 YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[0;32m\]"
 WHITE="\[\033[0;37m\]"
@@ -30,7 +32,7 @@ PS1="${BLUE}"'$(
     echo "'${RED}'$(__git_ps1 " (%s)")"
   elif [[ $(__git_ps1) =~ \+\)$ ]]; then
     echo "'${YELLOW}'$(__git_ps1 " (%s)")"
-  elif [ -n $(__git_ps1) ]; then
+  elif [ -n "$(__git_ps1)" ]; then
     echo "'${GREEN}'$(__git_ps1 " (%s)")"
   else
     echo ""

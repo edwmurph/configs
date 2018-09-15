@@ -56,7 +56,7 @@
     "http": "*",
     "http-status": "1.2.0",
     "ioredis": "*",
-    "ioredis-mock": "*",
+    "ioredis-mock": "3.14.3",
     "kcors": "2.2.2",
     "koa": "2.5.3",
     "koa-body": "*",
