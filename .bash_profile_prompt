@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Source this in your .bash_profile to see the execution time of the previous command on the terminal prompt.
+# Source this in your .bash_profile to have your prompt look like:
+#   [current time] [execution time of previous command] [current dir] [currently checked out branch of current directory]
 
 sourceIfExists ~/code/configs/.git-prompt.sh
 

@@ -10,7 +10,7 @@
 sourceIfExists ~/.secrets/secrets.sh
 sourceIfExists ~/.secrets/env.sh
 sourceIfExists ~/code/configs/.bash_profile_cisco
-sourceIfExists ~/code/configs/.bash_profile_timer
+sourceIfExists ~/code/configs/.bash_profile_prompt
 
 
 ### NODE
