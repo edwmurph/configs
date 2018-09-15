@@ -80,6 +80,7 @@ alias gc="git checkout"
 alias gb="git branch -vv"
 alias gbdl="git branch | grep -v master | xargs git branch -D"
 alias co='cd ~/code/configs && echo -ne "\033]0;"~/code/configs"\007"'
+alias se='cd ~/.secrets && echo -ne "\033]0;"~/code/configs"\007"'
 alias nv='cd ~/.nvm && echo -ne "\033]0;"~/.nvm"\007"'
 alias tt="tree -C -I 'node_modules|ui|coverage'"
 alias e="exit"
@@ -165,5 +166,5 @@ function gfc() {
   # TODO add logic to make this detect error of not being on local network and automatically try using the rourter's IP
   path_on_remote="${1?arg1 missing: path to file on Celery}"
   local_destination_path="${2?arg2 missing: path to where to transfer file to on local machine}"
-  scp "edwmurph@${CELERY_IP}:${path_on_remote} ${local_destination_path}"
+  scp "edwmurph@${CELERY_IP}:${path_on_remote}" "${local_destination_path}"
 }
