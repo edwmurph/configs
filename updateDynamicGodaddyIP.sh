@@ -15,9 +15,14 @@
 # Imports:
 ##
 
-ENV_FILE_PATH="$HOME/.env"
+ENV_FILE_PATH="$HOME/.secrets/env.sh"
 . $ENV_FILE_PATH               # source file containing common env variables (CACHED_ROUTER_IP)
-. "$HOME/.secrets/secrets.sh"  # source file containing secrets (SLACK_SERVICE_URL: url used to send messages to certain slack room)
+. "$HOME/.secrets/secrets.sh"  # source file containing secrets (SLACK_SERVICE_URL, GODADDY_KEY, GODADDY_SECRET)
+
+if [ -z "$GODADDY_KEY" ] || [ -z "$GODADDY_SECRET" ]; then
+	sendToSlack "Problem in $SCRIPT_NAME getting godaddy key or secret"
+	exit 1
+fi
 
 
 ##
@@ -39,15 +44,9 @@ SCRIPT_NAME='updateDynamicGodaddyIP.sh'
 
 # godaddy variables used to get/update dynamic IP with godaddy when it changes
 GODADDY_RECORD_URL='https://api.godaddy.com/v1/domains/voyria.com/records/A'
-GODADDY_KEY=$(cat /home/edwmurph/.secrets/godaddy.key)
-GODADDY_SECRET=$(cat /home/edwmurph/.secrets/godaddy.secret)
-if [ -z "$GODADDY_RECORD_URL" ] || [ -z "$GODADDY_KEY" ] || [ -z "$GODADDY_SECRET" ]; then
-	sendToSlack "Problem in $SCRIPT_NAME getting godaddy key or secret"
-	exit 1
-fi
 
 # true current IP of router
-IP_INFO_HEADERS_FILE='.ipInfoHeaders.txt'
+IP_INFO_HEADERS_FILE='.ipInfoHeaders.txt' # temp file created to cache response headers for debugging errors
 CURRENT_IP="$(curl -D ${IP_INFO_HEADERS_FILE} --silent ipinfo.io/ip)"
 if [ -z "$CURRENT_IP" ]; then
 	sendToSlack "Problem in $SCRIPT_NAME getting current IP address\n$(cat ${IP_INFO_HEADERS_FILE})"
@@ -55,7 +54,7 @@ if [ -z "$CURRENT_IP" ]; then
 fi
 
 # IP address known by Godaddy
-GODADDY_HEADERS_FILE='.godaddyHeaders.txt'
+GODADDY_HEADERS_FILE='.godaddyHeaders.txt' # temp file created to cache response headers for debugging errors
 GODADDY_IP=$(curl -D ${GODADDY_HEADERS_FILE} --silent "$GODADDY_RECORD_URL" -H "accept: application/json" -H "Authorization: sso-key ${GODADDY_KEY}:${GODADDY_SECRET}" | jq -r '.[0].data')
 if [ -z "$GODADDY_IP" ]; then
 	sendToSlack "Problem in $SCRIPT_NAME getting current IP address known by Godaddy\n$(cat ${GODADDY_HEADERS_FILE})"
