@@ -7,7 +7,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "updateGitCompletion": "curl -O https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash"
   },
   "repository": {
     "type": "git",

@@ -11,6 +11,14 @@ sourceIfExists ~/.secrets/secrets.sh
 sourceIfExists ~/.secrets/env.sh
 sourceIfExists ~/code/configs/.bash_profile_cisco
 sourceIfExists ~/code/configs/.bash_profile_prompt
+sourceIfExists ~/code/configs/git-completion.bash
+
+
+### TERMINAL CONFIGS
+
+if [ brew -v 2>/dev/null ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
 
 
 ### NODE
@@ -37,12 +45,6 @@ cd .
 
 [[ "$PATH" == *"./node_modules/.bin"* ]] || PATH="$PATH:./node_modules/.bin"
 
-
-### TERMINAL CONFIGS
-
-if [ brew -v 2>/dev/null ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
 
 # change name of title bar to the directory path in which new sessions are initiated
 echo -ne "\033]0;"$(pwd | sed "s/^$(echo $HOME | sed 's/\//\\\//g')/~/g")"\007"
