@@ -161,7 +161,7 @@ function dif() {
 }
 
 function kc() {
-  kubectl "$@"
+  sudo kubectl "$@"
 }
 
 function gfc() {
