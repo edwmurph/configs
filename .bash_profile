@@ -30,7 +30,11 @@ NVM_DIR=~/.nvm
 # Automatically switch to node version specified in local dir's package.json (don't do this when in node_modules)
 function autoswitch_to_node_version() {
   if [ -f 'package.json' ] && [[ "$PWD" != *'node_modules'* ]]; then
-    requested_node_version="v$(node -p "require('./package.json').engines.node")"
+    requested_node_version="v$(node -p "(require('./package.json').engines || {}).node || ''")"
+    if [ $requested_node_version == 'v' ]; then
+      # local package.json does not have an engines.node value
+      return 0;
+    fi
     current_node_version="$(nvm current)"
     if [ "$requested_node_version" != "$current_node_version" ]; then
       # printf "requested_node_version: $requested_node_version\ncurrent_node_version: $current_node_version\n"
