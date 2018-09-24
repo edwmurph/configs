@@ -18,6 +18,9 @@ Plug 'junegunn/gv.vim'
 "Plug 'janko-m/vim-test'
 Plug 'jalvesaq/Nvim-R'
 Plug 'vim-scripts/indentpython.vim'
+" expects fzf to be installed with homebrew
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 "------------ theme ---------------
@@ -35,14 +38,15 @@ set termguicolors
 :map / <Plug>(incsearch-forward)
 :map ? <Plug>(incsearch-backward)
 :map g/ <Plug>(incsearch-stay)
-:map ;; <Esc> :w <Enter>
+:map <Space>; <Esc> :w <Enter>
 :map <C-down> <C-e>
 :map <C-up> <C-y>
 :map <C-S-down> <C-d> zz
 :map <C-S-up> <C-u> zz
 :map <C-c> "+y<CR>"
+:map <C-@> :FZF <Enter>
 
-:imap ;; <Esc> :w <Enter>
+:imap <Space>; <Esc> :w <Enter>
 :imap <C-l> console.log('');<ESC>hhi
 
 :nmap * <Plug>AckActionWord
