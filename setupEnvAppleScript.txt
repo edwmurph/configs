@@ -1,5 +1,5 @@
 on run {input, parameters}
-	if application "Notes" is not running then
+	if application "Bear" is not running then
 		tell application "Notes" to activate
 	end if
 	if application "Insomnia" is not running then
@@ -16,7 +16,7 @@ on run {input, parameters}
 	end if
 	
 	tell application "System Events"	
-		tell process "Notes"
+		tell process "Bear"
 			set frontmost to true
 		end tell
 		keystroke "c" using {option down, command down}

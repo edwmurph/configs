@@ -104,6 +104,7 @@ let g:ale_lint_on_enter = 0
 filetype plugin indent on
 syntax on
 set tabstop=2
+set softtabstop=2
 set shiftwidth=0
 set noexpandtab
 set encoding=utf-8

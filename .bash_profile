@@ -73,6 +73,10 @@ GOPATH="$HOME/go"
 PATH="$PATH:$GOPATH/bin"
 
 
+### FZF
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
+
 ### Aliases
 
 alias ls='ls -G'
@@ -102,6 +106,14 @@ alias gct="git commit -m 'temp commit'"
 alias gdm="git diff master -- . ':(exclude)package-lock.json'"
 alias celeryL="ssh edwmurph@${CELERY_IP}"
 alias celeryR="ssh edwmurph@${ROUTER_IP}"
+#alias v='vim $(fzf)'
+
+function v() {
+  file="$(fzf)"
+  if [ -n "$file" ]; then
+    vim "$file"
+  fi
+}
 
 # Connect to VC's vpn through anyconnect
 function vpnVC() {
