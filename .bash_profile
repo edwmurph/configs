@@ -7,11 +7,11 @@
 
 . ~/code/configs/.bash_profile_helpers
 
-sourceIfExists ~/.secrets/secrets.sh
-sourceIfExists ~/.secrets/env.sh
-sourceIfExists ~/code/configs/.bash_profile_cisco
-sourceIfExists ~/code/configs/.bash_profile_prompt
-sourceIfExists ~/code/configs/git-completion.bash
+source_if_exists ~/.secrets/secrets.sh
+source_if_exists ~/.secrets/env.sh
+source_if_exists ~/code/configs/.bash_profile_cisco
+source_if_exists ~/code/configs/.bash_profile_prompt
+source_if_exists ~/code/configs/git-completion.bash
 
 
 ### TERMINAL CONFIGS
@@ -92,7 +92,7 @@ alias gbdl="git branch | grep -v master | xargs git branch -D"
 alias co='cd ~/code/configs && echo -ne "\033]0;"~/code/configs"\007"'
 alias se='cd ~/.secrets && echo -ne "\033]0;"~/code/configs"\007"'
 alias nv='cd ~/.nvm && echo -ne "\033]0;"~/.nvm"\007"'
-alias tt="tree -C -I 'node_modules|ui|coverage'"
+alias tt="tree -C -I 'node_modules|ui|coverage|target'"
 alias e="exit"
 alias ss="pmset displaysleepnow"
 alias serve="python -m SimpleHTTPServer"
@@ -157,7 +157,7 @@ function p() {
 }
 
 function agq() {
-  ag -Q "$1" -G ${2-.} -i --ignore=node_modules --ignore=coverage --ignore=package-lock.json --ignore=dashboards
+  ag --hidden -Q "$1" -G ${2-.} -i --ignore=node_modules --ignore=coverage --ignore=package-lock.json --ignore=dashboards
 }
 
 function gd() {

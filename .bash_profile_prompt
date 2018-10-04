@@ -3,7 +3,7 @@
 # Source this in your .bash_profile to have your prompt look like:
 #   [current time] [execution time of previous command] [current dir] [currently checked out branch of current directory]
 
-sourceIfExists ~/code/configs/.git-prompt.sh
+source_if_exists ~/code/configs/.git-prompt.sh
 
 YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[0;32m\]"

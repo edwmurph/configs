@@ -1,0 +1,5 @@
+. ./.vimrc
+
+:map <Space>; <Esc> :w <Enter>h
+:imap <Space>; <Esc> :w <Enter>
+

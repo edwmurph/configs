@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sourceIfExists ~/.secrets/.secrets
+source_if_exists ~/.secrets/.secrets
 
 export CQLSH_NO_BUNDLED=true
 
@@ -24,6 +24,7 @@ alias al='cd ~/code/alfred && echo -ne "\033]0;"~/code/alfred"\007"'
 alias cms='cd ~/code/ca-mock-spark && echo -ne "\033]0;"~/code/ca-mock-spark"\007"'
 alias mm='cd ~/code/media-manager && echo -ne "\033]0;"~/code/media-manager"\007"'
 alias cato='cd ~/code/ca-tools && echo -ne "\033]0;"~/code/ca-tools"\007"'
+alias cc='cd ~/code/contact-center && echo -ne "\033]0;"~/code/contact-center"\007"'
 alias cfappstaging="cf login -a https://api.appstaging.ciscoccservice.com -u admin -p ${CF_PW}"
 alias cfloadus1="cf login -a https://api.loadus1.ciscoccservice.com -u admin -p ${CF_PW}"
 alias cfdevus1="cf login -a https://api.devus1.ciscoccservice.com -u admin -p ${CF_PW}"
@@ -36,3 +37,9 @@ function vpnC() {
   printf "edwmurph\n${token}\ny\n" |
     /opt/cisco/anyconnect/bin/vpn -s connect 'Boxborough - SSL'
 }
+
+
+### Contact Center
+export ARTIFACTORY_USER='edwmurph'
+export ARTIFACTORY_API_KEY="${ARTIFACTORY_API_KEY}"
+export SBT_OPTS='-XX:+CMSClassUnloadingEnabled -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=256M -Xms2G -Xmx2G'
