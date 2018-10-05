@@ -47,11 +47,13 @@ set termguicolors
 :map <C-@> :FZF <Enter>
 
 :imap <Space>; <Esc> :w <Enter>
-:imap <C-l> console.log('');<ESC>hhi
+:imap <C-l> console.log('');<ESC>2hi
+:imap <C-j> JSON.stringify(, null, 2)<ESC>9hi
 
 :nmap * <Plug>AckActionWord
 :nmap <Space> <Esc>
-:nmap <C-l> aconsole.log('');<ESC>hhi
+:nmap <C-l> aconsole.log('');<ESC>2hi
+:nmap <C-j> JSON.stringify(, null, 2)<ESC>9hi
 
 :vmap * <Plug>AckActionVisual
 :vmap <Space> <Esc>
