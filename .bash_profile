@@ -11,44 +11,16 @@ source_if_exists ~/.secrets/secrets.sh
 source_if_exists ~/.secrets/env.sh
 source_if_exists ~/code/configs/.bash_profile_cisco
 source_if_exists ~/code/configs/.bash_profile_prompt
+source_if_exists ~/code/configs/.bash_profile_node
 source_if_exists ~/code/configs/git-completion.bash
 
 
 ### TERMINAL CONFIGS
 
+
 if [ brew -v 2>/dev/null ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
-
-
-### NODE
-
-NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Automatically switch to node version specified in local dir's package.json (don't do this when in node_modules)
-function autoswitch_to_node_version() {
-  if [ -f 'package.json' ] && [[ "$PWD" != *'node_modules'* ]]; then
-    requested_node_version="v$(node -p "(require('./package.json').engines || {}).node || ''")"
-    if [ $requested_node_version == 'v' ]; then
-      # local package.json does not have an engines.node value
-      return 0;
-    fi
-    current_node_version="$(nvm current)"
-    if [ "$requested_node_version" != "$current_node_version" ]; then
-      # printf "requested_node_version: $requested_node_version\ncurrent_node_version: $current_node_version\n"
-      nvm use
-    fi
-  fi
-}
-cd () { builtin cd "$@" && autoswitch_to_node_version; }
-pushd () { builtin pushd "$@" && autoswitch_to_node_version; }
-popd () { builtin popd "$@" && autoswitch_to_node_version; }
-cd .
-
-[[ "$PATH" == *"./node_modules/.bin"* ]] || PATH="$PATH:./node_modules/.bin"
-
 
 # change name of title bar to the directory path in which new sessions are initiated
 echo -ne "\033]0;"$(pwd | sed "s/^$(echo $HOME | sed 's/\//\\\//g')/~/g")"\007"
@@ -57,56 +29,61 @@ echo -ne "\033]0;"$(pwd | sed "s/^$(echo $HOME | sed 's/\//\\\//g')/~/g")"\007"
 printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033]6;1;bg;blue;brightness;20\a'
 
 
-### BAT
-
-export BAT_THEME=TwoDark
+### ALIASES
 
 
-### PYTHON
+# native shortcuts
+  # use ctags from brew to enable the -R flag
+  alias ctags="`brew --prefix`/bin/ctags"
+  alias tag='ctags -R . --exclude=target --exclude=vendor'
+  alias ls='ls -G'
+  alias ll='ls -a'
+  alias tt="tree -C -I 'node_modules|ui|coverage|target'"
+  alias e="exit"
 
-PATH="${HOME}/anaconda/bin:$PATH"
+# git
+  alias gs='git status'
+  alias gp='git pull'
+  alias gl="git log --pretty=format:'%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s' --date=format:'%Y-%m-%d %H:%M:%S'"
+  alias gcm="git checkout master"
+  alias gc.="git checkout ."
+  alias gc="git checkout"
+  alias gb="git branch -vv"
+  alias gbdl="git branch | grep -v master | xargs git branch -D"
+  alias grr="git reset HEAD~1"
+  alias gct="git commit -m 'temp commit'"
+  alias gdm="git diff master -- . ':(exclude)package-lock.json'"
+  alias rmlocks="find . -maxdepth 2 -name package-lock.json -exec rm {} \;"
+
+# navigation
+  alias co='cd ~/code/configs && echo -ne "\033]0;"~/code/configs"\007"'
+  alias sc='cd ~/code/scala && echo -ne "\033]0;"~/code/scala"\007"'
+  alias se='cd ~/.secrets && echo -ne "\033]0;"~/code/configs"\007"'
+  alias nv='cd ~/.nvm && echo -ne "\033]0;"~/.nvm"\007"'
+
+# npm
+  alias nrtf="npm run test:functional"
+  alias ns="npm start"
+  alias nlrt="npx lerna run test"
 
 
-### GO
+# python
+  alias serve="python -m SimpleHTTPServer"
 
-GOPATH="$HOME/go"
-PATH="$PATH:$GOPATH/bin"
-
-
-### FZF
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+# ssh
+  alias celeryL="ssh edwmurph@${CELERY_IP}"
+  alias celeryR="ssh edwmurph@${ROUTER_IP}"
 
 
-### Aliases
+# FUNCTIONS
 
-alias ls='ls -G'
-alias ll='ls -a'
-alias gs='git status'
-alias gp='git pull'
-alias gl="git log --pretty=format:'%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s' --date=format:'%Y-%m-%d %H:%M:%S'"
-alias gcm="git checkout master"
-alias gc.="git checkout ."
-alias gc="git checkout"
-alias gb="git branch -vv"
-alias gbdl="git branch | grep -v master | xargs git branch -D"
-alias co='cd ~/code/configs && echo -ne "\033]0;"~/code/configs"\007"'
-alias se='cd ~/.secrets && echo -ne "\033]0;"~/code/configs"\007"'
-alias nv='cd ~/.nvm && echo -ne "\033]0;"~/.nvm"\007"'
-alias tt="tree -C -I 'node_modules|ui|coverage|target'"
-alias e="exit"
-alias ss="pmset displaysleepnow"
-alias serve="python -m SimpleHTTPServer"
-alias rmlocks="find . -maxdepth 2 -name package-lock.json -exec rm {} \;"
-alias rr="rm package-lock.json && rm -rf node_modules"
-alias nlrt="npx lerna run test"
-alias nrtf="npm run test:functional"
-alias ns="npm start"
-alias grr="git reset HEAD~1"
-alias gct="git commit -m 'temp commit'"
-alias gdm="git diff master -- . ':(exclude)package-lock.json'"
-alias celeryL="ssh edwmurph@${CELERY_IP}"
-alias celeryR="ssh edwmurph@${ROUTER_IP}"
-#alias v='vim $(fzf)'
+
+function s() {
+  file=${1?file path is requied}
+  if [ -n "$file" ]; then
+    scala -nc "$file"
+  fi
+}
 
 function v() {
   file="$(fzf)"
@@ -160,6 +137,10 @@ function agq() {
   ag --hidden -Q "$1" -G ${2-.} -i --ignore=node_modules --ignore=coverage --ignore=package-lock.json --ignore=dashboards
 }
 
+function agqq() {
+  ag --hidden -Q "$1" -G ${2-.} -i --ignore=coverage --ignore=package-lock.json --ignore=dashboards
+}
+
 function gd() {
   git diff "${2-HEAD}" -- "${1-.}" ':(exclude)*package-lock.json'
 }
@@ -186,3 +167,28 @@ function gfc() {
   local_destination_path="${2?arg2 missing: path to where to transfer file to on local machine}"
   scp "edwmurph@${CELERY_IP}:${path_on_remote}" "${local_destination_path}"
 }
+
+
+### BAT
+
+
+export BAT_THEME=TwoDark
+
+
+### PYTHON
+
+
+PATH="${HOME}/anaconda/bin:$PATH"
+
+
+### GO
+
+
+GOPATH="$HOME/go"
+PATH="$PATH:$GOPATH/bin"
+
+
+### FZF
+
+
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
