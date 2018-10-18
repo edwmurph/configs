@@ -3,16 +3,16 @@
 # TODO make expected location of this configs repo configurable
 
 # To use this .bash_profile, symlink this file to your home directory:
-# ln -s ${HOME}/code/configs/.bash_profile ${HOME}/.bash_profile
+# ln -s ${HOME}/code/configs/dotfiles/bash_profile ${HOME}/.bash_profile
 
-. ~/code/configs/.bash_profile_helpers
+. ~/code/configs/dotfiles/bash_profile_helpers
 
-source_if_exists ~/.secrets/secrets.sh
-source_if_exists ~/.secrets/env.sh
-source_if_exists ~/code/configs/.bash_profile_cisco
-source_if_exists ~/code/configs/.bash_profile_prompt
-source_if_exists ~/code/configs/.bash_profile_node
-source_if_exists ~/code/configs/git-completion.bash
+source_if_exists "${HOME}/.secrets/secrets.sh"
+source_if_exists "${HOME}/.secrets/env.sh"
+source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_cisco"
+source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_prompt"
+source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_node"
+source_if_exists "${HOME}/code/configs/git-completion.bash"
 
 
 ### TERMINAL CONFIGS
@@ -37,7 +37,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias ctags="`brew --prefix`/bin/ctags"
   alias tag='ctags -R . --exclude=target --exclude=vendor'
   alias ls='ls -G'
-  alias ll='ls -a'
+  alias ll='ls -la'
   alias tt="tree -C -I 'node_modules|ui|coverage|target'"
   alias e="exit"
 
@@ -58,14 +58,13 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 # navigation
   alias co='cd ~/code/configs && echo -ne "\033]0;"~/code/configs"\007"'
   alias sc='cd ~/code/scala && echo -ne "\033]0;"~/code/scala"\007"'
-  alias se='cd ~/.secrets && echo -ne "\033]0;"~/code/configs"\007"'
+  alias se='cd ~/.secrets && echo -ne "\033]0;"~/code/secrets"\007"'
   alias nv='cd ~/.nvm && echo -ne "\033]0;"~/.nvm"\007"'
 
 # npm
   alias nrtf="npm run test:functional"
   alias ns="npm start"
   alias nlrt="npx lerna run test"
-
 
 # python
   alias serve="python -m SimpleHTTPServer"

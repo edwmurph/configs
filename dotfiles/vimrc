@@ -1,4 +1,4 @@
-" ln -s /Users/eddie/code/configs/.vimrc /Users/eddie/.vimrc
+" ln -s ${HOME}/code/configs/dotfiles/vimrc ${HOME}/.vimrc
 
 "------------ vundles --------------
 

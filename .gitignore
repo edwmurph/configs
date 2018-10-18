@@ -10,14 +10,11 @@ config/local.js
 # Apple
 .DS_Store
 
-# scratch pad file for testing ideas
-test.js
-
 # no need to keep package-lock.json in source control
 package-lock.json
 
 # local files
-scratch.txt
+local/*
 
 # work files
 .npmrc
