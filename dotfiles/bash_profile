@@ -28,14 +28,14 @@ echo -ne "\033]0;"$(pwd | sed "s/^$(echo $HOME | sed 's/\//\\\//g')/~/g")"\007"
 # change color of title bar to black
 printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033]6;1;bg;blue;brightness;20\a'
 
+# use FZF
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 
 ### ALIASES
 
 
 # native shortcuts
-  # use ctags from brew to enable the -R flag
-  alias ctags="`brew --prefix`/bin/ctags"
-  alias tag='ctags -R . --exclude=target --exclude=vendor'
   alias ls='ls -G'
   alias ll='ls -la'
   alias tt="tree -C -I 'node_modules|ui|coverage|target'"
@@ -60,18 +60,24 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias sc='cd ~/code/scala && echo -ne "\033]0;"~/code/scala"\007"'
   alias se='cd ~/.secrets && echo -ne "\033]0;"~/code/secrets"\007"'
   alias nv='cd ~/.nvm && echo -ne "\033]0;"~/.nvm"\007"'
+  alias ja='cd ~/code/jobApps && echo -ne "\033]0;"~/code/jobApps"\007"'
 
 # npm
   alias nrtf="npm run test:functional"
   alias ns="npm start"
-  alias nlrt="npx lerna run test"
 
 # python
   alias serve="python -m SimpleHTTPServer"
+  alias nb="jupyter notebook"
 
 # ssh
   alias celeryL="ssh edwmurph@${CELERY_IP}"
   alias celeryR="ssh edwmurph@${ROUTER_IP}"
+
+# ctags
+  # use ctags from brew to enable the -R flag
+  alias ctags="`brew --prefix`/bin/ctags"
+  alias tag='ctags -R . --exclude=target --exclude=vendor'
 
 
 # FUNCTIONS
@@ -94,8 +100,8 @@ function v() {
 # Connect to VC's vpn through anyconnect
 function vpnVC() {
   # launchctl load /Library/LaunchDaemons/com.cisco.anyconnect.vpnagentd.plist 2> /dev/null
-  printf "CustomerVPN\nbitforge1\n${BFVPN_PW}\n" |
-    /opt/cisco/anyconnect/bin/vpn -s connect 'dc4-vpn.purepacket.com'
+  printf "CustomerVPN\n${BFVPN_USERNAME}\n${BFVPN_PW}\n" |
+    /opt/cisco/anyconnect/bin/vpn -s connect ${BFVPN_USERNAME}
 }
 
 # Disconnect from anyconnect vpn

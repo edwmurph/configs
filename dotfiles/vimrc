@@ -4,14 +4,14 @@
 
 
 " Required for Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
+"set rtp+=~/.vim/bundle/Vundle.vim
 filetype plugin indent on
 
-call vundle#begin()
+"call vundle#begin()
 
-  Plugin 'derekwyatt/vim-scala'
+"  Plugin 'derekwyatt/vim-scala'
 
-call vundle#end()
+"call vundle#end()
 
 
 "------------ vim-plugs --------------
@@ -81,8 +81,6 @@ set noexpandtab
 set nowrap
 " Except on markdown files
   autocmd FileType markdown setlocal wrap
-" Dont let vim hide characters
-set conceallevel=1
 " on bottom bar, display line #, column # and relative position of cursor in file
 set ruler
 " enable backspace to delete over line breaks or auto-inserted indents
@@ -117,6 +115,8 @@ filetype off
   " customize indentLine char
   let g:indentLine_enabled = 1
   let g:indentLine_char = "│"
+  let g:indentLine_conceallevel=1
+  let g:indentLine_fileTypeExclude = ['tex', 'markdown']
 
 " ervandew/supertab configs
   " let <CR> select completion selection
@@ -142,6 +142,8 @@ set termguicolors
 
   " save file
   :imap <Leader>; <Esc> :w <Enter>
+  " go to normal mode
+  " :imap <Leader>; <Esc>
 
   :imap <Leader><Leader>c console.log(``);<ESC>2hi
   :imap <Leader><Leader>j JSON.stringify(, null, 2)<ESC>9hi

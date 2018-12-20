@@ -21,6 +21,14 @@ else
 fi
 
 
+# install silver-searcher
+which -s ag
+if [[ $? != 0 ]] ; then
+	printf "\nINSTALLING SILVER_SEARCHER:\n"
+	brew install the_silver_searcher
+fi
+
+
 # install vundle
 if ! [ "$(ls -A ${HOME}/.vim/bundle/Vundle.vim)" ]; then
 	printf "\nINSTALLING VUNDLE:\n"
@@ -79,6 +87,20 @@ ln -fs ${HOME}/code/configs/dotfiles/bash_profile ${HOME}/.bash_profile
 . ${HOME}/.bash_profile
 
 
+# install python?
+# brew install python3
+# pip3 install --upgrade pip
+# pip3 install jupyter
+# pip3 install pandas
+# pip3 install matplotlib
+
+
+# install tree
+which -s tree
+if [[ $? != 0 ]] ; then
+	printf "\nINSTALLING TREE:\n"
+	brew install tree
+fi
 
 
 echo 
