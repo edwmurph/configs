@@ -73,6 +73,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 # ssh
   alias celeryL="ssh edwmurph@${CELERY_IP}"
   alias celeryR="ssh edwmurph@${ROUTER_IP}"
+  alias tess="ssh ${TESS_AWS_USERNAME}@tessandreola.com"
 
 # ctags
   # use ctags from brew to enable the -R flag
