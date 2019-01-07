@@ -1,11 +1,9 @@
 #!/bin/bash
 
 # install git
-# TODO automate this
 which -s git 
 if [[ $? != 0 ]] ; then
-	printf "\nINSTALLING GIT:\n"
-	echo "manually install git to continue."
+	printf "\nMANUALLY INSTALL GIT TO CONTINUE\n"
 	return 1
 fi
 
@@ -13,8 +11,9 @@ fi
 # install brew
 which -s brew
 if [[ $? != 0 ]] ; then
-	printf "\nINSTALLING HOMEBREW:\n"
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	printf "\nINSTALL HOMEBREW MANUALLY TO CONTINUE.\n"
+	printf "https://brew.sh"
+	return 1
 else
 	printf "\nUPDATING HOMEBREW:\n"
 	brew update
