@@ -101,6 +101,19 @@ if [[ $? != 0 ]] ; then
 	brew install tree
 fi
 
+# install bat
+which -s bat
+if [[ $? != 0 ]] ; then
+	printf "\nINSTALLING BAT:\n"
+	brew install bat
+fi
+
+# TODO install mysql
+# brew install mysql
+
+# TODO install vim from brew instead of one shipped with OS
+# brew install vim
+
 
 echo 
 echo "finished"

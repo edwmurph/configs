@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# TODO make expected location of this configs repo configurable
-
-# To use this .bash_profile, symlink this file to your home directory:
+# To use this .bash_profile, run the setup.sh script in this dir or just symlink this file to your home directory:
 # ln -s ${HOME}/code/configs/dotfiles/bash_profile ${HOME}/.bash_profile
 
 . ~/code/configs/dotfiles/bash_profile_helpers
@@ -10,6 +8,7 @@
 source_if_exists "${HOME}/.secrets/secrets.sh"
 source_if_exists "${HOME}/.secrets/env.sh"
 source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_cisco"
+source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_starry"
 source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_prompt"
 source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_node"
 source_if_exists "${HOME}/code/configs/git-completion.bash"
@@ -38,8 +37,11 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 # native shortcuts
   alias ls='ls -G'
   alias ll='ls -la'
-  alias tt="tree -C -I 'node_modules|ui|coverage|target'"
+  alias tt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output'"
+  alias ttt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|test'"
   alias e="exit"
+  # use homebrew's vim
+  alias vim="/usr/local/Cellar/vim/8.1.0700/bin/vim"
 
 # git
   alias gs='git status'
@@ -49,7 +51,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias gc.="git checkout ."
   alias gc="git checkout"
   alias gb="git branch -vv"
-  alias gbdl="git branch | grep -v master | xargs git branch -D"
+  alias gbdl="git branch | grep -v master | grep -v develop | xargs git branch -D"
   alias grr="git reset HEAD~1"
   alias gct="git commit -m 'temp commit'"
   alias gdm="git diff master -- . ':(exclude)package-lock.json'"
@@ -57,10 +59,9 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 
 # navigation
   alias co='cd ~/code/configs && echo -ne "\033]0;"~/code/configs"\007"'
-  alias sc='cd ~/code/scala && echo -ne "\033]0;"~/code/scala"\007"'
   alias se='cd ~/.secrets && echo -ne "\033]0;"~/code/secrets"\007"'
   alias nv='cd ~/.nvm && echo -ne "\033]0;"~/.nvm"\007"'
-  alias ja='cd ~/code/jobApps && echo -ne "\033]0;"~/code/jobApps"\007"'
+  alias ed='cd ~/code/edwmurph && echo -ne "\033]0;"~/code/edwmurph"\007"'
 
 # npm
   alias nrtf="npm run test:functional"
@@ -111,41 +112,41 @@ function vpnD() {
   # launchctl unload /Library/LaunchDaemons/com.cisco.anyconnect.vpnagentd.plist 2> /dev/null
 }
 
-function bsp() {
-  old='2.7.13'
-  new='3.6.4_3'
-  pythonVersion="$(/usr/local/bin/python --version | cut -d ' ' -f2)"
-  if [[ $new =~ $pythonVersion ]]; then
-    brew switch python $old
-  else
-    brew switch python $new
-  fi
-}
+# function bsp() {
+#   old='2.7.13'
+#   new='3.6.4_3'
+#   pythonVersion="$(/usr/local/bin/python --version | cut -d ' ' -f2)"
+#   if [[ $new =~ $pythonVersion ]]; then
+#     brew switch python $old
+#   else
+#     brew switch python $new
+#   fi
+# }
 
 # Find and replace all strings in files (up to 2 directories deep) matching regex relative to current directory
 # E.g. `far package.json '"node": "8.11.4"' '"node": "8.11.5"'`
-function far() {
-	filename=${1?Expects filename as 1st parameter}
-	regexpToFind=${2?Expects regexp to search for as 2nd parameter}
-	replacementStr=${3?Expects string to replace matched regexps with as 3rd parameter}
-	find . -name ${filename} -maxdepth 2 -exec sed -i '' -e "s/${regexpToFind}/${replacementStr}/g" {} \;
-}
+# function far() {
+# 	filename=${1?Expects filename as 1st parameter}
+# 	regexpToFind=${2?Expects regexp to search for as 2nd parameter}
+# 	replacementStr=${3?Expects string to replace matched regexps with as 3rd parameter}
+# 	find . -name ${filename} -maxdepth 2 -exec sed -i '' -e "s/${regexpToFind}/${replacementStr}/g" {} \;
+# }
 
 function Hist() {
   git log --pretty=format:"%C(yellow)>>>|%h|%Cred%ad|%Cblue%an|%Creset%s" --date=format:"%Y-%m-%d %H:%M" -p ${1?must pass a file location for first arg} | sed -e '/>>>|/{n;N;N;N;d;}' | sed -e 's/\(^-.*$\)/'$(printf "\033[91m")'\1'$(printf "\033[0m")'/g' | sed -e 's/\(^+.*$\)/'$(printf "\033[92m")'\1'$(printf "\033[0m")'/g'
 }
 
-function p() {
-  python "${1?Error trying to execute a python script without a file}"
-}
+# function p() {
+#   python "${1?Error trying to execute a python script without a file}"
+# }
 
 function agq() {
-  ag --hidden -Q "$1" -G ${2-.} -i --ignore=node_modules --ignore=coverage --ignore=package-lock.json --ignore=dashboards
+  ag --hidden -Q "$1" -G ${2-.} -i --ignore=node_modules --ignore=coverage --ignore=package-lock.json --ignore=dashboards --ignore=.git
 }
 
-function agqq() {
-  ag --hidden -Q "$1" -G ${2-.} -i --ignore=coverage --ignore=package-lock.json --ignore=dashboards
-}
+# function agqq() {
+#   ag --hidden -Q "$1" -G ${2-.} -i --ignore=coverage --ignore=package-lock.json --ignore=dashboards
+# }
 
 function gd() {
   git diff "${2-HEAD}" -- "${1-.}" ':(exclude)*package-lock.json'
@@ -155,23 +156,28 @@ function gdd() {
   git diff HEAD^ -- "${1-.}" ':(exclude)*package-lock.json'
 }
 
-function grho() {
-  git reset --hard origin/"$1"
-}
+# function grho() {
+#   git reset --hard origin/"$1"
+# }
 
-function dif() {
-  git diff --no-index -- "${1?Must provide 1st arg that points to a file}" "${2-Must provide 2nd arg that points to a file}"
-}
+# function dif() {
+#   git diff --no-index -- "${1?Must provide 1st arg that points to a file}" "${2-Must provide 2nd arg that points to a file}"
+# }
 
-function kc() {
-  sudo kubectl "$@"
-}
+# function kc() {
+#   sudo kubectl "$@"
+# }
 
-function gfc() {
-  # TODO add logic to make this detect error of not being on local network and automatically try using the rourter's IP
-  path_on_remote="${1?arg1 missing: path to file on Celery}"
-  local_destination_path="${2?arg2 missing: path to where to transfer file to on local machine}"
-  scp "edwmurph@${CELERY_IP}:${path_on_remote}" "${local_destination_path}"
+# helper to transfer files to server
+# function gfc() {
+#   # TODO add logic to make this detect error of not being on local network and automatically try using the rourter's IP
+#   path_on_remote="${1?arg1 missing: path to file on Celery}"
+#   local_destination_path="${2?arg2 missing: path to where to transfer file to on local machine}"
+#   scp "edwmurph@${CELERY_IP}:${path_on_remote}" "${local_destination_path}"
+# }
+
+function cat() {
+	bat "${1}"
 }
 
 

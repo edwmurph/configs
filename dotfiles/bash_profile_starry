@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# navigation
+  alias sam='cd ~/starry/amp && echo -ne "\033]0;"~/starry/amp"\007"'
+  alias sce='cd ~/starry/cloud-env && echo -ne "\033]0;"~/starry/cloud-env"\007"'
+  alias sls='cd ~/starry/locksmith && echo -ne "\033]0;"~/starry/locksmith"\007"'
+  alias sjv='cd ~/starry/jarvis && echo -ne "\033]0;"~/starry/jarvis"\007"'
+  alias spe='cd ~/starry/pepper && echo -ne "\033]0;"~/starry/pepper"\007"'
+  alias ssa='cd ~/starry/sage && echo -ne "\033]0;"~/starry/sage"\007"'
+  alias szl='cd ~/starry/ziploc && echo -ne "\033]0;"~/starry/ziploc"\007"'
+  alias saa='cd ~/starry/admin-api-v2 && echo -ne "\033]0;"~/starry/admin-api-v2"\007"'
+  alias sap='cd ~/starry/auth-proxy && echo -ne "\033]0;"~/starry/auth-proxy"\007"'
+
+# other
+# export AWS_SDK_LOAD_CONFIG=1
+# export AWS_SHARED_CREDENTIALS_FILE=$HOME/.aws/credentials
+# export AWS_CONFIG_FILE=$HOME/.aws/config

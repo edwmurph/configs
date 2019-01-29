@@ -6,17 +6,24 @@ NVM_DIR=~/.nvm
 
 # Automatically switch to node version specified in local dir's package.json (don't do this when in node_modules)
 function autoswitch_to_node_version() {
-  if [ -f 'package.json' ] && [[ "$PWD" != *'node_modules'* ]]; then
-    requested_node_version="v$(node -p "(require('./package.json').engines || {}).node || ''")"
-    if [ $requested_node_version == 'v' ]; then
-      # local package.json does not have an engines.node value
-      return 0;
-    fi
+  if [ -f '.nvmrc' ]; then
+    requested_node_version="v$(cat .nvmrc)"
     current_node_version="$(nvm current)"
     if [ "$requested_node_version" != "$current_node_version" ]; then
       # printf "requested_node_version: $requested_node_version\ncurrent_node_version: $current_node_version\n"
       nvm use
     fi
+  # elif [ -f 'package.json' ] && [[ "$PWD" != *'node_modules'* ]]; then
+  #   requested_node_version="v$(node -p "(require('./package.json').engines || {}).node || ''")"
+  #   if [ $requested_node_version == 'v' ]; then
+  #     # local package.json does not have an engines.node value
+  #     return 0;
+  #   fi
+  #   current_node_version="$(nvm current)"
+  #   if [ "$requested_node_version" != "$current_node_version" ]; then
+  #     # printf "requested_node_version: $requested_node_version\ncurrent_node_version: $current_node_version\n"
+  #     nvm use
+  #   fi
   fi
 }
 cd () { builtin cd "$@" && autoswitch_to_node_version; }
@@ -24,8 +31,8 @@ pushd () { builtin pushd "$@" && autoswitch_to_node_version; }
 popd () { builtin popd "$@" && autoswitch_to_node_version; }
 cd .
 
-export NODE_PATH="/Users/edwmurph/.nvm/versions/node/v11.3.0/lib/node_modules"
+# export NODE_PATH="/Users/edwmurph/.nvm/versions/node/v11.3.0/lib/node_modules"
 
 [[ "$PATH" == *"./node_modules/.bin"* ]] || PATH="$PATH:./node_modules/.bin"
-PATH="$PATH:/Users/edwmurph/.nvm/versions/node/v11.3.0/lib/node_modules"
+# PATH="$PATH:/Users/edwmurph/.nvm/versions/node/v11.3.0/lib/node_modules"
 

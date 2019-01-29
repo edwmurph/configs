@@ -50,6 +50,10 @@ call plug#begin('~/.vim/plugged')
   " fzf expected to be installed with homebrew
   Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
+  " align imports
+  Plug 'junegunn/vim-easy-align'
+  " autoclose html
+  Plug 'alvan/vim-closetag'
 
 " R
   "Plug 'janko-m/vim-test'
@@ -129,6 +133,9 @@ filetype off
 
 "------------ theme ---------------
 
+let g:onedark_color_overrides = {
+\ "comment_grey": {"gui": "#8a8a8a", "cterm": "245", "cterm16": "grey" },
+\}
 
 syntax on
 colorscheme onedark
@@ -141,78 +148,83 @@ set termguicolors
 " INSERT MODE
 
   " save file
-  :imap <Leader>; <Esc> :w <Enter>
   " go to normal mode
-  " :imap <Leader>; <Esc>
+  imap <Leader>; <Esc>
+  imap <Leader>;<Leader> <Esc> :w <Enter>
 
-  :imap <Leader><Leader>c console.log(``);<ESC>2hi
-  :imap <Leader><Leader>j JSON.stringify(, null, 2)<ESC>9hi
-  :imap <Leader><Leader>m def main(args: Array[String]): Unit = {}<ESC>i
+  imap <Leader><Leader>c console.log(``);<ESC>2hi
+  imap <Leader><Leader>j JSON.stringify(, null, 2)<ESC>9hi
+  imap <Leader><Leader>m def main(args: Array[String]): Unit = {}<ESC>i
 
 
 " NORMAL MODE
 
   " save file
-  :nmap <Leader>; <Esc> :w <Enter>
+  nmap <Leader>; <Esc> :w <Enter>
 
   " Ctrl-space opens fuzzy file search
-  :nmap <C-@> :FZF <Enter>
+  nmap <C-@> :FZF <Enter>
 
   " Ctrl-n toggles nerdtree panel
-  :nmap <C-n> :NERDTreeToggle<CR>
+  nmap <C-n> :NERDTreeToggle<CR>
 
   " text insert shortcuts
-  :nmap <Leader><Leader>c aconsole.log(``);<ESC>2hi
-  :nmap <Leader><Leader>j aJSON.stringify(, null, 2)<ESC>9hi
-  :nmap <Leader><Leader>m adef main(args: Array[String]): Unit = {}<ESC>i
+  nmap <Leader><Leader>c aconsole.log(``);<ESC>2hi
+  nmap <Leader><Leader>j aJSON.stringify(, null, 2)<ESC>9hi
+  nmap <Leader><Leader>m adef main(args: Array[String]): Unit = {}<ESC>i
 
   " Ctrl-i sorts scala imports
-  :nmap <C-i> :SortScalaImports<CR>
+  nmap <C-i> :SortScalaImports<CR>
 
   " buffer shifts
-  :nmap <C-down> <C-e>
-  :nmap <C-up> <C-y>
-  :nmap <C-S-down> <C-d> zz
-  :nmap <C-S-up> <C-u> zz
+  nmap <C-down> <C-e>
+  nmap <C-up> <C-y>
+  nmap <C-S-down> <C-d> zz
+  nmap <C-S-up> <C-u> zz
 
   " prevent default shift cursor behavior of <space> in normal mode
-  :nmap <SPACE> <Nop>
+  nmap <SPACE> <Nop>
 
   " space-# searches project for word under cursor
-  :nmap <Leader># :grep! "\b<C-R><C-W>\b"<CR>:cw<CR><CR>
+  nmap <Leader># :grep! "\b<C-R><C-W>\b"<CR>:cw<CR><CR>
 
   " quick-fix navigations
   " next
-  :nmap <Leader>qn :cn <CR>
+  nmap <Leader>qn :cn <CR>
   " prev
-  :nmap <Leader>qp :cp <CR>
+  nmap <Leader>qp :cp <CR>
   " close quick-fix window
-  :nmap <Leader>qc :ccl <CR>
+  nmap <Leader>qc :ccl <CR>
 
   " ctag navigation
-  :nmap <Leader>gd <C-]>
-  :nmap <Leader>gn :tn<CR>
-  :nmap <Leader>gp :tp<CR>
-  :nmap <Leader>go <C-t>
+  nmap <Leader>gd <C-]>
+  nmap <Leader>gn :tn<CR>
+  nmap <Leader>gp :tp<CR>
+  nmap <Leader>go <C-t>
 
   " override / to use incsearch
-  :nmap / <Plug>(incsearch-forward)
+  nmap / <Plug>(incsearch-forward)
+
+  " align imports
+  nmap ga <Plug>(EasyAlign)
 
 
 " VISUAL MODE
 
   " save file
-  :vmap <Leader>; <Esc> :w <Enter>
+  vmap <Leader>; <Esc> :w <Enter>
 
   " Ctrl-c copies visual selection to clipboard
-  :vmap <C-c> "+y<CR>"
+  vmap <C-c> "+y<CR>"
 
+  " align imports
+  vmap ga <Plug>(EasyAlign)
 
 "---------- custom commands --------
 
 
 " GV plugin is a better alternative to this
-:command Hist ! git log --pretty=format:"\%C(yellow)>>>|\%h|\%Cred\%ad|\%Cblue\%an|\%Creset\%s" --date=format:"\%Y-\%m-\%d \%H:\%M" -p $(echo %) | sed -e '/>>>|/{n;N;N;N;d;}' | sed -e 's/\(^-.*$\)/'$(printf "\033[91m")'\1'$(printf "\033[0m")'/g' | sed -e 's/\(^+.*$\)/'$(printf "\033[92m")'\1'$(printf "\033[0m")'/g'
+command Hist ! git log --pretty=format:"\%C(yellow)>>>|\%h|\%Cred\%ad|\%Cblue\%an|\%Creset\%s" --date=format:"\%Y-\%m-\%d \%H:\%M" -p $(echo %) | sed -e '/>>>|/{n;N;N;N;d;}' | sed -e 's/\(^-.*$\)/'$(printf "\033[91m")'\1'$(printf "\033[0m")'/g' | sed -e 's/\(^+.*$\)/'$(printf "\033[92m")'\1'$(printf "\033[0m")'/g'
 
 
 "-------------- python configs -------------
