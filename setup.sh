@@ -114,6 +114,11 @@ fi
 # TODO install vim from brew instead of one shipped with OS
 # brew install vim
 
+# TODO install ctags
+# brew install ctags
+# add following to ~/.ctags
+# --exclude=node_modules/*
+
 
 echo 
 echo "finished"

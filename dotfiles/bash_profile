@@ -37,8 +37,8 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 # native shortcuts
   alias ls='ls -G'
   alias ll='ls -la'
-  alias tt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output'"
-  alias ttt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|test'"
+  alias tt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__'"
+  alias ttt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|test'"
   alias e="exit"
   # use homebrew's vim
   alias vim="/usr/local/Cellar/vim/8.1.0700/bin/vim"
@@ -62,6 +62,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias se='cd ~/.secrets && echo -ne "\033]0;"~/code/secrets"\007"'
   alias nv='cd ~/.nvm && echo -ne "\033]0;"~/.nvm"\007"'
   alias ed='cd ~/code/edwmurph && echo -ne "\033]0;"~/code/edwmurph"\007"'
+  alias pe='cd ~/Library/"Mobile Documents"/com~apple~CloudDocs/PERSONAL && echo -ne "\033]0;"~/...PERSONAL"\007"'
 
 # npm
   alias nrtf="npm run test:functional"
@@ -79,7 +80,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 # ctags
   # use ctags from brew to enable the -R flag
   alias ctags="`brew --prefix`/bin/ctags"
-  alias tag='ctags -R . --exclude=target --exclude=vendor'
+  alias tag='ctags -R .'
 
 
 # FUNCTIONS
@@ -141,12 +142,12 @@ function Hist() {
 # }
 
 function agq() {
-  ag --hidden -Q "$1" -G ${2-.} -i --ignore=node_modules --ignore=coverage --ignore=package-lock.json --ignore=dashboards --ignore=.git
+  ag --hidden -Q "$1" -G ${2-.} -i
 }
 
-# function agqq() {
-#   ag --hidden -Q "$1" -G ${2-.} -i --ignore=coverage --ignore=package-lock.json --ignore=dashboards
-# }
+function agqt() {
+  ag --hidden -Q "$1" -G ${2-.} -i --ignore=test
+}
 
 function gd() {
   git diff "${2-HEAD}" -- "${1-.}" ':(exclude)*package-lock.json'
@@ -204,3 +205,24 @@ PATH="$PATH:$GOPATH/bin"
 
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
+
+
+# added by Anaconda3 2018.12 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<
+
+conda activate tf

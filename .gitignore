@@ -1,6 +1,3 @@
-# not sure if this is needed
-.git
-
 # node modules
 node_modules
 
@@ -10,14 +7,8 @@ config/local.js
 # Apple
 .DS_Store
 
-# no need to keep package-lock.json in source control
-package-lock.json
-
 # local files
 local/*
-
-# work files
-.npmrc
 
 # temp files
 .godaddyHeaders.txt

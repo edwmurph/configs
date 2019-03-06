@@ -74,11 +74,12 @@ let mapleader=" "
 syntax on
 set encoding=utf-8
 set noerrorbells
+set colorcolumn=80
 
 " tabbing default to hard tabs of width 2 spaces
 set tabstop=2
 set softtabstop=2
-set shiftwidth=0
+set shiftwidth=2
 set noexpandtab
 
 " Stop word wrapping
@@ -114,6 +115,7 @@ filetype off
   " specify linters
   let g:ale_linters = {'javascript': ['eslint'], 'scala': ['sbtserver', 'scalac', 'scalafmt', 'scalastyle']}
   let g:ale_linters_explicit = 1
+  let g:ale_fixers = ['eslint']
 
 " Yggdroot/indentLine configs
   " customize indentLine char
@@ -206,7 +208,13 @@ set termguicolors
   nmap / <Plug>(incsearch-forward)
 
   " align imports
-  nmap ga <Plug>(EasyAlign)
+  nmap <Leader>ea <Plug>(EasyAlign)
+
+  " ale
+  nmap <Leader>af :ALEFix<CR>
+  nmap <leader>an :ALENext<cr>
+  nmap <leader>ap :ALEPrevious<cr>
+
 
 
 " VISUAL MODE
@@ -218,7 +226,7 @@ set termguicolors
   vmap <C-c> "+y<CR>"
 
   " align imports
-  vmap ga <Plug>(EasyAlign)
+  vmap <Leader>ea <Plug>(EasyAlign)
 
 "---------- custom commands --------
 

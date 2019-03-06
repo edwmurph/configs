@@ -10,6 +10,7 @@
   alias szl='cd ~/starry/ziploc && echo -ne "\033]0;"~/starry/ziploc"\007"'
   alias saa='cd ~/starry/admin-api-v2 && echo -ne "\033]0;"~/starry/admin-api-v2"\007"'
   alias sap='cd ~/starry/auth-proxy && echo -ne "\033]0;"~/starry/auth-proxy"\007"'
+  alias sca='cd ~/starry/cloud-api && echo -ne "\033]0;"~/starry/cloud-api"\007"'
 
 # other
 # export AWS_SDK_LOAD_CONFIG=1
