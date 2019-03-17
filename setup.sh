@@ -7,6 +7,19 @@ if [[ $? != 0 ]] ; then
 	return 1
 fi
 
+# symlink global gitignore
+printf "\nSYMLINKING GLOBAL GITIGNORE:\n"
+if [ -f ${HOME}/.gitignore ]; then
+	read -p "local ~/.gitignore already found. Would you like to replace your local ~/.vimrc ? " -n 1 -r
+	echo    # (optional) move to a new line
+	if ! [[ $REPLY =~ ^[Yy]$ ]]; then
+		echo "aborting script."
+		return 1
+	fi
+fi
+ln -fs ${HOME}/code/configs/dotfiles/gitignore ${HOME}/.gitignore
+git config --global core.excludesfile ~/.gitignore
+
 
 # install brew
 which -s brew

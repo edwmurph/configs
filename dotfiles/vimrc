@@ -40,8 +40,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'joshdick/onedark.vim'
   " highlights all matches in file while searching
   Plug 'haya14busa/incsearch.vim'
-  " detects indent in current file and uses that going forward
-  Plug 'tpope/vim-sleuth'
   " <Tab> for simple insert completion
   Plug 'ervandew/supertab'
   " Git integration features like :GBlame
@@ -77,10 +75,11 @@ set noerrorbells
 set colorcolumn=80
 
 " tabbing default to hard tabs of width 2 spaces
+filetype plugin indent on
+set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-set noexpandtab
 
 " Stop word wrapping
 set nowrap
@@ -108,13 +107,8 @@ filetype off
 
 
 " w0rp/ale configs
-  " override sbtserver address
-  let g:ale_scala_sbtserver_address = '127.0.0.1:5987'
   " dont lint every time text changes
   let g:ale_lint_on_text_changed = 'never'
-  " specify linters
-  let g:ale_linters = {'javascript': ['eslint'], 'scala': ['sbtserver', 'scalac', 'scalafmt', 'scalastyle']}
-  let g:ale_linters_explicit = 1
   let g:ale_fixers = ['eslint']
 
 " Yggdroot/indentLine configs
@@ -156,7 +150,7 @@ set termguicolors
 
   imap <Leader><Leader>c console.log(``);<ESC>2hi
   imap <Leader><Leader>j JSON.stringify(, null, 2)<ESC>9hi
-  imap <Leader><Leader>m def main(args: Array[String]): Unit = {}<ESC>i
+  imap <Leader>tc try {} catch ( err<ESC>lla {}<ESC>17hi
 
 
 " NORMAL MODE

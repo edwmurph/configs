@@ -37,8 +37,8 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 # native shortcuts
   alias ls='ls -G'
   alias ll='ls -la'
-  alias tt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__'"
-  alias ttt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|test'"
+  alias tt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|public'"
+  alias ttt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|public|test'"
   alias e="exit"
   # use homebrew's vim
   alias vim="/usr/local/Cellar/vim/8.1.0700/bin/vim"
@@ -58,11 +58,14 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias rmlocks="find . -maxdepth 2 -name package-lock.json -exec rm {} \;"
 
 # navigation
-  alias co='cd ~/code/configs && echo -ne "\033]0;"~/code/configs"\007"'
-  alias se='cd ~/.secrets && echo -ne "\033]0;"~/code/secrets"\007"'
+  alias ccf='cd ~/code/configs && echo -ne "\033]0;"~/code/configs"\007"'
+  alias cem='cd ~/code/emurphy && echo -ne "\033]0;"~/code/emurphy"\007"'
+  alias cgb='cd ~/code/gatsbyjs && echo -ne "\033]0;"~/code/gatsbyjs"\007"'
+
   alias nv='cd ~/.nvm && echo -ne "\033]0;"~/.nvm"\007"'
-  alias ed='cd ~/code/edwmurph && echo -ne "\033]0;"~/code/edwmurph"\007"'
-  alias pe='cd ~/Library/"Mobile Documents"/com~apple~CloudDocs/PERSONAL && echo -ne "\033]0;"~/...PERSONAL"\007"'
+  alias se='cd ~/.secrets && echo -ne "\033]0;"~/.secrets"\007"'
+
+  alias personal='cd ~/Library/"Mobile Documents"/com~apple~CloudDocs/PERSONAL && echo -ne "\033]0;"~/...PERSONAL"\007"'
 
 # npm
   alias nrtf="npm run test:functional"
@@ -73,8 +76,6 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias nb="jupyter notebook"
 
 # ssh
-  alias celeryL="ssh edwmurph@${CELERY_IP}"
-  alias celeryR="ssh edwmurph@${ROUTER_IP}"
   alias tess="ssh ${TESS_AWS_USERNAME}@tessandreola.com"
 
 # ctags
@@ -84,6 +85,15 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 
 
 # FUNCTIONS
+
+function gsetup() {
+  git config user.name 'edwmurph'
+  git config user.email 'edwmurph@outlook.com'
+}
+
+function mtf() {
+  NODE_ENV=test mocha "$1" --exit
+}
 
 
 function s() {
@@ -98,6 +108,7 @@ function v() {
   if [ -n "$file" ]; then
     vim "$file"
   fi
+  history -s vim "$file"
 }
 
 # Connect to VC's vpn through anyconnect

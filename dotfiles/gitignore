@@ -1,0 +1,4 @@
+*.swp
+bootstrap-sass/*
+*.min.*
+material-dashboard/*
