@@ -1,18 +1,5 @@
 " ln -s ${HOME}/code/configs/dotfiles/vimrc ${HOME}/.vimrc
 
-"------------ vundles --------------
-
-
-" Required for Vundle
-"set rtp+=~/.vim/bundle/Vundle.vim
-filetype plugin indent on
-
-"call vundle#begin()
-
-"  Plugin 'derekwyatt/vim-scala'
-
-"call vundle#end()
-
 
 "------------ vim-plugs --------------
 
@@ -59,6 +46,7 @@ call plug#begin('~/.vim/plugged')
 
 " PYTHON
   Plug 'vim-scripts/indentpython.vim'
+  Plug 'python-mode/python-mode', { 'branch': 'develop' }
 
 call plug#end()
 
@@ -75,7 +63,6 @@ set noerrorbells
 set colorcolumn=80
 
 " tabbing default to hard tabs of width 2 spaces
-filetype plugin indent on
 set expandtab
 set tabstop=2
 set softtabstop=2
@@ -96,15 +83,15 @@ set hlsearch
 " enable cursor movement by clicking with mouse
 set mouse=a
 
-" Required for one of my plugins TODO determine which plugin breaks when removing this and move to plugin-specific configs
-filetype off
-
 " Not sure if these are needed
   set laststatus=2
 
 
 "-------------- plugin-specific configs -------------
 
+" junegunn/vim-easy-align
+  " remove ignore groups
+  let g:easy_align_ignore_groups = []
 
 " w0rp/ale configs
   " dont lint every time text changes
@@ -121,10 +108,19 @@ filetype off
 " ervandew/supertab configs
   " let <CR> select completion selection
   let g:SuperTabCrMapping = 1
+  let g:SuperTabClosePreviewOnPopupClose = 1
+  let g:SuperTabDefaultCompletionType = "context"
+  set completeopt=menuone,noinsert,preview
 
 " junegunn/gv.vim
   " display unfoleded git diffs
   autocmd FileType git set foldlevel=1
+
+" python-mode/python-mode
+  " lint on save
+  let g:pymode_lint_on_write = 1
+  let g:pymode_lint_cwindow = 0
+
 
 
 "------------ theme ---------------
@@ -209,6 +205,9 @@ set termguicolors
   nmap <leader>an :ALENext<cr>
   nmap <leader>ap :ALEPrevious<cr>
 
+  " python-mode
+  nmap <Leader>afp :PymodeLintAuto<cr>
+
 
 
 " VISUAL MODE
@@ -231,9 +230,13 @@ command Hist ! git log --pretty=format:"\%C(yellow)>>>|\%h|\%Cred\%ad|\%Cblue\%a
 
 "-------------- python configs -------------
 
+filetype plugin on
+filetype indent on
+set omnifunc=syntaxcomplete#Complete
+let g:pymode_virtualenv_path = '/anaconda3/envs/ds'
 
 au FileType python
-  \ set tabstop=4 shiftwidth=4
+    \ set tabstop=4 softtabstop=4 shiftwidth=4 autoindent fileformat=unix
 
 
 "------------- R configs -------------------

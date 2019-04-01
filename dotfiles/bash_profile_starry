@@ -12,6 +12,12 @@
   alias sap='cd ~/starry/auth-proxy && echo -ne "\033]0;"~/starry/auth-proxy"\007"'
   alias sca='cd ~/starry/cloud-api && echo -ne "\033]0;"~/starry/cloud-api"\007"'
 
+# git
+  alias gcd='git checkout develop'
+
+# mongo
+  alias smongo='docker exec -it $(docker ps -aqf "name=cloud-env_mongodb_1") /bin/bash'
+
 # other
 # export AWS_SDK_LOAD_CONFIG=1
 # export AWS_SHARED_CREDENTIALS_FILE=$HOME/.aws/credentials

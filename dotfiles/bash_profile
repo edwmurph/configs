@@ -37,8 +37,8 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 # native shortcuts
   alias ls='ls -G'
   alias ll='ls -la'
-  alias tt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|public'"
-  alias ttt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|public|test'"
+  alias tt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|public|build'"
+  alias ttt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|public|build|test'"
   alias e="exit"
   # use homebrew's vim
   alias vim="/usr/local/Cellar/vim/8.1.0700/bin/vim"
@@ -46,7 +46,8 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 # git
   alias gs='git status'
   alias gp='git pull'
-  alias gl="git log --pretty=format:'%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s' --date=format:'%Y-%m-%d %H:%M:%S'"
+  alias gll="git log --pretty=format:'%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s' --date=format:'%Y-%m-%d %H:%M:%S'"
+  alias gl="git log -n 20 --pretty=format:'%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s' --date=format:'%Y-%m-%d %H:%M:%S'"
   alias gcm="git checkout master"
   alias gc.="git checkout ."
   alias gc="git checkout"
@@ -61,6 +62,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias ccf='cd ~/code/configs && echo -ne "\033]0;"~/code/configs"\007"'
   alias cem='cd ~/code/emurphy && echo -ne "\033]0;"~/code/emurphy"\007"'
   alias cgb='cd ~/code/gatsbyjs && echo -ne "\033]0;"~/code/gatsbyjs"\007"'
+  alias cds='cd ~/code/ds && echo -ne "\033]0;"~/code/ds"\007"'
 
   alias nv='cd ~/.nvm && echo -ne "\033]0;"~/.nvm"\007"'
   alias se='cd ~/.secrets && echo -ne "\033]0;"~/.secrets"\007"'
@@ -74,6 +76,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 # python
   alias serve="python -m SimpleHTTPServer"
   alias nb="jupyter notebook"
+  alias ds="conda activate ds && cds"
 
 # ssh
   alias tess="ssh ${TESS_AWS_USERNAME}@tessandreola.com"
@@ -188,10 +191,6 @@ function gdd() {
 #   scp "edwmurph@${CELERY_IP}:${path_on_remote}" "${local_destination_path}"
 # }
 
-function cat() {
-	bat "${1}"
-}
-
 
 ### BAT
 
@@ -218,7 +217,6 @@ PATH="$PATH:$GOPATH/bin"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 
-
 # added by Anaconda3 2018.12 installer
 # >>> conda init >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -235,5 +233,3 @@ else
 fi
 unset __conda_setup
 # <<< conda init <<<
-
-conda activate tf
