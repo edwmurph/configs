@@ -50,7 +50,6 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
-
 "-------------- general configs -------------
 
 
@@ -82,6 +81,8 @@ set number
 set hlsearch
 " enable cursor movement by clicking with mouse
 set mouse=a
+" enable vue syntax highlighting
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
 " Not sure if these are needed
   set laststatus=2
@@ -169,6 +170,8 @@ set termguicolors
   nmap <C-i> :SortScalaImports<CR>
 
   " buffer shifts
+  nmap <C-j> <C-e>
+  nmap <C-k> <C-y>
   nmap <C-down> <C-e>
   nmap <C-up> <C-y>
   nmap <C-S-down> <C-d> zz

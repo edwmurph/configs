@@ -2,3 +2,5 @@
 bootstrap-sass/*
 *.min.*
 material-dashboard/*
+.git
+local

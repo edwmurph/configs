@@ -68,6 +68,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias se='cd ~/.secrets && echo -ne "\033]0;"~/.secrets"\007"'
 
   alias personal='cd ~/Library/"Mobile Documents"/com~apple~CloudDocs/PERSONAL && echo -ne "\033]0;"~/...PERSONAL"\007"'
+  alias documents='cd ~/Library/"Mobile Documents"/com~apple~CloudDocs/Documents && echo -ne "\033]0;"~/...Documents"\007"'
 
 # npm
   alias nrtf="npm run test:functional"
@@ -91,7 +92,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 
 function gsetup() {
   git config user.name 'edwmurph'
-  git config user.email 'edwmurph@outlook.com'
+  git config user.email 'edwmurph3@gmail.com'
 }
 
 function mtf() {
@@ -108,6 +109,14 @@ function s() {
 
 function v() {
   file="$(fzf)"
+  if [ -n "$file" ]; then
+    vim "$file"
+  fi
+  history -s vim "$file"
+}
+
+function vn() {
+  file="$(find node_modules | fzf)"
   if [ -n "$file" ]; then
     vim "$file"
   fi
@@ -164,11 +173,11 @@ function agqt() {
 }
 
 function gd() {
-  git diff "${2-HEAD}" -- "${1-.}" ':(exclude)*package-lock.json'
+  git diff "${2-HEAD}" -- "${1-.}" ':(exclude)*package-lock.json' ':(exclude)*yarn.lock'
 }
 
 function gdd() {
-  git diff HEAD^ -- "${1-.}" ':(exclude)*package-lock.json'
+  git diff HEAD^ -- "${1-.}" ':(exclude)*package-lock.json' ':(exclude)*yarn.lock'
 }
 
 # function grho() {
