@@ -1,9 +1,5 @@
 #!/bin/bash
 
-NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # Automatically switch to node version specified in local dir's package.json (don't do this when in node_modules)
 function autoswitch_to_node_version() {
   if [ -f '.nvmrc' ]; then
@@ -26,13 +22,17 @@ function autoswitch_to_node_version() {
   #   fi
   fi
 }
-cd () { builtin cd "$@" && autoswitch_to_node_version; }
-pushd () { builtin pushd "$@" && autoswitch_to_node_version; }
-popd () { builtin popd "$@" && autoswitch_to_node_version; }
+
+function context_switch() {
+  autoswitch_to_node_version
+  context=$(echo $PWD | sed -E 's/^\/Users\/emurphy\/code\/([^/]+).*$/\1/')
+  if ! [[ $context =~ / ]]; then
+    AWS_PROFILE=$context
+  fi
+}
+
+
+cd () { builtin cd "$@" && context_switch; }
+pushd () { builtin pushd "$@" && context_switch; }
+popd () { builtin popd "$@" && context_switch; }
 cd .
-
-# export NODE_PATH="/Users/edwmurph/.nvm/versions/node/v11.3.0/lib/node_modules"
-
-[[ "$PATH" == *"./node_modules/.bin"* ]] || PATH="$PATH:./node_modules/.bin"
-# PATH="$PATH:/Users/edwmurph/.nvm/versions/node/v11.3.0/lib/node_modules"
-

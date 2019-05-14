@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # navigation
-  alias sam='goto ~/code/starry/amp starry'
-  alias sce='goto ~/code/starry/cloud-env starry'
-  alias sls='goto ~/code/starry/locksmith starry'
-  alias sjv='goto ~/code/starry/jarvis starry'
-  alias spp='goto ~/code/starry/pepper starry'
-  alias ssa='goto ~/code/starry/sage starry'
-  alias szl='goto ~/code/starry/ziploc starry'
-  alias saa='goto ~/code/starry/admin-api-v2 starry'
-  alias sap='goto ~/code/starry/auth-proxy starry'
-  alias sca='goto ~/code/starry/cloud-api starry'
-  alias srs='goto ~/code/starry/radius-server starry'
+  alias sam='goto ~/code/starry/amp'
+  alias sce='goto ~/code/starry/cloud-env'
+  alias sls='goto ~/code/starry/locksmith'
+  alias sjv='goto ~/code/starry/jarvis'
+  alias spp='goto ~/code/starry/pepper'
+  alias ssa='goto ~/code/starry/sage'
+  alias szl='goto ~/code/starry/ziploc'
+  alias saa='goto ~/code/starry/admin-api-v2'
+  alias sap='goto ~/code/starry/auth-proxy'
+  alias sca='goto ~/code/starry/cloud-api'
+  alias srs='goto ~/code/starry/radius-server'
 
 # git
   alias gcd='git checkout develop'

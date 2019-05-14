@@ -10,7 +10,6 @@ source_if_exists "${HOME}/.secrets/env.sh"
 source_if_exists "${HOME}/code/personal/configs/dotfiles/bash_profile_starry"
 source_if_exists "${HOME}/code/personal/configs/dotfiles/bash_profile_fs"
 source_if_exists "${HOME}/code/personal/configs/dotfiles/bash_profile_prompt"
-source_if_exists "${HOME}/code/personal/configs/dotfiles/bash_profile_node"
 source_if_exists "${HOME}/code/personal/configs/git-completion.bash"
 
 
@@ -63,11 +62,11 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   # alias rmlocks="find . -maxdepth 2 -name package-lock.json -exec rm {} \;"
 
 # navigation
-  alias ccf='goto ~/code/personal/configs'
-  alias cem='goto ~/code/personal/emurphy'
-  alias cgb='goto ~/code/personal/gatsbyjs'
-  alias cds='goto ~/code/personal/ds'
-  alias cus='goto ~/code/personal/uss'
+  alias pcf='goto ~/code/personal/configs'
+  alias pem='goto ~/code/personal/emurphy'
+  alias pgb='goto ~/code/personal/gatsbyjs'
+  alias pds='goto ~/code/personal/ds'
+  alias pus='goto ~/code/personal/uss'
 
   alias co='goto ~/code'
   alias nv='goto ~/.nvm'
@@ -188,6 +187,17 @@ function gdd() {
 #   scp "edwmurph@${CELERY_IP}:${path_on_remote}" "${local_destination_path}"
 # }
 
+### NODE
+
+NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[[ "$PATH" == *"./node_modules/.bin"* ]] || PATH="$PATH:./node_modules/.bin"
+# export NODE_PATH="/Users/edwmurph/.nvm/versions/node/v11.3.0/lib/node_modules"
+# PATH="$PATH:/Users/edwmurph/.nvm/versions/node/v11.3.0/lib/node_modules"
+
+
 
 ### BAT
 
@@ -230,3 +240,7 @@ else
 fi
 unset __conda_setup
 # <<< conda init <<<
+
+
+### POST OPS
+source_if_exists "${HOME}/code/personal/configs/dotfiles/bash_profile_context"
