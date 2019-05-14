@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # navigation
-  alias sam='cd ~/starry/amp && echo -ne "\033]0;"~/starry/amp"\007"'
-  alias sce='cd ~/starry/cloud-env && echo -ne "\033]0;"~/starry/cloud-env"\007"'
-  alias sls='cd ~/starry/locksmith && echo -ne "\033]0;"~/starry/locksmith"\007"'
-  alias sjv='cd ~/starry/jarvis && echo -ne "\033]0;"~/starry/jarvis"\007"'
-  alias spp='cd ~/starry/pepper && echo -ne "\033]0;"~/starry/pepper"\007"'
-  alias ssa='cd ~/starry/sage && echo -ne "\033]0;"~/starry/sage"\007"'
-  alias szl='cd ~/starry/ziploc && echo -ne "\033]0;"~/starry/ziploc"\007"'
-  alias saa='cd ~/starry/admin-api-v2 && echo -ne "\033]0;"~/starry/admin-api-v2"\007"'
-  alias sap='cd ~/starry/auth-proxy && echo -ne "\033]0;"~/starry/auth-proxy"\007"'
-  alias sca='cd ~/starry/cloud-api && echo -ne "\033]0;"~/starry/cloud-api"\007"'
-  alias srs='cd ~/starry/radius-server && echo -ne "\033]0;"~/starry/radius-server"\007"'
+  alias sam='goto ~/starry/amp starry'
+  alias sce='goto ~/starry/cloud-env starry'
+  alias sls='goto ~/starry/locksmith starry'
+  alias sjv='goto ~/starry/jarvis starry'
+  alias spp='goto ~/starry/pepper starry'
+  alias ssa='goto ~/starry/sage starry'
+  alias szl='goto ~/starry/ziploc starry'
+  alias saa='goto ~/starry/admin-api-v2 starry'
+  alias sap='goto ~/starry/auth-proxy starry'
+  alias sca='goto ~/starry/cloud-api starry'
+  alias srs='goto ~/starry/radius-server starry'
 
 # git
   alias gcd='git checkout develop'
@@ -20,6 +20,3 @@
   alias smongo='docker exec -it $(docker ps -aqf "name=cloud-env_mongodb_1") mongo jarvisdev'
 
 # other
-# export AWS_SDK_LOAD_CONFIG=1
-# export AWS_SHARED_CREDENTIALS_FILE=$HOME/.aws/credentials
-# export AWS_CONFIG_FILE=$HOME/.aws/config

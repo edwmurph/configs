@@ -9,6 +9,7 @@ source_if_exists "${HOME}/.secrets/secrets.sh"
 source_if_exists "${HOME}/.secrets/env.sh"
 source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_cisco"
 source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_starry"
+source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_fs"
 source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_prompt"
 source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_node"
 source_if_exists "${HOME}/code/configs/git-completion.bash"
@@ -37,11 +38,14 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 # native shortcuts
   alias ls='ls -G'
   alias ll='ls -la'
-  alias tt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|public|build'"
-  alias ttt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|public|build|test'"
+  alias tt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|public|build|.DS_Store'"
+  alias ttt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|public|build|.DS_Store|test'"
   alias e="exit"
   # use homebrew's vim
   alias vim="/usr/local/Cellar/vim/8.1.0700/bin/vim"
+  alias agq="ag --hidden -Q"
+  alias agqt="ag --hidden --ignore=test -Q"
+  alias agg="ag -g"
 
 # git
   alias gs='git status'
@@ -56,16 +60,19 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias grr="git reset HEAD~1"
   alias gct="git commit -m 'temp commit'"
   alias gdm="git diff master -- . ':(exclude)package-lock.json'"
-  alias rmlocks="find . -maxdepth 2 -name package-lock.json -exec rm {} \;"
+  alias gds="git diff --stat"
+  # alias rmlocks="find . -maxdepth 2 -name package-lock.json -exec rm {} \;"
 
 # navigation
-  alias ccf='cd ~/code/configs && echo -ne "\033]0;"~/code/configs"\007"'
-  alias cem='cd ~/code/emurphy && echo -ne "\033]0;"~/code/emurphy"\007"'
-  alias cgb='cd ~/code/gatsbyjs && echo -ne "\033]0;"~/code/gatsbyjs"\007"'
-  alias cds='cd ~/code/ds && echo -ne "\033]0;"~/code/ds"\007"'
+  alias ccf='goto ~/code/configs'
+  alias cem='goto ~/code/emurphy'
+  alias cgb='goto ~/code/gatsbyjs'
+  alias cds='goto ~/code/ds'
+  alias cus='goto ~/code/uss'
 
-  alias nv='cd ~/.nvm && echo -ne "\033]0;"~/.nvm"\007"'
-  alias se='cd ~/.secrets && echo -ne "\033]0;"~/.secrets"\007"'
+  alias co='goto ~/code'
+  alias nv='goto ~/.nvm'
+  alias se='goto ~/.secrets'
 
   alias personal='cd ~/Library/"Mobile Documents"/com~apple~CloudDocs/PERSONAL && echo -ne "\033]0;"~/...PERSONAL"\007"'
   alias documents='cd ~/Library/"Mobile Documents"/com~apple~CloudDocs/Documents && echo -ne "\033]0;"~/...Documents"\007"'
@@ -73,6 +80,8 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 # npm
   alias nrtf="npm run test:functional"
   alias ns="npm start"
+  alias nrd="npm run dev"
+  alias nrw="npm run watch"
 
 # python
   alias serve="python -m SimpleHTTPServer"
@@ -163,14 +172,6 @@ function Hist() {
 # function p() {
 #   python "${1?Error trying to execute a python script without a file}"
 # }
-
-function agq() {
-  ag --hidden -Q "$1" -G ${2-.} -i
-}
-
-function agqt() {
-  ag --hidden -Q "$1" -G ${2-.} -i --ignore=test
-}
 
 function gd() {
   git diff "${2-HEAD}" -- "${1-.}" ':(exclude)*package-lock.json' ':(exclude)*yarn.lock'

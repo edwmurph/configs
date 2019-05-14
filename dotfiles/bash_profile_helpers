@@ -6,3 +6,8 @@ function source_if_exists () {
     . "$path"
   fi
 }
+
+function goto() {
+  export AWS_PROFILE=${2:-default}
+  cd ${1} && echo -ne "\033]0;"${1}"\007"
+}

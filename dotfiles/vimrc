@@ -22,7 +22,12 @@ call plug#begin('~/.vim/plugged')
   " file explorer
   Plug 'scrooloose/nerdtree'
   " collection of lang packs
-  Plug 'sheerun/vim-polyglot'
+  " Plug 'sheerun/vim-polyglot'
+  " javascript syntax + folding + concealing chars
+  "Plug 'pangloss/vim-javascript'
+  "Plug 'mxw/vim-jsx'
+  Plug 'chemzqm/vim-jsx-improve'
+  Plug 'posva/vim-vue'
   " theme
   Plug 'joshdick/onedark.vim'
   " highlights all matches in file while searching
@@ -55,11 +60,12 @@ call plug#end()
 
 let mapleader=" "
 
-" self-explanatory
+" general
 syntax on
 set encoding=utf-8
 set noerrorbells
 set colorcolumn=80
+set autoindent
 
 " tabbing default to hard tabs of width 2 spaces
 set expandtab
@@ -83,12 +89,22 @@ set hlsearch
 set mouse=a
 " enable vue syntax highlighting
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+" change dir to .swp files
+set directory=$HOME/.vim/swapfiles//
 
 " Not sure if these are needed
   set laststatus=2
 
 
 "-------------- plugin-specific configs -------------
+
+
+" pangloss/vim-javascript
+  set conceallevel=1
+  "let g:javascript_conceal = 1
+
+" alvan/vim-closetag
+  let g:closetag_filenames = '*.html,*.vue,*.js'
 
 " junegunn/vim-easy-align
   " remove ignore groups
@@ -104,7 +120,7 @@ autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
   let g:indentLine_enabled = 1
   let g:indentLine_char = "│"
   let g:indentLine_conceallevel=1
-  let g:indentLine_fileTypeExclude = ['tex', 'markdown']
+  let g:indentLine_fileTypeExclude = ['tex', 'markdown', 'json']
 
 " ervandew/supertab configs
   " let <CR> select completion selection
@@ -165,6 +181,7 @@ set termguicolors
   nmap <Leader><Leader>c aconsole.log(``);<ESC>2hi
   nmap <Leader><Leader>j aJSON.stringify(, null, 2)<ESC>9hi
   nmap <Leader><Leader>m adef main(args: Array[String]): Unit = {}<ESC>i
+  nmap <Leader><Leader>d aconst delay = ( ms ) => new Promise( r => setTimeout( r, ms )<ESC>0
 
   " Ctrl-i sorts scala imports
   nmap <C-i> :SortScalaImports<CR>

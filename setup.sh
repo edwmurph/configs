@@ -132,6 +132,19 @@ fi
 # add following to ~/.ctags
 # --exclude=node_modules/*
 
+# symlink .aws
+printf "\nSYMLINKING AWS CONFIG:\n"
+if [ -d ${HOME}/.aws ]; then
+	read -p "local ~/.aws already found. Would you like to replace your local ~/.aws ? " -n 1 -r
+	echo    # (optional) move to a new line
+	if ! [[ $REPLY =~ ^[Yy]$ ]]; then
+		echo "aborting script."
+		return 1
+	fi
+fi
+mkdir ${HOME}/.aws
+ln -s ${HOME}/.secrets/dotfiles/.aws ${HOME}/.aws
+
 
 echo 
 echo "finished"
