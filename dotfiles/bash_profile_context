@@ -27,7 +27,7 @@ function context_switch() {
   autoswitch_to_node_version
   context=$(echo $PWD | sed -E 's/^\/Users\/emurphy\/code\/([^/]+).*$/\1/')
   if ! [[ $context =~ / ]]; then
-    AWS_PROFILE=$context
+    export AWS_PROFILE=$context
   fi
 }
 

@@ -52,6 +52,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias gl="git log -n 20 --pretty=format:'%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s' --date=format:'%Y-%m-%d %H:%M:%S'"
   alias gcm="git checkout master"
   alias gc.="git checkout ."
+  alias gr.="git reset ."
   alias gc="git checkout"
   alias gb="git branch -vv"
   alias gbdl="git branch | grep -v master | grep -v develop | xargs git branch -D"
