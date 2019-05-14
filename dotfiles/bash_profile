@@ -1,18 +1,17 @@
 #!/bin/bash
 
 # To use this .bash_profile, run the setup.sh script in this dir or just symlink this file to your home directory:
-# ln -s ${HOME}/code/configs/dotfiles/bash_profile ${HOME}/.bash_profile
+# ln -s ${HOME}/code/personal/configs/dotfiles/bash_profile ${HOME}/.bash_profile
 
-. ~/code/configs/dotfiles/bash_profile_helpers
+. ~/code/personal/configs/dotfiles/bash_profile_helpers
 
 source_if_exists "${HOME}/.secrets/secrets.sh"
 source_if_exists "${HOME}/.secrets/env.sh"
-source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_cisco"
-source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_starry"
-source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_fs"
-source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_prompt"
-source_if_exists "${HOME}/code/configs/dotfiles/bash_profile_node"
-source_if_exists "${HOME}/code/configs/git-completion.bash"
+source_if_exists "${HOME}/code/personal/configs/dotfiles/bash_profile_starry"
+source_if_exists "${HOME}/code/personal/configs/dotfiles/bash_profile_fs"
+source_if_exists "${HOME}/code/personal/configs/dotfiles/bash_profile_prompt"
+source_if_exists "${HOME}/code/personal/configs/dotfiles/bash_profile_node"
+source_if_exists "${HOME}/code/personal/configs/git-completion.bash"
 
 
 ### TERMINAL CONFIGS
@@ -64,11 +63,11 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   # alias rmlocks="find . -maxdepth 2 -name package-lock.json -exec rm {} \;"
 
 # navigation
-  alias ccf='goto ~/code/configs'
-  alias cem='goto ~/code/emurphy'
-  alias cgb='goto ~/code/gatsbyjs'
-  alias cds='goto ~/code/ds'
-  alias cus='goto ~/code/uss'
+  alias ccf='goto ~/code/personal/configs'
+  alias cem='goto ~/code/personal/emurphy'
+  alias cgb='goto ~/code/personal/gatsbyjs'
+  alias cds='goto ~/code/personal/ds'
+  alias cus='goto ~/code/personal/uss'
 
   alias co='goto ~/code'
   alias nv='goto ~/.nvm'
@@ -169,10 +168,6 @@ function Hist() {
   git log --pretty=format:"%C(yellow)>>>|%h|%Cred%ad|%Cblue%an|%Creset%s" --date=format:"%Y-%m-%d %H:%M" -p ${1?must pass a file location for first arg} | sed -e '/>>>|/{n;N;N;N;d;}' | sed -e 's/\(^-.*$\)/'$(printf "\033[91m")'\1'$(printf "\033[0m")'/g' | sed -e 's/\(^+.*$\)/'$(printf "\033[92m")'\1'$(printf "\033[0m")'/g'
 }
 
-# function p() {
-#   python "${1?Error trying to execute a python script without a file}"
-# }
-
 function gd() {
   git diff "${2-HEAD}" -- "${1-.}" ':(exclude)*package-lock.json' ':(exclude)*yarn.lock'
 }
@@ -181,16 +176,8 @@ function gdd() {
   git diff HEAD^ -- "${1-.}" ':(exclude)*package-lock.json' ':(exclude)*yarn.lock'
 }
 
-# function grho() {
-#   git reset --hard origin/"$1"
-# }
-
 # function dif() {
 #   git diff --no-index -- "${1?Must provide 1st arg that points to a file}" "${2-Must provide 2nd arg that points to a file}"
-# }
-
-# function kc() {
-#   sudo kubectl "$@"
 # }
 
 # helper to transfer files to server

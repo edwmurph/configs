@@ -1,7 +1,0 @@
-" ln -s ${HOME}/code/configs/dotfiles/ideavimrc ${HOME}/.ideavimrc
-
-. ${HOME}/code/configs/dotfiles/vimrc
-
-:map <Space>; <Esc> :w <Enter>h
-:imap <Space>; <Esc> :w <Enter>
-

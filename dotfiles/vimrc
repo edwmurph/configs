@@ -1,4 +1,4 @@
-" ln -s ${HOME}/code/configs/dotfiles/vimrc ${HOME}/.vimrc
+" ln -s ${HOME}/code/personal/configs/dotfiles/vimrc ${HOME}/.vimrc
 
 
 "------------ vim-plugs --------------

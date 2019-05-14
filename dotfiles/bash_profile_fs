@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # navigation
-  alias fmp='goto ~/fs/marketplace fs'
+  alias fmp='goto ~/code/fs/marketplace fs'
