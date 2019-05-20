@@ -38,5 +38,5 @@ PS1="${BLUE}"'$(
   else
     echo ""
   fi
-)'"${WHITE}⟩ "
+)'"${WHITE}\n⟩ "
 

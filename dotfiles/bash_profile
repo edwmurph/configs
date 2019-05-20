@@ -46,6 +46,8 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias agg="ag -g"
 
 # git
+  # only use local branches for git completion
+  export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
   alias gs='git status'
   alias gp='git pull'
   alias gll="git log --pretty=format:'%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s' --date=format:'%Y-%m-%d %H:%M:%S'"
@@ -54,8 +56,9 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias gc.="git checkout ."
   alias gr.="git reset ."
   alias gc="git checkout"
+  __git_complete gc _git_checkout
   alias gb="git branch -vv"
-  alias gbdl="git branch | grep -v master | grep -v develop | xargs git branch -D"
+  alias gbdl="git branch | grep -v master | grep -v develop | grep -v dev | xargs git branch -D"
   alias grr="git reset HEAD~1"
   alias gct="git commit -m 'temp commit'"
   alias gdm="git diff master -- . ':(exclude)package-lock.json'"
@@ -63,6 +66,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   # alias rmlocks="find . -maxdepth 2 -name package-lock.json -exec rm {} \;"
 
 # navigation
+  alias pte='goto ~/code/personal/tess'
   alias pcf='goto ~/code/personal/configs'
   alias pem='goto ~/code/personal/emurphy'
   alias pgb='goto ~/code/personal/gatsbyjs'
@@ -81,6 +85,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias ns="npm start"
   alias nrd="npm run dev"
   alias nrw="npm run watch"
+  alias nrwi="NODE_ENV=integration npm run watch"
 
 # python
   alias serve="python -m SimpleHTTPServer"

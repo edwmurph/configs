@@ -1,5 +1,5 @@
 " ln -s ${HOME}/code/personal/configs/dotfiles/vimrc ${HOME}/.vimrc
-
+syntax on
 
 "------------ vim-plugs --------------
 
@@ -22,7 +22,7 @@ call plug#begin('~/.vim/plugged')
   " file explorer
   Plug 'scrooloose/nerdtree'
   " collection of lang packs
-  " Plug 'sheerun/vim-polyglot'
+  Plug 'sheerun/vim-polyglot'
   " javascript syntax + folding + concealing chars
   "Plug 'pangloss/vim-javascript'
   "Plug 'mxw/vim-jsx'
@@ -98,6 +98,8 @@ set directory=$HOME/.vim/swapfiles//
 
 "-------------- plugin-specific configs -------------
 
+" sheerun/vim-polyglot
+  let g:polyglot_disabled = ['json', 'jsx', 'javascript', 'vue']
 
 " pangloss/vim-javascript
   set conceallevel=1
