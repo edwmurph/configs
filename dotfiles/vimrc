@@ -24,8 +24,6 @@ call plug#begin('~/.vim/plugged')
   " collection of lang packs
   Plug 'sheerun/vim-polyglot'
   " javascript syntax + folding + concealing chars
-  "Plug 'pangloss/vim-javascript'
-  "Plug 'mxw/vim-jsx'
   Plug 'chemzqm/vim-jsx-improve'
   Plug 'posva/vim-vue'
   " theme
@@ -167,6 +165,8 @@ set termguicolors
   imap <Leader><Leader>j JSON.stringify(, null, 2)<ESC>9hi
   imap <Leader>tc try {} catch ( err<ESC>lla {}<ESC>17hi
 
+  " sync syntax
+  imap <Leader><Leader>s <Esc>:syntax sync fromstart<Enter>li
 
 " NORMAL MODE
 
@@ -184,9 +184,6 @@ set termguicolors
   nmap <Leader><Leader>j aJSON.stringify(, null, 2)<ESC>9hi
   nmap <Leader><Leader>m adef main(args: Array[String]): Unit = {}<ESC>i
   nmap <Leader><Leader>d aconst delay = ( ms ) => new Promise( r => setTimeout( r, ms )<ESC>0
-
-  " Ctrl-i sorts scala imports
-  nmap <C-i> :SortScalaImports<CR>
 
   " buffer shifts
   nmap <C-j> <C-e>
@@ -230,6 +227,8 @@ set termguicolors
   " python-mode
   nmap <Leader>afp :PymodeLintAuto<cr>
 
+  " sync syntax
+  nmap <Leader><Leader>s :syntax sync fromstart<Enter>
 
 
 " VISUAL MODE

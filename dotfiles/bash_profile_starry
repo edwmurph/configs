@@ -19,6 +19,7 @@
 
 # mongo
   alias smongo='docker exec -it $(docker ps -aqf "name=cloud-env_mongodb_1") mongo jarvisdev'
+  alias smongo2='docker exec -it $(docker ps -aqf "name=cloud-env_mongodb_1") /bin/bash'
 
 # other
   alias saat='cp ~/code/starry/admin-api-v2/local/template.vue ~/code/starry/admin-api-v2/lib/public/js/bundles/pings/pages/create.vue'
