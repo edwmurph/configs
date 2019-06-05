@@ -74,7 +74,7 @@ set shiftwidth=2
 " Stop word wrapping
 set nowrap
 " Except on markdown files
-  autocmd FileType markdown setlocal wrap
+autocmd FileType markdown setlocal wrap
 " on bottom bar, display line #, column # and relative position of cursor in file
 set ruler
 " enable backspace to delete over line breaks or auto-inserted indents
@@ -91,7 +91,7 @@ autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 set directory=$HOME/.vim/swapfiles//
 
 " Not sure if these are needed
-  set laststatus=2
+set laststatus=2
 
 
 "-------------- plugin-specific configs -------------
@@ -130,7 +130,7 @@ set directory=$HOME/.vim/swapfiles//
   set completeopt=menuone,noinsert,preview
 
 " junegunn/gv.vim
-  " display unfoleded git diffs
+  " display unfolded git diffs
   autocmd FileType git set foldlevel=1
 
 " python-mode/python-mode
@@ -247,6 +247,11 @@ set termguicolors
 
 " GV plugin is a better alternative to this
 command Hist ! git log --pretty=format:"\%C(yellow)>>>|\%h|\%Cred\%ad|\%Cblue\%an|\%Creset\%s" --date=format:"\%Y-\%m-\%d \%H:\%M" -p $(echo %) | sed -e '/>>>|/{n;N;N;N;d;}' | sed -e 's/\(^-.*$\)/'$(printf "\033[91m")'\1'$(printf "\033[0m")'/g' | sed -e 's/\(^+.*$\)/'$(printf "\033[92m")'\1'$(printf "\033[0m")'/g'
+
+
+"---------- autocommands --------
+"
+autocmd BufWritePost * :syntax sync fromstart
 
 
 "-------------- python configs -------------

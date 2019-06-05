@@ -4,3 +4,4 @@ bootstrap-sass/*
 material-dashboard/*
 .git
 local
+node_modules

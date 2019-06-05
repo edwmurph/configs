@@ -28,7 +28,7 @@ PS1="${BLUE}"'$(
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     echo "\u@\h "
   fi
-)'"${GREEN}↳ \${timer_show}s \t\n${WHITE}\w"'$(
+)'"↪ \${timer_show}s \t ✒ \n${WHITE}\w"'$(
   if [[ $(__git_ps1) =~ \\*\)$ ]]; then
     echo "'${RED}'$(__git_ps1 " (%s)")"
   elif [[ $(__git_ps1) =~ \+\)$ ]]; then
