@@ -13,6 +13,7 @@
   alias sca='goto ~/code/starry/cloud-api'
   alias srs='goto ~/code/starry/radius-server'
   alias scm='goto ~/code/starry/cloud-models'
+  alias sdh='goto ~/code/starry/dullahan'
 
 # git
   alias gcd='git checkout develop'

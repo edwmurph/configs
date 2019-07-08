@@ -30,6 +30,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 
+
 ### ALIASES
 
 
@@ -39,8 +40,6 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias tt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|public|build|.DS_Store'"
   alias ttt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|public|build|.DS_Store|test'"
   alias e="exit"
-  # use homebrew's vim
-  alias vim="/usr/local/Cellar/vim/8.1.0700/bin/vim"
   alias agq="ag --hidden -Q"
   alias agqt="ag --hidden --ignore=test -Q"
   alias agg="ag -g"
@@ -53,12 +52,13 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias gll="git log --pretty=format:'%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s' --date=format:'%Y-%m-%d %H:%M:%S'"
   alias gl="git log -n 20 --pretty=format:'%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s' --date=format:'%Y-%m-%d %H:%M:%S'"
   alias gc.="git checkout ."
+  alias ga.="git add ."
   alias gr.="git reset ."
   alias gc="git checkout"
   __git_complete gc _git_checkout
   alias gcb="git checkout -b"
   alias gb="git branch -vv"
-  alias gbdl="git branch | grep -v master | grep -v develop | grep -v dev | xargs git branch -D"
+  alias gbdl="git branch | grep -v master | grep -v develop | xargs git branch -D"
   alias grr="git reset HEAD~1"
   alias gct="git commit -m 'temp commit'"
   alias gdm="git diff master -- . ':(exclude)package-lock.json'"
@@ -83,6 +83,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 # npm
   alias nrtf="npm run test:functional"
   alias ns="npm start"
+  alias nt="npm test"
   alias nrd="npm run dev"
   alias nrw="npm run watch"
   alias nrc="npm run clean"
@@ -229,41 +230,27 @@ function gdd() {
 ### NODE
 
 NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source $(brew --prefix nvm)/nvm.sh --no-use # loads nvm
+# source $(brew --prefix nvm)/bash_completion # loads nvm bash completion
 
 [[ "$PATH" == *"./node_modules/.bin"* ]] || PATH="$PATH:./node_modules/.bin"
-# export NODE_PATH="/Users/edwmurph/.nvm/versions/node/v11.3.0/lib/node_modules"
-# PATH="$PATH:/Users/edwmurph/.nvm/versions/node/v11.3.0/lib/node_modules"
-
-
 
 ### BAT
 
-
 export BAT_THEME=TwoDark
-
 
 ### PYTHON
 
-
 PATH="${HOME}/anaconda/bin:$PATH"
 
-
 ### GO
-
 
 GOPATH="$HOME/go"
 PATH="$PATH:$GOPATH/bin"
 
-
 ### FZF
 
-
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-
-
-
 
 ### POST OPS
 source_if_exists "${HOME}/code/personal/configs/dotfiles/bash_profile_context"

@@ -7,7 +7,7 @@ function autoswitch_to_node_version() {
     current_node_version="$(nvm current)"
     if [ "$requested_node_version" != "$current_node_version" ]; then
       # printf "requested_node_version: $requested_node_version\ncurrent_node_version: $current_node_version\n"
-      nvm use
+      nvm use "$requested_node_version"
     fi
   # elif [ -f 'package.json' ] && [[ "$PWD" != *'node_modules'* ]]; then
   #   requested_node_version="v$(node -p "(require('./package.json').engines || {}).node || ''")"

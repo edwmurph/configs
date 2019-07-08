@@ -71,9 +71,9 @@ ln -fs ${HOME}/code/configs/dotfiles/vimrc ${HOME}/.vimrc
 which -s nvm
 if [[ $? != 0 ]] ; then
 	printf "\nINSTALLING NVM:\n"
-	# following instructions from: https://github.com/edwmurph/nvm#git-install
 	if ! [ -f "${HOME}/.nvm/nvm.sh" ]; then
-		git clone https://github.com/edwmurph/nvm.git "${HOME}/.nvm"
+    brew install nvm
+    mkdir ~/.nvm
 	fi
 	. "${HOME}/.nvm/nvm.sh"
 fi
