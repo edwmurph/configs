@@ -161,9 +161,12 @@ set termguicolors
   imap <Leader>; <Esc>
   imap <Leader>;<Leader> <Esc> :w <Enter>
 
+  " text inserts
   imap <Leader><Leader>c console.log(``);<ESC>2hi
   imap <Leader><Leader>j JSON.stringify(, null, 2)<ESC>9hi
-  imap <Leader>tc try {} catch ( err<ESC>lla {}<ESC>17hi
+  imap <Leader><Leader>tc try {} catch ( err<ESC>lla {}<ESC>17hi
+  imap <Leader><Leader>it it(<ESC>la;<ESC>hi '', async() => {}<ESC>lx16hi
+  imap <Leader><Leader>de describe(<ESC>la;<ESC>hi '', () => {}<ESC>lx11hi
 
   " sync syntax
   imap <Leader><Leader>s <Esc>:syntax sync fromstart<Enter>li
@@ -179,11 +182,15 @@ set termguicolors
   " Ctrl-n toggles nerdtree panel
   nmap <C-n> :NERDTreeToggle<CR>
 
+  " Reoload vimrc
+  nmap <Leader>rv :source ~/.vimrc<CR>
+
   " text insert shortcuts
   nmap <Leader><Leader>c aconsole.log(``);<ESC>2hi
   nmap <Leader><Leader>j aJSON.stringify(, null, 2)<ESC>9hi
-  nmap <Leader><Leader>m adef main(args: Array[String]): Unit = {}<ESC>i
   nmap <Leader><Leader>d aconst delay = ( ms ) => new Promise( r => setTimeout( r, ms )<ESC>0
+  nmap <Leader><Leader>it ait(<ESC>la;<ESC>hi '', async() => {}<ESC>lx16hi
+  nmap <Leader><Leader>de adescribe(<ESC>la;<ESC>hi '', () => {}<ESC>lx11hi
 
   " buffer shifts
   nmap <C-j> <C-e>

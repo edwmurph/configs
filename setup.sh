@@ -66,23 +66,29 @@ if [ -f ${HOME}/.vimrc ]; then
 fi
 ln -fs ${HOME}/code/configs/dotfiles/vimrc ${HOME}/.vimrc
 
+# install fnm
+which -s fnm
+if [[ $? != 0 ]] ; then
+	printf "\nINSTALLING FNM:\n"
+  brew install Schniz/tap/fnm
+fi
 
 # install nvm
-which -s nvm
-if [[ $? != 0 ]] ; then
-	printf "\nINSTALLING NVM:\n"
-	if ! [ -f "${HOME}/.nvm/nvm.sh" ]; then
-    brew install nvm
-    mkdir ~/.nvm
-	fi
-	. "${HOME}/.nvm/nvm.sh"
-fi
+# which -s nvm
+# if [[ $? != 0 ]] ; then
+# 	printf "\nINSTALLING NVM:\n"
+# 	if ! [ -f "${HOME}/.nvm/nvm.sh" ]; then
+#     brew install nvm
+#     mkdir ~/.nvm
+# 	fi
+# 	. "${HOME}/.nvm/nvm.sh"
+# fi
 
 
 # install node
-printf "\nINSTALLING NEWEST NODE.JS:\n"
-nvm install node
-nvm use node
+# printf "\nINSTALLING NEWEST NODE.JS:\n"
+# nvm install node
+# nvm use node
 
 
 # symlink bash_profile
