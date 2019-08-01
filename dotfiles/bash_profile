@@ -52,6 +52,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias gll="git log --pretty=format:'%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s' --date=format:'%Y-%m-%d %H:%M:%S'"
   alias gl="git log -n 20 --pretty=format:'%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s' --date=format:'%Y-%m-%d %H:%M:%S'"
   alias gc.="git checkout ."
+  alias ga="git add"
   alias ga.="git add ."
   alias gr.="git reset ."
   alias gc="git checkout"
@@ -62,7 +63,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias grr="git reset HEAD~1"
   alias gct="git commit -m 'temp commit'"
   alias gdm="git diff master -- . ':(exclude)package-lock.json'"
-  alias gds="git diff --stat"
+  alias gds="git diff HEAD --stat"
   # alias rmlocks="find . -maxdepth 2 -name package-lock.json -exec rm {} \;"
 
 # navigation

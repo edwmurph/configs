@@ -153,6 +153,21 @@ set termguicolors
 
 "------------- mappings -----------
 
+function! InsertText(str)
+  normal :AutoCloseOff<CR>
+  execute "normal! i" a:str
+  normal :AutoCloseOn<CR>
+  return
+endfunction
+
+function! InsertLine(str)
+  normal :AutoCloseOff<CR>
+  call append(line('.'), a:str)
+  normal :AutoCloseOn<CR>
+  normal 0j
+  return
+endfunction
+
 
 " INSERT MODE
 
@@ -162,11 +177,12 @@ set termguicolors
   imap <Leader>;<Leader> <Esc> :w <Enter>
 
   " text inserts
-  imap <Leader><Leader>c console.log(``);<ESC>2hi
-  imap <Leader><Leader>j JSON.stringify(, null, 2)<ESC>9hi
-  imap <Leader><Leader>tc try {} catch ( err<ESC>lla {}<ESC>17hi
-  imap <Leader><Leader>it it(<ESC>la;<ESC>hi '', async() => {}<ESC>lx16hi
-  imap <Leader><Leader>de describe(<ESC>la;<ESC>hi '', () => {}<ESC>lx11hi
+  imap <Leader><Leader>con <ESC>:call InsertLine("console.log(  );")<CR>13li
+  imap <Leader><Leader>jso <ESC>:call InsertLine("JSON.stringify( , null, 2 );")<CR>16li
+  imap <Leader><Leader>tc <ESC>:call InsertLine("try {} catch {}")<CR>5li
+  imap <Leader><Leader>it <ESC>:call InsertLine("it( '', () => {});")<CR>5li
+  imap <Leader><Leader>des <ESC>:call InsertLine("describe( '', () => {});")<CR>11li
+  imap <Leader><Leader>del <ESC>:call InsertLine("const delay = ( ms ) => new Promise( r => setTimeout( r, ms ) );")<CR><CR>
 
   " sync syntax
   imap <Leader><Leader>s <Esc>:syntax sync fromstart<Enter>li
@@ -186,11 +202,12 @@ set termguicolors
   nmap <Leader>rv :source ~/.vimrc<CR>
 
   " text insert shortcuts
-  nmap <Leader><Leader>c aconsole.log(``);<ESC>2hi
-  nmap <Leader><Leader>j aJSON.stringify(, null, 2)<ESC>9hi
-  nmap <Leader><Leader>d aconst delay = ( ms ) => new Promise( r => setTimeout( r, ms )<ESC>0
-  nmap <Leader><Leader>it ait(<ESC>la;<ESC>hi '', async() => {}<ESC>lx16hi
-  nmap <Leader><Leader>de adescribe(<ESC>la;<ESC>hi '', () => {}<ESC>lx11hi
+  nmap <Leader><Leader>con :call InsertLine("console.log(  );")<CR>13li
+  nmap <Leader><Leader>jso :call InsertLine("JSON.stringify( , null, 2 );")<CR>16li
+  nmap <Leader><Leader>tc :call InsertLine("try {} catch {}")<CR>5li
+  nmap <Leader><Leader>it :call InsertLine("it( '', () => {});")<CR>5li
+  nmap <Leader><Leader>des :call InsertLine("describe( '', () => {});")<CR>11li
+  nmap <Leader><Leader>del :call InsertLine("const delay = ( ms ) => new Promise( r => setTimeout( r, ms ) );")<CR><CR>
 
   " buffer shifts
   nmap <C-j> <C-e>

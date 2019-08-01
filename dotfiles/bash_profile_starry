@@ -6,7 +6,8 @@
   alias sls='goto ~/code/starry/locksmith'
   alias sjv='goto ~/code/starry/jarvis'
   alias spp='goto ~/code/starry/pepper'
-  alias ssa='goto ~/code/starry/sage'
+  alias ssage='goto ~/code/starry/sage'
+  alias ssa='goto ~/code/starry/stats-api'
   alias szl='goto ~/code/starry/ziploc'
   alias saa='goto ~/code/starry/admin-api-v2'
   alias sap='goto ~/code/starry/auth-proxy'
@@ -14,6 +15,7 @@
   alias srs='goto ~/code/starry/radius-server'
   alias scm='goto ~/code/starry/cloud-models'
   alias sdh='goto ~/code/starry/dullahan'
+  alias spa='goto ~/code/starry/places-api'
 
 # git
   alias gcd='git checkout develop'
