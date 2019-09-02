@@ -77,6 +77,8 @@ set nowrap
 autocmd FileType markdown setlocal wrap
 " on bottom bar, display line #, column # and relative position of cursor in file
 set ruler
+" add file name to bottom bar: laststatus=2
+set laststatus=2
 " enable backspace to delete over line breaks or auto-inserted indents
 set backspace=indent,eol,start
 " display line numbers
@@ -89,9 +91,6 @@ set mouse=a
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 " change dir to .swp files
 set directory=$HOME/.vim/swapfiles//
-
-" Not sure if these are needed
-set laststatus=2
 
 
 "-------------- plugin-specific configs -------------

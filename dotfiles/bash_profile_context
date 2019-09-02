@@ -7,8 +7,18 @@ function autoswitch_to_node_version() {
   fi
 }
 
+# function autoswitch_conda_env() {
+#   if [ -d './.env' ]; then
+#     if ! [ -x "$(command -v conda)" ]; then
+#       setup_conda
+#     fi
+#     conda activate ./.env
+#   fi
+# }
+
 function context_switch() {
   autoswitch_to_node_version
+  # autoswitch_conda_env
   context=$(echo $PWD | sed -E 's/^\/Users\/emurphy\/code\/([^/]+).*$/\1/')
   if ! [[ $context =~ / ]]; then
     export AWS_PROFILE=$context

@@ -13,6 +13,10 @@ source_if_exists "${HOME}/code/personal/configs/dotfiles/bash_profile_prompt"
 source_if_exists "${HOME}/code/personal/configs/git-completion.bash"
 
 
+function join_by { local d=$1; shift; echo -n "$1"; shift; printf "%s" "${@/#/$d}"; }
+ignore_dirs='.env node_modules ui coverage target .git .nyc_output *.swp .cache dist bootstrap-sass material-dashboard .ipynb_checkpoints __pycache__ public build .DS_Store jsm'
+
+
 ### TERMINAL CONFIGS
 
 
@@ -37,8 +41,8 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 # native shortcuts
   alias ls='ls -G'
   alias ll='ls -la'
-  alias tt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|public|build|.DS_Store'"
-  alias ttt="tree -a -L 10 -C -I 'node_modules|ui|coverage|target|.git|.nyc_output|*.swp|.cache|dist|bootstrap-sass|material-dashboard|.ipynb_checkpoints|__pycache__|public|build|.DS_Store|test'"
+  alias tt="tree -a -L 10 -C -I '$(join_by '|' $ignore_dirs)'"
+  alias ttt="tree -a -L 10 -C -I $(join_by '|' $ignore_dirs)|test"
   alias e="exit"
   alias agq="ag --hidden -Q"
   alias agqt="ag --hidden --ignore=test -Q"
@@ -53,6 +57,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias gl="git log -n 20 --pretty=format:'%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s' --date=format:'%Y-%m-%d %H:%M:%S'"
   alias gc.="git checkout ."
   alias ga="git add"
+  alias gr="git reset"
   alias ga.="git add ."
   alias gr.="git reset ."
   alias gc="git checkout"
@@ -61,7 +66,6 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias gb="git branch -vv"
   alias gbdl="git branch | grep -v master | grep -v develop | xargs git branch -D"
   alias grr="git reset HEAD~1"
-  alias gct="git commit -m 'temp commit'"
   alias gdm="git diff master -- . ':(exclude)package-lock.json'"
   alias gds="git diff HEAD --stat"
   # alias rmlocks="find . -maxdepth 2 -name package-lock.json -exec rm {} \;"
@@ -72,6 +76,7 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias pem='goto ~/code/personal/emurphy'
   alias pgb='goto ~/code/personal/gatsbyjs'
   alias pds='goto ~/code/personal/ds'
+  alias ptf='goto ~/code/personal/tensorflow'
   alias pus='goto ~/code/personal/uss'
   alias pte='goto ~/code/personal/temp'
 
@@ -89,7 +94,9 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
   alias nrd="npm run dev"
   alias nrw="npm run watch"
   alias nrc="npm run clean"
+  alias nrb="npm run build"
   alias nrwi="NODE_ENV=integration npm run watch"
+  alias ncu="npx npm-check --skip-unused"
 
 # python
   alias serve="python -m SimpleHTTPServer"
@@ -107,31 +114,30 @@ printf -- $'\033]6;1;bg;red;brightness;20\a\033]6;1;bg;green;brightness;20\a\033
 # FUNCTIONS
 
 
-
 function gcm() {
   git commit -m "$*"
 }
 
-function ds() {
-  # added by Anaconda3 2018.12 installer
-  # >>> conda init >>>
-  # !! Contents within this block are managed by 'conda init' !!
-  __conda_setup="$(CONDA_REPORT_ERRORS=false '/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-      \eval "$__conda_setup"
-  else
-      if [ -f "/anaconda3/etc/profile.d/conda.sh" ]; then
-          . "/anaconda3/etc/profile.d/conda.sh"
-          CONDA_CHANGEPS1=false conda activate base
-      else
-          \export PATH="/anaconda3/bin:$PATH"
-      fi
-  fi
-  unset __conda_setup
-  # <<< conda init <<<
-  conda activate ds
-  pds
-}
+# function setup_conda() {
+#   __conda_setup="$(CONDA_REPORT_ERRORS=false '/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+#   if [ $? -eq 0 ]; then
+#       \eval "$__conda_setup"
+#   else
+#       if [ -f "/anaconda3/etc/profile.d/conda.sh" ]; then
+#           . "/anaconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
+#           CONDA_CHANGEPS1=false conda activate base
+#       else
+#           \export PATH="/anaconda3/bin:$PATH"
+#       fi
+#   fi
+#   unset __conda_setup
+# }
+# 
+# function ds() {
+#   setup_conda
+#   conda activate ds
+#   pds
+# }
 
 function gsetup() {
   git config user.name edwmurph
@@ -243,7 +249,24 @@ export BAT_THEME=TwoDark
 
 ### PYTHON
 
-PATH="${HOME}/anaconda/bin:$PATH"
+# PATH="${HOME}/anaconda/bin:$PATH"
+# 
+# function cpip() {
+#     ERROR_MSG="Not in a conda environment."
+#     ERROR_MSG="$ERROR_MSG\nUse \`source activate ENV\`"
+#     ERROR_MSG="$ERROR_MSG to enter a conda environment."
+# 
+#     [ -z "$CONDA_DEFAULT_ENV" ] && echo "$ERROR_MSG" && return 1
+# 
+#     ERROR_MSG='Pip not installed in current conda environment.'
+#     ERROR_MSG="$ERROR_MSG\nUse \`conda install pip\`"
+#     ERROR_MSG="$ERROR_MSG to install pip in current conda environment."
+# 
+#     [ -e "$CONDA_PREFIX/bin/pip" ] || (echo "$ERROR_MSG" && return 2)
+# 
+#     PIP="$CONDA_PREFIX/bin/pip"
+#     "$PIP" "$@"
+# }
 
 ### GO
 
