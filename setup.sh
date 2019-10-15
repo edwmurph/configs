@@ -151,6 +151,5 @@ fi
 mkdir ${HOME}/.aws
 ln -s ${HOME}/.secrets/dotfiles/.aws ${HOME}/.aws
 
-
 echo 
 echo "finished"

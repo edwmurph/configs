@@ -1,0 +1,10 @@
+# ln -s ${HOME}/code/personal/configs/dotfiles/zshrc ${HOME}/.zshrc
+
+export ZSH="/Users/emurphy/.oh-my-zsh"
+
+# ZSH_THEME="Avit"
+ZSH_CUSTOM="${HOME}/code/personal/configs/zsh_custom"
+
+plugins=(git helpers prompt configs aliases funcs bf starry context)
+
+source $ZSH/oh-my-zsh.sh

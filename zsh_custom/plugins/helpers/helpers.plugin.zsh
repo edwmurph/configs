@@ -1,5 +1,3 @@
-#!/bin/bash
-
 SECRETS="${HOME}/.secrets"
 
 function source_if_exists () {

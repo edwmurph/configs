@@ -1,4 +1,4 @@
-#!/bin/bash
+eval "$(fnm env --multi)"
 
 function autoswitch_to_node_version() {
   if [ -f '.nvmrc' ]; then
@@ -6,15 +6,6 @@ function autoswitch_to_node_version() {
     fnm use "$requested_node_version"
   fi
 }
-
-# function autoswitch_conda_env() {
-#   if [ -d './.env' ]; then
-#     if ! [ -x "$(command -v conda)" ]; then
-#       setup_conda
-#     fi
-#     conda activate ./.env
-#   fi
-# }
 
 function context_switch() {
   autoswitch_to_node_version
