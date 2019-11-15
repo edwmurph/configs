@@ -28,7 +28,7 @@ function v() {
 function vn() {
   file="$(find node_modules | fzf)"
   if [ -n "$file" ]; then
-    ' ' vim "$file"
+    vim "$file"
   fi
   print -S "vim $file"
 }

@@ -16,10 +16,14 @@
   alias spa='goto ~/code/starry/places-api'
   alias sua='goto ~/code/starry/upgrader-api'
   alias sbs='goto ~/code/starry/backchannel-server'
+  alias sbt='goto ~/code/starry/bastion'
 
 # git
   #alias gcd='git checkout develop'
 
 # mongo
   alias smongo='docker exec -it $(docker ps -aqf "name=cloud-env_mongodb_1") mongo jarvisdev'
-  alias smongo2='docker exec -it $(docker ps -aqf "name=cloud-env_mongodb_1") /bin/bash'
+  alias smongob='docker exec -it $(docker ps -aqf "name=cloud-env_mongodb_1") /bin/bash'
+  source "${SECRETS}/secrets.zsh"
+  alias smongoi="docker exec -it $(docker ps -aqf 'name=cloud-env_mongodb_1') mongo '${STARRY_INTEGRATION_CONN_STR}'"
+  unset_secrets

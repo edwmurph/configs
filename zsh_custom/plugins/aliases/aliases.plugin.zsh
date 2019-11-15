@@ -2,7 +2,12 @@ ignore_dirs=$(echo '
 .env node_modules ui coverage target .git .nyc_output *.swp .cache dist
 bootstrap-sass material-dashboard .ipynb_checkpoints __pycache__ public build
 .DS_Store jsm
-' | sed -e "s/[[:space:]]/|/g")
+' \
+  | tr '\n' ' ' \
+  | tr -s ' ' \
+  | sed -e "s/[[:space:]]/|/g" \
+  | sed -e "s/^|\(.*\)|$/\1/g" \
+)
 
 # navigation
   alias pte='goto ~/code/personal/tess'
@@ -15,6 +20,7 @@ bootstrap-sass material-dashboard .ipynb_checkpoints __pycache__ public build
   alias pte='goto ~/code/personal/temp'
   alias pbn='goto ~/code/personal/bitnado'
   alias pcp='goto ~/code/personal/crypto-predict'
+  alias pce='goto ~/code/personal/cardano-explorer'
 
   alias co='goto ~/code'
   alias se='goto ~/.secrets'
@@ -34,6 +40,7 @@ bootstrap-sass material-dashboard .ipynb_checkpoints __pycache__ public build
   alias grr="git reset HEAD~1"
   alias gdm="git diff master -- . ':(exclude)package-lock.json'"
   alias gdst="git diff HEAD --stat"
+  alias gbdaa="git branch --no-color | command grep -vE '^(\+|\*|\s*(master|develop|dev)\s*$)' | command xargs -n 1 git branch -D"
 
 # npm
   alias nrtf="npm run test:functional"

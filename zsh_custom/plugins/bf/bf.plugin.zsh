@@ -1,6 +1,7 @@
 # Connect to VC's vpn through anyconnect
 function vpnVC() {
   source "${SECRETS}/secrets.zsh"
+  printf "CustomerVPN\n${BFVPN_USERNAME}\n${BFVPN_PW} ${BFVPN_USERNAME}"
   # launchctl load /Library/LaunchDaemons/com.cisco.anyconnect.vpnagentd.plist 2> /dev/null
   printf "CustomerVPN\n${BFVPN_USERNAME}\n${BFVPN_PW}\n" |
     /opt/cisco/anyconnect/bin/vpn -s connect ${BFVPN_USERNAME}
