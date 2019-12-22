@@ -5,6 +5,9 @@ function dd() {
 function gsetup() {
   git config user.name edwmurph
   git config user.email edwmurph3@gmail.com
+}
+
+function greset() {
   git filter-branch -f --env-filter "
   GIT_AUTHOR_NAME='edwmurph'
   GIT_AUTHOR_EMAIL='edwmurph3@gmail.com'

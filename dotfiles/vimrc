@@ -42,6 +42,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-easy-align'
   " autoclose html
   Plug 'alvan/vim-closetag'
+  " syntax support for css in js files
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " R
   "Plug 'janko-m/vim-test'
@@ -207,7 +209,7 @@ endfunction
   nmap <Leader><Leader>it :call InsertLine("it( '', () => {});")<CR>5li
   nmap <Leader><Leader>des :call InsertLine("describe( '', () => {});")<CR>11li
   nmap <Leader><Leader>del :call InsertLine("const delay = ( ms ) => new Promise( r => setTimeout( r, ms ) );")<CR><CR>
-  nmap <Leader><Leader>pgit :call InsertLine('    "": "git+ssh://git@github.com//.git",')<CR><CR>
+  nmap <Leader><Leader>pgit :call InsertLine('    "": "git+ssh://git@github.com/edwmurph/three-globe#dev.git",')<CR><CR>
 
   " buffer shifts
   nmap <C-j> <C-e>
@@ -254,6 +256,9 @@ endfunction
   " sync syntax
   nmap <Leader><Leader>s :syntax sync fromstart<Enter>
 
+  " set hard tabs
+  nmap <Leader><Leader>t :set expandtab!<Enter>
+
 
 " VISUAL MODE
 
@@ -270,8 +275,6 @@ endfunction
 
 "---------- custom commands --------
 
-" GV plugin is a better alternative to this
-command Hist ! git log --pretty=format:"\%C(yellow)>>>|\%h|\%Cred\%ad|\%Cblue\%an|\%Creset\%s" --date=format:"\%Y-\%m-\%d \%H:\%M" -p $(echo %) | sed -e '/>>>|/{n;N;N;N;d;}' | sed -e 's/\(^-.*$\)/'$(printf "\033[91m")'\1'$(printf "\033[0m")'/g' | sed -e 's/\(^+.*$\)/'$(printf "\033[92m")'\1'$(printf "\033[0m")'/g'
 
 
 "---------- autocommands --------
@@ -288,20 +291,4 @@ let g:pymode_virtualenv_path = '/anaconda3/envs/ds'
 
 au FileType python
     \ set tabstop=4 softtabstop=4 shiftwidth=4 autoindent fileformat=unix
-
-
-"------------- R configs -------------------
-
-" set vim-r-plugin to
-"let r_indent_align_args = 0
-
-" Set vim-r-plugin to mimics ess :
-"let r_indent_ess_comments = 0
-"let r_indent_ess_compatible = 0
-
-"nmap , <Plug>RDSendLine
-"vmap , <Plug>RDSendSelection
-"let g:R_tmux_split = 1
-"let g:R_term = 'tmux'
-"let g:R_term_cmd = 'tmux split-window -c "#{pane_current_path}"'
 

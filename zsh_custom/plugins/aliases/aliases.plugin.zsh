@@ -18,9 +18,12 @@ bootstrap-sass material-dashboard .ipynb_checkpoints __pycache__ public build
   alias ptf='goto ~/code/personal/tensorflow'
   alias pus='goto ~/code/personal/uss'
   alias pte='goto ~/code/personal/temp'
-  alias pbn='goto ~/code/personal/bitnado'
+  alias pbn='goto ~/code/personal/bitnado.io'
+  alias pbf='goto ~/code/personal/bitforge'
+  alias pjm='goto ~/code/personal/jormungandr'
   alias pcp='goto ~/code/personal/crypto-predict'
   alias pce='goto ~/code/personal/cardano-explorer'
+  alias ptjsr='goto ~/code/personal/threejsr'
 
   alias co='goto ~/code'
   alias se='goto ~/.secrets'
@@ -61,3 +64,6 @@ bootstrap-sass material-dashboard .ipynb_checkpoints __pycache__ public build
 
 # other apps
   alias md='macdown'
+  source "${SECRETS}/secrets.zsh"
+  alias jor="ssh bitforge@$JORMUNGANDR_IP"
+  unset_secrets
