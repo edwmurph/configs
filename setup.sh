@@ -138,6 +138,8 @@ fi
 # add following to ~/.ctags
 # --exclude=node_modules/*
 
+# TODO brew install kubectl
+
 # symlink .aws
 printf "\nSYMLINKING AWS CONFIG:\n"
 if [ -d ${HOME}/.aws ]; then

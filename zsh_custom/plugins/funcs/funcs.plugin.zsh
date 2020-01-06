@@ -1,3 +1,7 @@
+function cl() {
+  curl -s -i $1 | sed -e 1b -e '$!d'
+}
+
 function dd() {
   docker exec -it ${1?expected container id to enter} /bin/bash
 }
@@ -41,5 +45,5 @@ function gd() {
 }
 
 function gdd() {
-  git diff HEAD^ -- "${1-.}" ':(exclude)*package-lock.json'
+  git diff HEAD^ -- "${1-.}" ':!*package-lock.json' ':!*pnpm-lock.yaml'
 }

@@ -13,12 +13,14 @@ function context_switch() {
   context=$(echo $PWD | sed -E 's/^\/Users\/emurphy\/code\/([^/]+).*$/\1/')
   if ! [[ $context =~ / ]]; then
     export AWS_PROFILE=$context
-    if [[ "$context" == 'personal' ]]; then
-      git config user.name edwmurph
-      git config user.email edwmurph3@gmail.com
-    elif [[ "$context" == 'starry' ]]; then
-      git config user.name emurphy
-      git config user.email emurphy@starry.com
+    if [ -d '.git' ]; then
+      if [[ "$context" == 'personal' ]]; then
+        git config user.name edwmurph
+        git config user.email edwmurph3@gmail.com
+      elif [[ "$context" == 'starry' ]]; then
+        git config user.name emurphy
+        git config user.email emurphy@starry.com
+      fi
     fi
   fi
 }

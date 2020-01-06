@@ -13,3 +13,9 @@ function vpnD() {
   /opt/cisco/anyconnect/bin/vpn -s disconnect
   # launchctl unload /Library/LaunchDaemons/com.cisco.anyconnect.vpnagentd.plist 2> /dev/null
 }
+
+source "${SECRETS}/secrets.zsh"
+export DIGITALOCEAN_ACCESS_TOKEN=${DO_ACCESS_TOKEN}
+export SPACES_SECRET_ACCESS_KEY=${SPACES_SECRET_ACCESS_KEY}
+export SPACES_ACCESS_KEY_ID=${SPACES_ACCESS_KEY_ID}
+unset_secrets

@@ -263,7 +263,9 @@ endfunction
 " VISUAL MODE
 
   " save file
-  vmap <Leader>; <Esc> :w <Enter>
+  vmap <Leader>;<Leader> <Esc> :w <Enter>
+  " normal mode
+  vmap <Leader>; <Esc>
 
   " Ctrl-c copies visual selection to clipboard
   vmap <C-c> "+y<CR>"

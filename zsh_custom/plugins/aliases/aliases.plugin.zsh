@@ -24,6 +24,7 @@ bootstrap-sass material-dashboard .ipynb_checkpoints __pycache__ public build
   alias pcp='goto ~/code/personal/crypto-predict'
   alias pce='goto ~/code/personal/cardano-explorer'
   alias ptjsr='goto ~/code/personal/threejsr'
+  alias patsf='goto ~/code/personal/all-time-starting-five'
 
   alias co='goto ~/code'
   alias se='goto ~/.secrets'
@@ -41,9 +42,12 @@ bootstrap-sass material-dashboard .ipynb_checkpoints __pycache__ public build
 
 # git
   alias grr="git reset HEAD~1"
-  alias gdm="git diff master -- . ':(exclude)package-lock.json'"
+  alias gdm="git diff master -- . ':!*package-lock.json' ':!*pnpm-lock.yaml'"
+  alias gdsm="git diff --staged master -- . ':!*package-lock.json' ':!*pnpm-lock.yaml'"
   alias gdst="git diff HEAD --stat"
   alias gbdaa="git branch --no-color | command grep -vE '^(\+|\*|\s*(master|develop|dev)\s*$)' | command xargs -n 1 git branch -D"
+  alias gd="git diff ':!*package-lock.json' ':!*pnpm-lock.yaml'"
+  alias gds="git diff --staged ':!*package-lock.json' ':!*pnpm-lock.yaml'"
 
 # npm
   alias nrtf="npm run test:functional"
@@ -64,6 +68,7 @@ bootstrap-sass material-dashboard .ipynb_checkpoints __pycache__ public build
 
 # other apps
   alias md='macdown'
+  alias kc='kubectl'
   source "${SECRETS}/secrets.zsh"
   alias jor="ssh bitforge@$JORMUNGANDR_IP"
   unset_secrets
