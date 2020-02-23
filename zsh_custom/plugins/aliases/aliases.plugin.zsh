@@ -1,15 +1,13 @@
-ignore_dirs=$(echo '
-.env node_modules ui coverage target .git .nyc_output *.swp .cache dist
-bootstrap-sass material-dashboard .ipynb_checkpoints __pycache__ public build
-.DS_Store jsm
-' \
+ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   | tr '\n' ' ' \
   | tr -s ' ' \
   | sed -e "s/[[:space:]]/|/g" \
   | sed -e "s/^|\(.*\)|$/\1/g" \
+  | sed -e "s/|$//"
 )
 
 # navigation
+  alias pmt='goto ~/code/personal/MusicTagger'
   alias pte='goto ~/code/personal/tess'
   alias pcf='goto ~/code/personal/configs'
   alias pem='goto ~/code/personal/emurphy'
@@ -42,19 +40,23 @@ bootstrap-sass material-dashboard .ipynb_checkpoints __pycache__ public build
 
 # git
   alias grr="git reset HEAD~1"
-  alias gdm="git diff master -- . ':!*package-lock.json' ':!*pnpm-lock.yaml'"
-  alias gdsm="git diff --staged master -- . ':!*package-lock.json' ':!*pnpm-lock.yaml'"
+  alias gdm="git diff master -- . ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
+  alias gdsm="git diff --staged master -- . ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
   alias gdst="git diff HEAD --stat"
   alias gbdaa="git branch --no-color | command grep -vE '^(\+|\*|\s*(master|develop|dev)\s*$)' | command xargs -n 1 git branch -D"
-  alias gd="git diff ':!*package-lock.json' ':!*pnpm-lock.yaml'"
-  alias gds="git diff --staged ':!*package-lock.json' ':!*pnpm-lock.yaml'"
+  alias gd="git diff ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
+  alias gds="git diff --staged ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
+  alias gpod="git push origin --delete"
 
 # npm
+  alias nrm="npm run mocha"
   alias nrtf="npm run test:functional"
   alias ns="npm start"
   alias nt="npm test"
   alias nrd="npm run dev"
+  alias nrbd="npm run build-dev"
   alias nrk="npm run kill"
+  alias nrkd="npm run kill-dev"
   alias nrw="npm run watch"
   alias nrc="npm run clean"
   alias nrb="npm run build"
@@ -67,6 +69,8 @@ bootstrap-sass material-dashboard .ipynb_checkpoints __pycache__ public build
   alias nb="jupyter notebook"
 
 # other apps
+  alias tf='terraform'
+  alias nm='node --experimental-modules --experimental-json-modules --es-module-specifier-resolution=node'
   alias md='macdown'
   alias kc='kubectl'
   source "${SECRETS}/secrets.zsh"

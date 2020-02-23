@@ -21,6 +21,8 @@
   alias sfg='goto ~/code/starry/forge'
   alias sst='goto ~/code/starry/storm'
   alias slb='goto ~/code/starry/lockbox'
+  alias smm='goto ~/code/starry/map-memo'
+  alias sms='goto ~/code/starry/maestro'
 
 # git
   #alias gcd='git checkout develop'

@@ -1,3 +1,18 @@
+function get_gitignore() {
+  local gitignore=''
+
+  for ups in {2..0};
+  do
+    p="$(printf '%*s' "$ups" | sed 's/ /..\//g').gitignore"
+
+    if [ -f $p ]; then
+      gitignore=$p
+    fi
+  done
+
+  echo $gitignore
+}
+
 function cl() {
   curl -s -i $1 | sed -e 1b -e '$!d'
 }
@@ -18,10 +33,6 @@ function greset() {
   GIT_COMMITTER_NAME='edwmurph'
   GIT_COMMITTER_EMAIL='edwmurph3@gmail.com'
   " HEAD
-}
-
-function mtf() {
-  NODE_ENV=test mocha "$1" --exit
 }
 
 function v() {
