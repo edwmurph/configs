@@ -51,10 +51,20 @@ function vn() {
   print -S "vim $file"
 }
 
-function gd() {
-  git diff "${2-HEAD}" -- "${1-.}" ':(exclude)*package-lock.json'
-}
+function alert() {
+  source "${SECRETS}/secrets.zsh"
 
-function gdd() {
-  git diff HEAD^ -- "${1-.}" ':!*package-lock.json' ':!*pnpm-lock.yaml'
+  # send first arg as msg if provided or wait for msg from stdin
+  local msg=$1
+
+  if [ $# -eq 0 ]; then
+    read msg
+  fi
+
+  curl -H "Content-Type: application/json" \
+    -X POST \
+    -d "{\"content\":\"${msg}\"}" \
+    $DISCORD_JARVIS
+
+  unset_secrets
 }

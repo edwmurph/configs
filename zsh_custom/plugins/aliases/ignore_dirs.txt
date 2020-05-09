@@ -18,4 +18,6 @@ build
 .DS_Store
 jsm
 poc
-Pods
+ios
+android
+__tests__

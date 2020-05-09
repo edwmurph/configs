@@ -1,4 +1,5 @@
 # navigation
+  alias stu='goto ~/code/starry/starry-test-utils'
   alias sam='goto ~/code/starry/amp'
   alias sce='goto ~/code/starry/cloud-env'
   alias sls='goto ~/code/starry/locksmith'
@@ -23,14 +24,13 @@
   alias slb='goto ~/code/starry/lockbox'
   alias smm='goto ~/code/starry/map-memo'
   alias sms='goto ~/code/starry/maestro'
+  alias smsc='goto ~/code/starry/maestro-client'
 
 # git
   #alias gcd='git checkout develop'
 
 # mongo
-  alias exec_on_mongo='docker exec -it $(docker ps -aqf "name=cloud-env_mongodb_1")'
-  alias smongo="$exec_on_mongo mongo"
-  alias smongob="$exec_on_mongo /bin/bash"
+  alias smongo='docker exec -it $(docker ps -aqf "name=cloud-env_mongodb_1") mongo'
 
   function smongoi() {
     source "${SECRETS}/secrets.zsh"

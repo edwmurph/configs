@@ -7,8 +7,6 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
 )
 
 # navigation
-  alias pmt='goto ~/code/personal/MusicTagger'
-  alias pte='goto ~/code/personal/tess'
   alias pcf='goto ~/code/personal/configs'
   alias pem='goto ~/code/personal/emurphy'
   alias pgb='goto ~/code/personal/gatsbyjs'
@@ -19,10 +17,7 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias pbn='goto ~/code/personal/bitnado.io'
   alias pbf='goto ~/code/personal/bitforge'
   alias pjm='goto ~/code/personal/jormungandr'
-  alias pcp='goto ~/code/personal/crypto-predict'
-  alias pce='goto ~/code/personal/cardano-explorer'
   alias ptjsr='goto ~/code/personal/threejsr'
-  alias patsf='goto ~/code/personal/all-time-starting-five'
 
   alias co='goto ~/code'
   alias se='goto ~/.secrets'
@@ -35,8 +30,8 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias e="exit"
   alias tt="tree -a -L 10 -C -I '$ignore_dirs'"
   alias ttt="tree -a -L 10 -C -I '$ignore_dirs|test'"
-  alias agq="ag --hidden -Q"
-  alias agqt="ag --hidden --ignore=test -Q"
+  alias agq="ag --hidden --ignore=.git -Q"
+  alias agqt="ag --hidden --ignore=test --ignore=.git -Q"
 
 # git
   alias grr="git reset HEAD~1"
@@ -46,6 +41,7 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias gbdaa="git branch --no-color | command grep -vE '^(\+|\*|\s*(master|develop|dev)\s*$)' | command xargs -n 1 git branch -D"
   alias gd="git diff ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
   alias gds="git diff --staged ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
+  alias gdd="git diff HEAD^ -- ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
   alias gpod="git push origin --delete"
 
 # npm
@@ -54,6 +50,7 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias ns="npm start"
   alias nt="npm test"
   alias nrd="npm run dev"
+  alias nrs="npm run serve"
   alias nrbd="npm run build-dev"
   alias nrk="npm run kill"
   alias nrkd="npm run kill-dev"
@@ -69,10 +66,15 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias nb="jupyter notebook"
 
 # other apps
+  alias ld="node ${ZSH_CUSTOM}/plugins/aliases/local-date.js"
   alias tf='terraform'
   alias nm='node --experimental-modules --experimental-json-modules --es-module-specifier-resolution=node'
   alias md='macdown'
   alias kc='kubectl'
+  alias ngrok_url='curl -s localhost:4040/api/tunnels | jq -r ".tunnels[0].public_url"'
+  alias ang='ngrok_url | alert'
+
+# secrets
   source "${SECRETS}/secrets.zsh"
   alias jor="ssh bitforge@$JORMUNGANDR_IP"
   unset_secrets
