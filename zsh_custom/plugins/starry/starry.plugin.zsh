@@ -1,4 +1,5 @@
 # navigation
+  alias sts='goto ~/code/starry/telegraf-server'
   alias stu='goto ~/code/starry/starry-test-utils'
   alias sam='goto ~/code/starry/amp'
   alias sce='goto ~/code/starry/cloud-env'
@@ -34,8 +35,7 @@
 
   function smongoi() {
     source "${SECRETS}/secrets.zsh"
-    conn_str=$(echo "${STARRY_MONGO_CONN_STR}" | sed -e "s/adminapi/${1-adminapi}/g")
-    docker exec -it $(docker ps -aqf "name=cloud-env_mongodb_1") mongo "$conn_str"
+    docker exec -it $(docker ps -aqf "name=cloud-env_mongodb_1") mongo "${STARRY_MONGO_CONN_STR_STORM}"
     unset_secrets
   }
   

@@ -7,8 +7,13 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
 )
 
 # navigation
+  alias dan='goto ~/code/do/adanodes'
+
+  alias pec='goto ~/code/personal/eslint-config'
+  alias pas='goto ~/code/personal/aws-sandbox'
+  alias pan='goto ~/code/personal/adanodes.com'
   alias pcf='goto ~/code/personal/configs'
-  alias pem='goto ~/code/personal/emurphy'
+  alias pem='goto ~/code/personal/edwardmurphy.dev'
   alias pgb='goto ~/code/personal/gatsbyjs'
   alias pds='goto ~/code/personal/ds'
   alias ptf='goto ~/code/personal/tensorflow'
@@ -18,6 +23,10 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias pbf='goto ~/code/personal/bitforge'
   alias pjm='goto ~/code/personal/jormungandr'
   alias ptjsr='goto ~/code/personal/threejsr'
+
+  alias bcn='goto ~/code/bitnado/cardano-node'
+  alias bci='goto ~/code/bitnado/cloud-infra'
+
 
   alias co='goto ~/code'
   alias se='goto ~/.secrets'
@@ -45,6 +54,7 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias gpod="git push origin --delete"
 
 # npm
+  alias nr="npm run"
   alias nrm="npm run mocha"
   alias nrtf="npm run test:functional"
   alias ns="npm start"
@@ -55,9 +65,10 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias nrk="npm run kill"
   alias nrkd="npm run kill-dev"
   alias nrw="npm run watch"
-  alias nrc="npm run clean"
+  alias nrc="npm run cmd"
   alias nrb="npm run build"
   alias nrl="npm run lint"
+  alias nrlf="npm run lint:fix"
   alias nrwi="NODE_ENV=integration npm run watch"
   alias ncu="npx npm-check --skip-unused"
 
@@ -75,6 +86,4 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias ang='ngrok_url | alert'
 
 # secrets
-  source "${SECRETS}/secrets.zsh"
   alias jor="ssh bitforge@$JORMUNGANDR_IP"
-  unset_secrets

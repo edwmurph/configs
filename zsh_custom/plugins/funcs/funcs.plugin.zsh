@@ -68,3 +68,11 @@ function alert() {
 
   unset_secrets
 }
+
+# find target and replace with replacement
+function far() {
+  TARGET="${1?missing target}"
+  REPLACEMENT="${2?missing replacement}"
+
+  git grep -l '' | xargs sed -i '' -e "s/${TARGET}/${REPLACEMENT}/g"
+}
