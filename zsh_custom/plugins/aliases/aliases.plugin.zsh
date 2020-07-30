@@ -73,7 +73,7 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias ncu="npx npm-check --skip-unused"
 
 # python
-  alias serve="python -m SimpleHTTPServer"
+  alias serve="python -m SimpleHTTPServer 8001"
   alias nb="jupyter notebook"
 
 # other apps
@@ -84,6 +84,3 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias kc='kubectl'
   alias ngrok_url='curl -s localhost:4040/api/tunnels | jq -r ".tunnels[0].public_url"'
   alias ang='ngrok_url | alert'
-
-# secrets
-  alias jor="ssh bitforge@$JORMUNGANDR_IP"
