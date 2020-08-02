@@ -64,7 +64,7 @@ if [ -f ${HOME}/.vimrc ]; then
 		return 1
 	fi
 fi
-ln -fs ${HOME}/code/configs/dotfiles/vimrc ${HOME}/.vimrc
+ln -s ${HOME}/code/personal/configs/dotfiles/vimrc ${HOME}/.vimrc
 
 # install fnm
 which -s fnm
@@ -72,46 +72,6 @@ if [[ $? != 0 ]] ; then
 	printf "\nINSTALLING FNM:\n"
   brew install Schniz/tap/fnm
 fi
-
-# install nvm
-# which -s nvm
-# if [[ $? != 0 ]] ; then
-# 	printf "\nINSTALLING NVM:\n"
-# 	if ! [ -f "${HOME}/.nvm/nvm.sh" ]; then
-#     brew install nvm
-#     mkdir ~/.nvm
-# 	fi
-# 	. "${HOME}/.nvm/nvm.sh"
-# fi
-
-
-# install node
-# printf "\nINSTALLING NEWEST NODE.JS:\n"
-# nvm install node
-# nvm use node
-
-
-# symlink bash_profile
-printf "\nSYMLINKING BASH_PROFILE:\n"
-if [[ -f ${HOME}/.bash_profile ]]; then
-	read -p "local ~/.bash_profile already found. Would you like to replace your local ~/.bash_profile ? " -n 1 -r
-	echo    # (optional) move to a new line
-	if ! [[ $REPLY =~ ^[Yy]$ ]]; then
-		echo "aborting script."
-		return 1
-	fi
-fi
-ln -fs ${HOME}/code/configs/dotfiles/bash_profile ${HOME}/.bash_profile
-. ${HOME}/.bash_profile
-
-
-# install python?
-# brew install python3
-# pip3 install --upgrade pip
-# pip3 install jupyter
-# pip3 install pandas
-# pip3 install matplotlib
-
 
 # install tree
 which -s tree
@@ -127,18 +87,16 @@ if [[ $? != 0 ]] ; then
 	brew install bat
 fi
 
-# TODO install mysql
-# brew install mysql
+# use vim from brew instead of one shipped with OS
+if [[ "$(which vim)" != '/usr/local/bin/vim' ]]; then
+  brew install vim
+fi
 
-# TODO install vim from brew instead of one shipped with OS
-# brew install vim
-
-# TODO install ctags
-# brew install ctags
-# add following to ~/.ctags
-# --exclude=node_modules/*
-
-# TODO brew install kubectl
+which -s kubectl
+if [[ $? != 0 ]] ; then
+	printf "\nINSTALLING KUBECTL:\n"
+	brew install kubectl
+fi
 
 # symlink .aws
 printf "\nSYMLINKING AWS CONFIG:\n"
@@ -150,11 +108,18 @@ if [ -d ${HOME}/.aws ]; then
 		return 1
 	fi
 fi
+
 mkdir ${HOME}/.aws
 ln -s ${HOME}/.secrets/dotfiles/.aws ${HOME}/.aws
 
 # install zsh syntax highlighting plugin
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+# install vim plug
+if [ ! -f ~/.vim/autoload/plug.vim ]; then
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 
 echo 
 echo "finished"

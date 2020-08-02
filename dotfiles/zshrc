@@ -8,3 +8,5 @@ ZSH_CUSTOM="${HOME}/code/personal/configs/zsh_custom"
 plugins=(git helpers prompt configs aliases funcs bf starry context)
 
 source $ZSH/oh-my-zsh.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
