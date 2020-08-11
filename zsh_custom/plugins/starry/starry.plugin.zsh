@@ -31,11 +31,21 @@
   #alias gcd='git checkout develop'
 
 # mongo
-  alias smongo='docker exec -it $(docker ps -aqf "name=cloud-env_mongodb_1") mongo'
+  # alias smongo='docker exec -it $(docker ps -aqf "name=mongodb.cloudenv") mongo'
 
-  function smongoi() {
+  function smongo() {
     source "${SECRETS}/secrets.zsh"
-    docker exec -it $(docker ps -aqf "name=cloud-env_mongodb_1") mongo "${STARRY_MONGO_CONN_STR_STORM}"
-    unset_secrets
+
+    if [ -z $1 ]; then
+      local conn_url=''
+    elif [ "$1" = "storm" ]; then
+      local conn_url="$STARRY_MONGO_CONN_STR_STORM"
+    elif [ "$1" = 'radius' ]; then
+      local conn_url="$STARRY_MONGO_CONN_STR_RADIUS"
+    fi
+
+    echo "conn_url: '$conn_url'"
+
+    docker exec -it $(docker ps -aqf "name=mongodb.cloudenv") mongo $conn_url
   }
   

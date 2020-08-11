@@ -19,15 +19,16 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias ptf='goto ~/code/personal/tensorflow'
   alias pus='goto ~/code/personal/uss'
   alias pte='goto ~/code/personal/temp'
-  alias pbn='goto ~/code/personal/bitnado.io'
   alias pbf='goto ~/code/personal/bitforge'
   alias pjm='goto ~/code/personal/jormungandr'
   alias ptjsr='goto ~/code/personal/threejsr'
 
   alias bcn='goto ~/code/bitnado/cardano-node'
   alias bci='goto ~/code/bitnado/cloud-infra'
+  alias bbn='goto ~/code/bitnado/bitnado.io'
 
 
+  alias men='goto ~/code/mentorships'
   alias co='goto ~/code'
   alias se='goto ~/.secrets'
 

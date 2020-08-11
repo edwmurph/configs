@@ -41,17 +41,28 @@ if [[ $? != 0 ]] ; then
 fi
 
 
+# install fzf for fuzzy vim file search
+which -s fzf
+if [[ $? != 0 ]] ; then
+  printf "\nINSTALLING FZF:\n"
+  brew install fzf
+  $(brew --prefix)/opt/fzf/install --completion --key-bindings --update-rc
+fi
+
+
+# install fzf for fuzzy vim file search
+which -s macdown
+if [[ $? != 0 ]] ; then
+  printf "\nINSTALLING MACDOWN:\n"
+  brew cask install macdown
+fi
+
+
 # install vundle
 if ! [ "$(ls -A ${HOME}/.vim/bundle/Vundle.vim)" ]; then
 	printf "\nINSTALLING VUNDLE:\n"
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
-
-
-# install fzf for fuzzy vim file search 
-printf "\nINSTALLING FZF:\n"
-brew install fzf
-$(brew --prefix)/opt/fzf/install --completion --key-bindings --update-rc
 
 
 # symlink vimrc
@@ -98,6 +109,18 @@ if [[ $? != 0 ]] ; then
 	brew install kubectl
 fi
 
+which -s jq
+if [[ $? != 0 ]] ; then
+	printf "\nINSTALLING JQ:\n"
+	brew install jq
+fi
+
+which -s curl
+if [[ $? != 0 ]] ; then
+	printf "\nINSTALLING CURL:\n"
+	brew install curl
+fi
+
 # symlink .aws
 printf "\nSYMLINKING AWS CONFIG:\n"
 if [ -d ${HOME}/.aws ]; then
@@ -110,7 +133,7 @@ if [ -d ${HOME}/.aws ]; then
 fi
 
 mkdir ${HOME}/.aws
-ln -s ${HOME}/.secrets/dotfiles/.aws ${HOME}/.aws
+ln -s ${HOME}/.secrets/dotfiles/.aws ${HOME}
 
 # install zsh syntax highlighting plugin
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -120,6 +143,9 @@ if [ ! -f ~/.vim/autoload/plug.vim ]; then
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
+
+# add dir for vim swapfiles
+mkdir -p ~/.vim/swapfiles
 
 echo 
 echo "finished"

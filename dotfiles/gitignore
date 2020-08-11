@@ -1,3 +1,7 @@
+# global gitignore
+# ln -s ${HOME}/code/personal/configs/dotfiles/gitignore ${HOME}/.gitignore
+# git config --global core.excludesfile ~/.gitignore
+
 *.swp
 bootstrap-sass/*
 *.min.*
