@@ -17,6 +17,7 @@ if [ -f ${HOME}/.gitignore ]; then
 		return 1
 	fi
 fi
+
 ln -fs ${HOME}/code/configs/dotfiles/gitignore ${HOME}/.gitignore
 git config --global core.excludesfile ~/.gitignore
 
@@ -75,6 +76,7 @@ if [ -f ${HOME}/.vimrc ]; then
 		return 1
 	fi
 fi
+
 ln -s ${HOME}/code/personal/configs/dotfiles/vimrc ${HOME}/.vimrc
 
 # install fnm
@@ -132,8 +134,20 @@ if [ -d ${HOME}/.aws ]; then
 	fi
 fi
 
-mkdir ${HOME}/.aws
-ln -s ${HOME}/.secrets/dotfiles/.aws ${HOME}
+ln -s ${HOME}/.secrets/dotfiles/.aws ${HOME}/.aws
+
+# symlink .ssh
+printf "\nSYMLINKING SSH CONFIG:\n"
+if [ -d ${HOME}/.ssh ]; then
+	read -p "local ~/.ssh already found. Would you like to replace your local ~/.ssh ? " -n 1 -r
+	echo    # (optional) move to a new line
+	if ! [[ $REPLY =~ ^[Yy]$ ]]; then
+		echo "aborting script."
+		return 1
+	fi
+fi
+
+ln -s ${HOME}/.secrets/dotfiles/.ssh ${HOME}/.ssh
 
 # install zsh syntax highlighting plugin
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting

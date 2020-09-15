@@ -9,6 +9,7 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
 # navigation
   alias dan='goto ~/code/do/adanodes'
 
+  alias pk8='goto ~/code/personal/k8s'
   alias pec='goto ~/code/personal/eslint-config'
   alias pas='goto ~/code/personal/aws-sandbox'
   alias pan='goto ~/code/personal/adanodes.com'
@@ -26,6 +27,7 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias bcn='goto ~/code/bitnado/cardano-node'
   alias bci='goto ~/code/bitnado/cloud-infra'
   alias bbn='goto ~/code/bitnado/bitnado.io'
+  alias bec='goto ~/code/bitnado/eslint-config'
 
 
   alias men='goto ~/code/mentorships'

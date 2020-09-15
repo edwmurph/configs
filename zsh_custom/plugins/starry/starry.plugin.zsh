@@ -1,4 +1,6 @@
 # navigation
+  alias shp='goto ~/code/starry/hapi-plugins'
+  alias sra='goto ~/code/starry/radius-accounting'
   alias sts='goto ~/code/starry/telegraf-server'
   alias stu='goto ~/code/starry/starry-test-utils'
   alias sam='goto ~/code/starry/amp'
@@ -24,28 +26,32 @@
   alias sst='goto ~/code/starry/storm'
   alias slb='goto ~/code/starry/lockbox'
   alias smm='goto ~/code/starry/map-memo'
-  alias sms='goto ~/code/starry/maestro'
-  alias smsc='goto ~/code/starry/maestro-client'
+  alias smo='goto ~/code/starry/maestro'
+  alias smc='goto ~/code/starry/maestro-client'
+  alias sms='goto ~/code/starry/maestro-services'
 
 # git
   #alias gcd='git checkout develop'
 
-# mongo
-  # alias smongo='docker exec -it $(docker ps -aqf "name=mongodb.cloudenv") mongo'
+# alias smongo='docker exec -it $(docker ps -aqf "name=mongodb.cloudenv") mongo'
 
-  function smongo() {
-    source "${SECRETS}/secrets.zsh"
+function smongo() {
+  source "${SECRETS}/secrets.zsh"
 
-    if [ -z $1 ]; then
-      local conn_url=''
-    elif [ "$1" = "storm" ]; then
-      local conn_url="$STARRY_MONGO_CONN_STR_STORM"
-    elif [ "$1" = 'radius' ]; then
-      local conn_url="$STARRY_MONGO_CONN_STR_RADIUS"
-    fi
+  if [ -z $1 ]; then
+    local conn_url=''
+  elif [ "$1" = "storm" ]; then
+    local conn_url="$STARRY_MONGO_CONN_STR_STORM"
+  elif [ "$1" = 'radius-server' ]; then
+    local conn_url="$STARRY_MONGO_CONN_STR_RADIUS"
+  fi
 
-    echo "conn_url: '$conn_url'"
+  echo "conn_url: '$conn_url'"
 
-    docker exec -it $(docker ps -aqf "name=mongodb.cloudenv") mongo $conn_url
-  }
+  docker exec -it $(docker ps -aqf "name=mongodb.cloudenv") mongo $conn_url
+}
   
+
+function sredis() {
+  docker exec -it $(docker ps -aqf "name=redis.cloudenv") redis-cli
+}

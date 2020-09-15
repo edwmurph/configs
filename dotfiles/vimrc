@@ -47,7 +47,10 @@ call plug#begin('~/.vim/plugged')
   " syntax support for css in js files
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   " jsdoc
-  Plug 'heavenshell/vim-jsdoc'
+  Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
+  \ 'do': 'make install'
+\}
 
 " R
   "Plug 'janko-m/vim-test'
@@ -102,11 +105,7 @@ set directory=$HOME/.vim/swapfiles//
 "-------------- plugin-specific configs -------------
 
 " heavenshell/vim-jsdoc
-  let g:jsdoc_enable_es6 = 1
-  let g:jsdoc_allow_input_prompt = 1
-  let g:jsdoc_input_description = 1
-  let g:jsdoc_enable_es6 = 1
-  let g:jsdoc_param_description_separator = ' - '
+  nmap <silent> <C-l> <Plug>(jsdoc)
 
 " sheerun/vim-polyglot
   let g:polyglot_disabled = ['json', 'jsx', 'javascript', 'vue']

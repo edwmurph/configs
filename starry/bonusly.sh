@@ -1,5 +1,8 @@
 #!/bin/bash
 
+SECRETS="${HOME}/.secrets"
+source "${SECRETS}/secrets.zsh"
+
 curl --include \
      --request POST \
      --header "Content-Type: application/json" \
