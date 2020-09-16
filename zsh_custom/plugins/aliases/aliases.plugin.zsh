@@ -44,6 +44,7 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias ttt="tree -a -L 10 -C -I '$ignore_dirs|test'"
   alias agq="ag --hidden --ignore=.git -Q"
   alias agqt="ag --hidden --ignore=test --ignore=.git -Q"
+  alias ports="sudo lsof -i -n -P | grep TCP"
 
 # git
   alias grr="git reset HEAD~1"

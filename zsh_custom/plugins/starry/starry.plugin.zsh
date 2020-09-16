@@ -33,7 +33,11 @@
 # git
   #alias gcd='git checkout develop'
 
-# alias smongo='docker exec -it $(docker ps -aqf "name=mongodb.cloudenv") mongo'
+function stunnel() {
+  ssh -L 27019:${STARRY_MONGO_RADIUS_ACCT_INTEGRATION}:27000 cloudvpn
+}
+
+alias smongob='docker exec -it $(docker ps -aqf "name=mongodb.cloudenv") /bin/bash'
 
 function smongo() {
   source "${SECRETS}/secrets.zsh"
