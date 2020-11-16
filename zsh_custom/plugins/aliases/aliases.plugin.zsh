@@ -29,6 +29,8 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias bbn='goto ~/code/bitnado/bitnado.io'
   alias bec='goto ~/code/bitnado/eslint-config'
 
+  alias maf='goto ~/code/mentorships/aabdullin/fullstack_starter_template'
+  alias mgf='goto ~/code/mentorships/guanacone/fullstack_app'
 
   alias men='goto ~/code/mentorships'
   alias co='goto ~/code'
@@ -88,3 +90,4 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias kc='kubectl'
   alias ngrok_url='curl -s localhost:4040/api/tunnels | jq -r ".tunnels[0].public_url"'
   alias ang='ngrok_url | alert'
+  alias gat='./node_modules/gatsby/cli.js develop -p 8001'
