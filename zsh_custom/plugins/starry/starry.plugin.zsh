@@ -1,4 +1,8 @@
+SECRETS="${HOME}/.secrets"
+
 # navigation
+  alias sza='goto ~/code/starry/zoma'
+  alias slc='goto ~/code/starry/lockbox-client'
   alias shp='goto ~/code/starry/hapi-plugins'
   alias sra='goto ~/code/starry/radius-accounting'
   alias sts='goto ~/code/starry/telegraf-server'
@@ -33,8 +37,12 @@
 # git
   #alias gcd='git checkout develop'
 
-function stunnel() {
+function stunnel_db() {
   ssh -L 27019:${STARRY_MONGO_RADIUS_ACCT_INTEGRATION}:27000 cloudvpn
+}
+
+function stunnel() {
+  ssh -i ${SECRETS}/dotfiles/.ssh/starry/aws/edward.pem -J cloudvpn "ubuntu@${1?missing ip}"
 }
 
 alias smongob='docker exec -it $(docker ps -aqf "name=mongodb.cloudenv") /bin/bash'
@@ -58,4 +66,25 @@ function smongo() {
 
 function sredis() {
   docker exec -it $(docker ps -aqf "name=redis.cloudenv") redis-cli
+}
+
+function cloudwatch_img() {
+    # "start": "",
+    # "end": "",
+  aws cloudwatch get-metric-widget-image --metric-widget \
+'{
+    "width": 600,
+    "height": 395,
+    "metrics": [
+        [ "AWS/DocDB", "CPUUtilization", "DBInstanceIdentifier", "radius-accounting-integration", { "stat": "Maximum" } ]
+    ],
+    "period": 300,
+    "stacked": false,
+    "title": "CPU",
+    "view": "timeSeries"
+}' \
+  | grep MetricWidgetImage \
+  | awk '{split($0,a,"\""); print a[4]}' \
+  | base64 --decode \
+  > graph.png
 }
