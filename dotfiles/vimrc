@@ -208,7 +208,7 @@ endfunction
   nmap <Leader>; <Esc> :w <Enter>
 
   " Ctrl-space opens fuzzy file search
-  nmap <C-@> :FZF <Enter>
+  nmap <C-Space> :FZF <Enter>
 
   " Ctrl-n toggles nerdtree panel
   nmap <C-n> :NERDTreeToggle<CR>
