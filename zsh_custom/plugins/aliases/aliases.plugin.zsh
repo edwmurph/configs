@@ -9,6 +9,7 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
 # navigation
   alias dan='goto ~/code/do/adanodes'
 
+  alias pud='goto ~/code/personal/upgrade-deps'
   alias pk8='goto ~/code/personal/k8s'
   alias pec='goto ~/code/personal/eslint-config'
   alias pas='goto ~/code/personal/aws-sandbox'
@@ -76,7 +77,7 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias nrl="npm run lint"
   alias nrlf="npm run lint:fix"
   alias nrwi="NODE_ENV=integration npm run watch"
-  alias ncu="npx npm-check --skip-unused"
+  alias nud="npx upgrade-deps"
 
 # python
   alias serve="python -m SimpleHTTPServer 8001"

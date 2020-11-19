@@ -1,6 +1,7 @@
 SECRETS="${HOME}/.secrets"
 
 # navigation
+  alias sgf='goto ~/code/starry/grafana'
   alias sza='goto ~/code/starry/zoma'
   alias slc='goto ~/code/starry/lockbox-client'
   alias shp='goto ~/code/starry/hapi-plugins'
