@@ -9,3 +9,4 @@ material-dashboard/*
 .git
 local
 node_modules
+.next

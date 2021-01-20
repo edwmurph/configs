@@ -1,6 +1,8 @@
 SECRETS="${HOME}/.secrets"
 
 # navigation
+  alias scb='goto ~/code/starry/cerebro'
+  alias spf='goto ~/code/starry/padfoot'
   alias sgf='goto ~/code/starry/grafana'
   alias sza='goto ~/code/starry/zoma'
   alias slc='goto ~/code/starry/lockbox-client'
@@ -40,6 +42,13 @@ SECRETS="${HOME}/.secrets"
 
 function stunnel_db() {
   ssh -L 27019:${STARRY_MONGO_RADIUS_ACCT_INTEGRATION}:27000 cloudvpn
+}
+
+function stunnel_dbs() {
+  ssh cloudvpn \
+    -L 27020:${STARRY_MONGO_INTEGRATION_0}:27000 \
+    -L 27021:${STARRY_MONGO_INTEGRATION_1}:27000 \
+    -L 27022:${STARRY_MONGO_INTEGRATION_2}:27000
 }
 
 function stunnel() {

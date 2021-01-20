@@ -30,8 +30,9 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias bbn='goto ~/code/bitnado/bitnado.io'
   alias bec='goto ~/code/bitnado/eslint-config'
 
-  alias maf='goto ~/code/mentorships/aabdullin/fullstack_starter_template'
-  alias mgf='goto ~/code/mentorships/guanacone/fullstack_app'
+  alias mg='goto ~/code/mentorships/guanacone'
+  alias mz='goto ~/code/mentorships/zhenming91'
+  alias md='goto ~/code/mentorships/Dialloousman'
 
   alias men='goto ~/code/mentorships'
   alias co='goto ~/code'

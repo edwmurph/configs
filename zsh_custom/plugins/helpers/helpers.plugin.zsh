@@ -8,5 +8,8 @@ function source_if_exists () {
 }
 
 function goto() {
-  cd ${1} && echo -ne "\033]0;"${1}"\007"
+  cd ${1}
+  # sets the tab title to target directory
+  DISABLE_AUTO_TITLE="true"
+  echo -ne "\e]1;${1}\a"
 }
