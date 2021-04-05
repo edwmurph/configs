@@ -1,6 +1,10 @@
 SECRETS="${HOME}/.secrets"
 
 # navigation
+  alias sdsp='goto ~/code/starry/docker-socket-proxy'
+  alias sos='goto ~/code/starry/onslaught'
+  alias sal='goto ~/code/starry/amp-logger'
+  alias scb='goto ~/code/starry/node-builder'
   alias scb='goto ~/code/starry/cerebro'
   alias spf='goto ~/code/starry/padfoot'
   alias sgf='goto ~/code/starry/grafana'
@@ -40,9 +44,23 @@ SECRETS="${HOME}/.secrets"
 # git
   #alias gcd='git checkout develop'
 
-function stunnel_db() {
+function elb_access_log() {
+  aws s3 cp s3://starry-radius-accounting-elb-logs/${1?need s3 object key } log.log
+}
+
+function secr() {
+  aws ecr get-login-password --region us-east-1 \
+    | docker login --username AWS --password-stdin \
+    $STARRY_ECR
+}
+
+function stunnel_db_rai() {
   ssh -L 27019:${STARRY_MONGO_RADIUS_ACCT_INTEGRATION}:27000 cloudvpn
 }
+
+# function stunnel_db_prod() {
+#   ssh -L 27019:${STARRY_MONGO_TEMP_PRODUCTION}:27000 cloudvpn
+# }
 
 function stunnel_dbs() {
   ssh cloudvpn \
@@ -52,7 +70,47 @@ function stunnel_dbs() {
 }
 
 function stunnel() {
-  ssh -i ${SECRETS}/dotfiles/.ssh/starry/aws/edward.pem -J cloudvpn "ubuntu@${1?missing ip}"
+  local USAGE='USAGE: stunnel <SERVICE> <ENV>'
+  local SERVICE=${1?USAGE: stunnel <SERVICE> <ENV>}
+  local ENV=${2?USAGE: stunnel <SERVICE> <ENV>}
+
+  INSTANCES="$(
+    aws ec2 describe-instances \
+    --filters \
+    Name=tag:service,Values=$SERVICE \
+    Name=tag:environment,Values=$ENV \
+    Name=tag:service_type,Values=stormsvc \
+    Name=instance-state-name,Values=running \
+    --query 'Reservations[].Instances[].[LaunchTime, InstanceId, Placement.AvailabilityZone, PrivateIpAddress]' \
+    --output text
+  )"
+
+  if [ -z "$INSTANCES" ]; then
+    echo "Unable to find any instances for service=$SERVICE env=$ENV"
+    return 0
+  fi
+
+  NUM_INSTANCES=$(echo "$INSTANCES" | wc -l | xargs)
+  printf "Instances for $SERVICE $ENV:\n\n$( echo "$INSTANCES" | nl )\n\n"
+
+  # prompt for instance
+  while [ -z "$SELECTED" ]; do
+    read '?Give the number corresponding to the instance you would like to SSH into: ' SELECTED
+
+    if [[ ! "$SELECTED" =~ ^[0-9]$ ]] || [ $SELECTED -gt $NUM_INSTANCES ] || [ $SELECTED -lt 1 ]; then
+      printf "Invalid selection '$SELECTED'. Pick a number between 1 and ${NUM_INSTANCES}\n"
+      unset SELECTED
+    fi
+  done
+
+  INSTANCE=$(echo "$INSTANCES" | sed -n "${SELECTED}p")
+  PRIVATE_IP=$(echo "$INSTANCE" | awk '{print $4}')
+
+  echo ''
+  echo "PRIVATE_IP=$PRIVATE_IP"
+  echo ''
+
+  ssh -o 'CheckHostIP=no' -o 'IdentitiesOnly=yes' -i ${SECRETS}/dotfiles/.ssh/starry/aws/edward.pem -J cloudvpn "ubuntu@${PRIVATE_IP}"
 }
 
 alias smongob='docker exec -it $(docker ps -aqf "name=mongodb.cloudenv") /bin/bash'
@@ -97,4 +155,20 @@ function cloudwatch_img() {
   | awk '{split($0,a,"\""); print a[4]}' \
   | base64 --decode \
   > graph.png
+}
+
+function lambda_logs() {
+  local lambda=${1?usage: lambda_logs [lambda name]}
+
+  local log_stream_name="$(
+    aws logs describe-log-streams --log-group-name /aws/lambda/$lambda \
+      --query 'sort_by(logStreams, &creationTime)[-1].logStreamName' \
+      --output json \
+      | sed 's/"//g'
+  )"
+
+  aws logs get-log-events \
+    --log-group-name /aws/lambda/$lambda \
+    --log-stream-name $log_stream_name \
+    --limit 10
 }

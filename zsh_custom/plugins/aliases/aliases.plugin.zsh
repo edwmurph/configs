@@ -25,6 +25,7 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias pjm='goto ~/code/personal/jormungandr'
   alias ptjsr='goto ~/code/personal/threejsr'
 
+  alias bcp='goto ~/code/bitnado/cloud-platform'
   alias bcn='goto ~/code/bitnado/cardano-node'
   alias bci='goto ~/code/bitnado/cloud-infra'
   alias bbn='goto ~/code/bitnado/bitnado.io'
@@ -88,7 +89,6 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias ld="node ${ZSH_CUSTOM}/plugins/aliases/local-date.js"
   alias tf='terraform'
   alias nm='node --experimental-modules --experimental-json-modules --es-module-specifier-resolution=node'
-  alias md='macdown'
   alias kc='kubectl'
   alias ngrok_url='curl -s localhost:4040/api/tunnels | jq -r ".tunnels[0].public_url"'
   alias ang='ngrok_url | alert'

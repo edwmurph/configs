@@ -1,4 +1,4 @@
-eval "$(fnm env --multi)"
+eval "$(fnm env)"
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -19,6 +19,7 @@ function context_switch() {
   unset SPACES_SECRET_ACCESS_KEY
   unset DIGITALOCEAN_ACCESS_TOKEN
   unset AWS_PROFILE
+  unset GOOGLE_CREDENTIALS
   if ! [[ $context =~ / ]]; then
     export AWS_PROFILE=$context
     if [ -d '.git' ]; then
@@ -44,6 +45,7 @@ function context_switch() {
       export DIGITALOCEAN_ACCESS_TOKEN="${BITNADO_DIGITALOCEAN_ACCESS_TOKEN}"
       export AWS_ACCESS_KEY_ID="${BITNADO_SPACES_ACCESS_KEY_ID}"
       export AWS_SECRET_ACCESS_KEY="${BITNADO_SPACES_SECRET_ACCESS_KEY}"
+      export GOOGLE_CREDENTIALS="${BITFORGE_GOOGLE_CREDENTIALS}"
     fi
   fi
 }
