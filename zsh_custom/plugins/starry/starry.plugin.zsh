@@ -1,6 +1,7 @@
 SECRETS="${HOME}/.secrets"
 
 # navigation
+  alias shs='goto ~/code/starry/hindsight'
   alias sdsp='goto ~/code/starry/docker-socket-proxy'
   alias sos='goto ~/code/starry/onslaught'
   alias sal='goto ~/code/starry/amp-logger'
@@ -54,13 +55,9 @@ function secr() {
     $STARRY_ECR
 }
 
-function stunnel_db_rai() {
-  ssh -L 27019:${STARRY_MONGO_RADIUS_ACCT_INTEGRATION}:27000 cloudvpn
+function stunnel_db() {
+  ssh -L 27019:${1?missing db endpoint to tunnel}:27000 cloudvpn
 }
-
-# function stunnel_db_prod() {
-#   ssh -L 27019:${STARRY_MONGO_TEMP_PRODUCTION}:27000 cloudvpn
-# }
 
 function stunnel_dbs() {
   ssh cloudvpn \
