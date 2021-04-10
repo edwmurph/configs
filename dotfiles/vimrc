@@ -24,9 +24,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'
   " collection of lang packs
   " conflicts with jsdoc in vim-jsx-improve
-  " Plug 'sheerun/vim-polyglot'
+  Plug 'sheerun/vim-polyglot'
   " javascript syntax + folding + concealing chars
-  Plug 'chemzqm/vim-jsx-improve'
+  " Plug 'neoclide/vim-jsx-improve'
   Plug 'posva/vim-vue'
   " theme
   Plug 'joshdick/onedark.vim'
@@ -108,7 +108,7 @@ set directory=$HOME/.vim/swapfiles//
   nmap <silent> <C-l> <Plug>(jsdoc)
 
 " sheerun/vim-polyglot
-  let g:polyglot_disabled = ['json', 'jsx', 'javascript', 'vue']
+  " let g:polyglot_disabled = ['json', 'jsx', 'javascript', 'vue']
 
 " pangloss/vim-javascript
   set conceallevel=1
