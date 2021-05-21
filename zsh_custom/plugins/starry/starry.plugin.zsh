@@ -1,9 +1,11 @@
 SECRETS="${HOME}/.secrets"
 
 # navigation
+  alias sose='goto ~/code/starry/outset'
+  alias smi='goto ~/code/starry/mimir'
   alias shs='goto ~/code/starry/hindsight'
   alias sdsp='goto ~/code/starry/docker-socket-proxy'
-  alias sos='goto ~/code/starry/onslaught'
+  alias sosl='goto ~/code/starry/onslaught'
   alias sal='goto ~/code/starry/amp-logger'
   alias scb='goto ~/code/starry/node-builder'
   alias scb='goto ~/code/starry/cerebro'
@@ -59,6 +61,10 @@ function stunnel_db() {
   ssh -L 27019:${1?missing db endpoint to tunnel}:27000 cloudvpn
 }
 
+function stunnel_mongo2() {
+  ssh -L 27019:${STARRY_MONGO_2}:27017 cloudvpn
+}
+
 function stunnel_dbs() {
   ssh cloudvpn \
     -L 27020:${STARRY_MONGO_INTEGRATION_0}:27000 \
@@ -107,7 +113,11 @@ function stunnel() {
   echo "PRIVATE_IP=$PRIVATE_IP"
   echo ''
 
-  ssh -o 'CheckHostIP=no' -o 'IdentitiesOnly=yes' -i ${SECRETS}/dotfiles/.ssh/starry/aws/edward.pem -J cloudvpn "ubuntu@${PRIVATE_IP}"
+  stunnel_ip $PRIVATE_IP
+}
+
+function stunnel_ip() {
+  ssh -o 'CheckHostIP=no' -o 'IdentitiesOnly=yes' -i ${SECRETS}/dotfiles/.ssh/starry/aws/edward.pem -J cloudvpn "ubuntu@${1?missing ip}"
 }
 
 alias smongob='docker exec -it $(docker ps -aqf "name=mongodb.cloudenv") /bin/bash'
@@ -155,7 +165,8 @@ function cloudwatch_img() {
 }
 
 function lambda_logs() {
-  local lambda=${1?usage: lambda_logs [lambda name]}
+  local lambda=${1?usage: lambda_logs [lambda name] [limit=10]}
+  local limit=${2-10}
 
   local log_stream_name="$(
     aws logs describe-log-streams --log-group-name /aws/lambda/$lambda \
@@ -167,5 +178,5 @@ function lambda_logs() {
   aws logs get-log-events \
     --log-group-name /aws/lambda/$lambda \
     --log-stream-name $log_stream_name \
-    --limit 10
+    --limit $limit
 }

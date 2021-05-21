@@ -35,8 +35,6 @@ function context_switch() {
       export SPACES_ACCESS_KEY_ID="${DO_SPACES_ACCESS_KEY_ID}"
       export SPACES_SECRET_ACCESS_KEY="${DO_SPACES_SECRET_ACCESS_KEY}"
       export DIGITALOCEAN_ACCESS_TOKEN="${DO_DIGITALOCEAN_ACCESS_TOKEN}"
-      export AWS_ACCESS_KEY_ID="${SPACES_ACCESS_KEY_ID}"
-      export AWS_SECRET_ACCESS_KEY="${SPACES_SECRET_ACCESS_KEY}"
     elif [[ "$context" == 'starry' ]]; then
     elif [[ "$context" == 'do' ]]; then
     elif [[ "$context" == 'bitnado' ]]; then
