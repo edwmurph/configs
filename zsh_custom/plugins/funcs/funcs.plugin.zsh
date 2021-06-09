@@ -1,3 +1,16 @@
+function nrd() {
+  local develop=$(node -e 'console.log(require("./package.json").scripts.develop || "")')
+  local dev=$(node -e 'console.log(require("./package.json").scripts.dev || "")')
+
+  if [ -n "$develop" ]; then
+    npm run develop
+  elif [ -n "$dev" ]; then
+    npm run dev
+  else
+    echo 'no dev or develop npm script'
+  fi
+}
+
 function get_gitignore() {
   local gitignore=''
 
@@ -83,4 +96,14 @@ function far() {
   REPLACEMENT="${2?missing replacement}"
 
   git grep -l '' | xargs sed -i '' -e "s/${TARGET}/${REPLACEMENT}/g"
+}
+
+function dc() {
+  local usage='usage: dc [container id] [path on container to copy]'
+  docker cp ${1?$usage}:${2?$usage} ./
+}
+
+function kcy() {
+  local usage='usage: kcy [namespace] [pod] [path on container to copy]'
+  kubectl cp ${1?$usage}/${2?$usage}:${3?$usage} ./
 }

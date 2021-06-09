@@ -9,6 +9,8 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
 # navigation
   alias dan='goto ~/code/do/adanodes'
 
+  alias pps='goto ~/code/personal/puppeteer-service'
+  alias pasdf='goto ~/code/personal/asdf'
   alias pud='goto ~/code/personal/upgrade-deps'
   alias pk8='goto ~/code/personal/k8s'
   alias pec='goto ~/code/personal/eslint-config'
@@ -68,7 +70,6 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias nrtf="npm run test:functional"
   alias ns="npm start"
   alias nt="npm test"
-  alias nrd="npm run dev"
   alias nrs="npm run serve"
   alias nrbd="npm run build-dev"
   alias nrk="npm run kill"
@@ -93,3 +94,4 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias ngrok_url='curl -s localhost:4040/api/tunnels | jq -r ".tunnels[0].public_url"'
   alias ang='ngrok_url | alert'
   alias gat='./node_modules/gatsby/cli.js develop -p 8001'
+  alias dr='docker run -it --entrypoint /bin/bash'
