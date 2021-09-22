@@ -1,14 +1,15 @@
 SECRETS="${HOME}/.secrets"
 
 # navigation
+  alias sbs='goto ~/code/starry/banshee'
   alias sose='goto ~/code/starry/outset'
   alias smi='goto ~/code/starry/mimir'
   alias shs='goto ~/code/starry/hindsight'
   alias sdsp='goto ~/code/starry/docker-socket-proxy'
   alias sosl='goto ~/code/starry/onslaught'
   alias sal='goto ~/code/starry/amp-logger'
-  alias scb='goto ~/code/starry/node-builder'
-  alias scb='goto ~/code/starry/cerebro'
+  alias snb='goto ~/code/starry/node-builder'
+  alias scr='goto ~/code/starry/cerebro'
   alias spf='goto ~/code/starry/padfoot'
   alias sgf='goto ~/code/starry/grafana'
   alias sza='goto ~/code/starry/zoma'
@@ -33,7 +34,7 @@ SECRETS="${HOME}/.secrets"
   alias sdh='goto ~/code/starry/dullahan'
   alias spa='goto ~/code/starry/places-api'
   alias sua='goto ~/code/starry/upgrader-api'
-  alias sbs='goto ~/code/starry/backchannel-server'
+  alias sbcs='goto ~/code/starry/backchannel-server'
   alias sbt='goto ~/code/starry/bastion'
   alias slk='goto ~/code/starry/lakitu'
   alias sfg='goto ~/code/starry/forge'
@@ -179,4 +180,13 @@ function lambda_logs() {
     --log-group-name /aws/lambda/$lambda \
     --log-stream-name $log_stream_name \
     --limit $limit
+}
+
+function maestro() {
+  local MAESTRO_PATH=${1?usage: maestro [path]}
+
+  node -e \
+  "require('maestro-client').get('$MAESTRO_PATH')
+    .then(console.log, console.error)
+    .finally(() => process.exit(0))"
 }

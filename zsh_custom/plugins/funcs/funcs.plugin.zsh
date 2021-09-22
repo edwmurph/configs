@@ -56,8 +56,12 @@ function greset() {
   " HEAD
 }
 
+function fzfpreview() {
+  fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'
+}
+
 function v() {
-  file="$(fzf)"
+  file="$(fzfpreview)"
   if [ -n "$file" ]; then
     vim "$file"
   fi
@@ -65,7 +69,7 @@ function v() {
 }
 
 function vn() {
-  file="$(find node_modules | fzf)"
+  file="$(find node_modules | fzfpreview)"
   if [ -n "$file" ]; then
     vim "$file"
   fi

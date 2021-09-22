@@ -21,3 +21,4 @@ poc
 ios
 android
 __tests__
+.next
