@@ -129,6 +129,9 @@ set directory=$HOME/.vim/swapfiles//
   let g:ale_linters = {
 \   'javascript': ['eslint'],
 \}
+  let g:ale_pattern_options = {
+\   '.*\.json$': {'ale_enabled': 0},
+\}
 
 " Yggdroot/indentLine configs
   " customize indentLine char

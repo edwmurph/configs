@@ -54,6 +54,7 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias ports="sudo lsof -i -n -P | grep TCP"
 
 # git
+  alias gclean="git gc --prune=now && git remote prune origin"
   alias grr="git reset HEAD~1"
   alias gdm="git diff master -- . ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
   alias gdsm="git diff --staged master -- . ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"

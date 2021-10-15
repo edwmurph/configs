@@ -1,6 +1,7 @@
 SECRETS="${HOME}/.secrets"
 
 # navigation
+  alias sai='goto ~/code/starry/arf-ingester'
   alias sbs='goto ~/code/starry/banshee'
   alias sose='goto ~/code/starry/outset'
   alias smi='goto ~/code/starry/mimir'
