@@ -13,7 +13,6 @@ bootstrap-sass
 material-dashboard
 .ipynb_checkpoints
 __pycache__
-public
 build
 .DS_Store
 jsm

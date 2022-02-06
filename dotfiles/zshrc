@@ -1,3 +1,8 @@
+
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the start of this file.
+[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
+#### END FIG ENV VARIABLES ####
 # ln -s ${HOME}/code/personal/configs/dotfiles/zshrc ${HOME}/.zshrc
 
 export ZSH="/Users/emurphy/.oh-my-zsh"
@@ -16,3 +21,8 @@ if [ -f '/Users/emurphy/dev/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/emu
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/emurphy/dev/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/emurphy/dev/google-cloud-sdk/completion.zsh.inc'; fi
+
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the end of this file.
+[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
+#### END FIG ENV VARIABLES ####

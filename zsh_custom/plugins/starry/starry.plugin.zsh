@@ -1,6 +1,7 @@
 SECRETS="${HOME}/.secrets"
 
 # navigation
+  alias scdt='goto ~/code/starry/cloud-dev-tools'
   alias sai='goto ~/code/starry/arf-ingester'
   alias sbs='goto ~/code/starry/banshee'
   alias sose='goto ~/code/starry/outset'
@@ -48,6 +49,20 @@ SECRETS="${HOME}/.secrets"
 
 # git
   #alias gcd='git checkout develop'
+
+
+
+function cdt() {
+  local CDT="$HOME/code/starry/cloud-dev-tools"
+  local OLD_NODE_VERSION="$(node -v)"
+  local NEW_NODE_VERSION="$(cat $CDT/.nvmrc)"
+
+  fnm use $NEW_NODE_VERSION 1> /dev/null
+
+  $CDT/shared_scripts/commander.js "$@"
+
+  fnm use $OLD_NODE_VERSION 1> /dev/null
+}
 
 function elb_access_log() {
   aws s3 cp s3://starry-radius-accounting-elb-logs/${1?need s3 object key } log.log
@@ -166,23 +181,6 @@ function cloudwatch_img() {
   > graph.png
 }
 
-function lambda_logs() {
-  local lambda=${1?usage: lambda_logs [lambda name] [limit=10]}
-  local limit=${2-10}
-
-  local log_stream_name="$(
-    aws logs describe-log-streams --log-group-name /aws/lambda/$lambda \
-      --query 'sort_by(logStreams, &creationTime)[-1].logStreamName' \
-      --output json \
-      | sed 's/"//g'
-  )"
-
-  aws logs get-log-events \
-    --log-group-name /aws/lambda/$lambda \
-    --log-stream-name $log_stream_name \
-    --limit $limit
-}
-
 function maestro() {
   local MAESTRO_PATH=${1?usage: maestro [path]}
 
@@ -190,4 +188,9 @@ function maestro() {
   "require('maestro-client').get('$MAESTRO_PATH')
     .then(console.log, console.error)
     .finally(() => process.exit(0))"
+}
+
+function smocha() {
+  FILEPATH=${1?USAGE: smocha <filepath>}
+  (PATH="$PATH:$(pwd)/node_modules/.bin"; NODE_ENV=test mocha $FILEPATH --exit)
 }

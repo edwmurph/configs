@@ -1,3 +1,8 @@
+function gcmsgf() {
+  local hash="$(git log --grep "fixup!" --invert-grep -n 1 --format='%H')"
+  git commit --fixup $hash -m $1
+}
+
 function nrd() {
   local develop=$(node -e 'console.log(require("./package.json").scripts.develop || "")')
   local dev=$(node -e 'console.log(require("./package.json").scripts.dev || "")')
@@ -76,7 +81,7 @@ function vn() {
   print -S "vim $file"
 }
 
-function alert() {
+function jarvis() {
   source "${SECRETS}/secrets.zsh"
 
   # send first arg as msg if provided or wait for msg from stdin
@@ -90,8 +95,6 @@ function alert() {
     -X POST \
     -d "{\"content\":\"${msg}\"}" \
     $DISCORD_JARVIS
-
-  unset_secrets
 }
 
 # find target and replace with replacement

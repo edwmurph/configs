@@ -46,11 +46,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'alvan/vim-closetag'
   " syntax support for css in js files
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-  " jsdoc
-  Plug 'heavenshell/vim-jsdoc', {
-  \ 'for': ['javascript', 'javascript.jsx','typescript'],
-  \ 'do': 'make install'
-\}
 
 " R
   "Plug 'janko-m/vim-test'
@@ -103,9 +98,6 @@ set directory=$HOME/.vim/swapfiles//
 
 
 "-------------- plugin-specific configs -------------
-
-" heavenshell/vim-jsdoc
-  nmap <silent> <C-l> <Plug>(jsdoc)
 
 " sheerun/vim-polyglot
   " let g:polyglot_disabled = ['json', 'jsx', 'javascript', 'vue']

@@ -1,0 +1,5 @@
+. ~/.bashrc
+
+# aliases
+
+alias kc='sudo microk8s.kubectl'

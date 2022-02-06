@@ -28,13 +28,13 @@ function context_switch() {
         git config user.email emurphy@starry.com
       else
         git config user.name edwmurph
-        git config user.email edwmurph3@gmail.com
+        git config user.email edward@edwardmurphy.dev
       fi
     fi
     if [[ "$context" == 'personal' ]]; then
-      export SPACES_ACCESS_KEY_ID="${DO_SPACES_ACCESS_KEY_ID}"
-      export SPACES_SECRET_ACCESS_KEY="${DO_SPACES_SECRET_ACCESS_KEY}"
-      export DIGITALOCEAN_ACCESS_TOKEN="${DO_DIGITALOCEAN_ACCESS_TOKEN}"
+      # export SPACES_ACCESS_KEY_ID="${DO_SPACES_ACCESS_KEY_ID}"
+      # export SPACES_SECRET_ACCESS_KEY="${DO_SPACES_SECRET_ACCESS_KEY}"
+      # export DIGITALOCEAN_ACCESS_TOKEN="${DO_DIGITALOCEAN_ACCESS_TOKEN}"
     elif [[ "$context" == 'starry' ]]; then
     elif [[ "$context" == 'do' ]]; then
     elif [[ "$context" == 'bitnado' ]]; then

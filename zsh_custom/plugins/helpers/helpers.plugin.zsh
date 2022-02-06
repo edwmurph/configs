@@ -10,7 +10,6 @@ function source_if_exists () {
 function goto() {
   # sets the tab title to target directory
   cd ${1}
-  DISABLE_AUTO_TITLE="true"
-  echo -ne "\e]1;${1}\a"
-  cd ${1}
+  # DISABLE_AUTO_TITLE="true"
+  # echo -ne "\e]1;${1}\a"
 }
