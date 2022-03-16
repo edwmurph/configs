@@ -16,6 +16,46 @@ function nrd() {
   fi
 }
 
+function npm_install_string() {
+  local DEP_TYPE=${1}
+  local INSTALL_STRING=$(node -e "
+  const deps = require('./package.json').${DEP_TYPE} || {};
+  const formatted = Object.keys( deps ).map( d => {
+    const version = deps[ d ];
+    return /^[0-9]+\.[0-9]+\.[0-9]+$/.test( version )
+      ? d + '@' + version
+      : version;
+  });
+  formatted.length && console.log( 'npm i --save false', formatted.join(' ') );
+  ")
+  echo "$INSTALL_STRING"
+}
+
+function reset_node_env() {
+  fnm use || ( echo 'must run within directory with .nvmrc' && return 1 )
+
+  echo 'deleting node modules...'
+
+  rm -rf node_modules
+
+  local DEPS_INSTALL="$(npm_install_string dependencies)"
+  local DEV_DEPS_INSTALL="$(npm_install_string devDependencies)"
+
+  if [ -n $DEPS_INSTALL ]; then
+    echo 'installing dependencies...'
+    echo "$DEPS_INSTALL" | zsh
+    echo ''
+  fi
+
+  if [ -n $DEV_DEPS_INSTALL ]; then
+    echo 'installing dev dependencies...'
+    echo "$DEV_DEPS_INSTALL" | zsh
+    echo ''
+  fi
+
+  echo 'successfully reset local node env!'
+}
+
 function get_gitignore() {
   local gitignore=''
 

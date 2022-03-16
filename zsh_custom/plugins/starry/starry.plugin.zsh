@@ -1,6 +1,7 @@
 SECRETS="${HOME}/.secrets"
 
 # navigation
+  alias sza2='goto ~/code/starry/zoma-v2'
   alias scdt='goto ~/code/starry/cloud-dev-tools'
   alias sai='goto ~/code/starry/arf-ingester'
   alias sbs='goto ~/code/starry/banshee'

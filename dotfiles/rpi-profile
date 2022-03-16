@@ -3,3 +3,4 @@
 # aliases
 
 alias kc='sudo microk8s.kubectl'
+alias mk='sudo microk8s'
