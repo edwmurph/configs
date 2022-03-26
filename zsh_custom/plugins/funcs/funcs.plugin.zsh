@@ -26,7 +26,7 @@ function npm_install_string() {
       ? d + '@' + version
       : version;
   });
-  formatted.length && console.log( 'npm i --save false', formatted.join(' ') );
+  console.log( formatted.join(' ') );
   ")
   echo "$INSTALL_STRING"
 }
@@ -38,19 +38,14 @@ function reset_node_env() {
 
   rm -rf node_modules
 
-  local DEPS_INSTALL="$(npm_install_string dependencies)"
-  local DEV_DEPS_INSTALL="$(npm_install_string devDependencies)"
+  local DEPS="$(npm_install_string dependencies) $(npm_install_string devDependencies)"
 
-  if [ -n $DEPS_INSTALL ]; then
+  if [ -z "${DEPS// }" ]; then
+    echo 'unable to find any dependencies to install'
+    return 1
+  else
     echo 'installing dependencies...'
-    echo "$DEPS_INSTALL" | zsh
-    echo ''
-  fi
-
-  if [ -n $DEV_DEPS_INSTALL ]; then
-    echo 'installing dev dependencies...'
-    echo "$DEV_DEPS_INSTALL" | zsh
-    echo ''
+    echo "npm install --save false $DEPS" | zsh
   fi
 
   echo 'successfully reset local node env!'

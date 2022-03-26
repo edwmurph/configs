@@ -64,6 +64,7 @@ ignore_dirs=$(cat "${ZSH_CUSTOM}/plugins/aliases/ignore_dirs.txt" \
   alias gds="git diff --staged ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
   alias gdd="git diff HEAD^ -- ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
   alias gpod="git push origin --delete"
+  alias gcm="git checkout master"
 
 # npm
   alias nr="npm run"
