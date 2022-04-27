@@ -227,6 +227,8 @@
 	<true/>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
+	<key>HideActivityIndicator</key>
+	<false/>
 	<key>HideTab</key>
 	<true/>
 	<key>HideTabNumber</key>
@@ -873,6 +875,8 @@
 	<key>Print In Black And White</key>
 	<true/>
 	<key>SeparateStatusBarsPerPane</key>
+	<true/>
+	<key>ShowNewOutputIndicator</key>
 	<true/>
 	<key>ShowPaneTitles</key>
 	<true/>

@@ -1,8 +1,11 @@
 # general
 alias e="exit"
 alias vim="nvim"
+alias kc="kubectl"
+alias nr="npm run"
 
 # git
+alias gco="git checkout"
 alias gst="git status"
 alias gaa="git add ."
 alias gcmsg="git commit -m"
@@ -18,3 +21,7 @@ alias gds="git diff --staged ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn
 alias gdd="git diff HEAD^ -- ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
 alias gpod="git push origin --delete"
 alias gcm="git checkout master"
+
+# navigation
+alias ppsa="goto ~/code/personal/personal"
+alias pcf="goto ~/code/personal/configs"
