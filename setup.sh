@@ -10,7 +10,7 @@ fi
 # symlink global gitignore
 printf "\nSYMLINKING GLOBAL GITIGNORE:\n"
 if [ -f ${HOME}/.gitignore ]; then
-	read -p "local ~/.gitignore already found. Would you like to replace your local ~/.vimrc ? " -n 1 -r
+	read -p "local ~/.gitignore already found. Would you like to replace your local ~/.gitignore ? " -n 1 -r
 	echo    # (optional) move to a new line
 	if ! [[ $REPLY =~ ^[Yy]$ ]]; then
 		echo "aborting script."
@@ -55,29 +55,29 @@ fi
 which -s macdown
 if [[ $? != 0 ]] ; then
   printf "\nINSTALLING MACDOWN:\n"
-  brew cask install macdown
+  brew install --cask macdown
 fi
 
 
 # install vundle
-if ! [ "$(ls -A ${HOME}/.vim/bundle/Vundle.vim)" ]; then
-	printf "\nINSTALLING VUNDLE:\n"
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-fi
+# if ! [ "$(ls -A ${HOME}/.vim/bundle/Vundle.vim)" ]; then
+# 	printf "\nINSTALLING VUNDLE:\n"
+# 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# fi
 
 
 # symlink vimrc
-printf "\nSYMLINKING VIMRC:\n"
-if [ -f ${HOME}/.vimrc ]; then
-	read -p "local ~/.vimrc already found. Would you like to replace your local ~/.vimrc ? " -n 1 -r
-	echo    # (optional) move to a new line
-	if ! [[ $REPLY =~ ^[Yy]$ ]]; then
-		echo "aborting script."
-		return 1
-	fi
-fi
+# printf "\nSYMLINKING VIMRC:\n"
+# if [ -f ${HOME}/.vimrc ]; then
+# 	read -p "local ~/.vimrc already found. Would you like to replace your local ~/.vimrc ? " -n 1 -r
+# 	echo    # (optional) move to a new line
+# 	if ! [[ $REPLY =~ ^[Yy]$ ]]; then
+# 		echo "aborting script."
+# 		return 1
+# 	fi
+# fi
 
-ln -s ${HOME}/code/personal/configs/dotfiles/vimrc ${HOME}/.vimrc
+# ln -s ${HOME}/code/personal/configs/dotfiles/vimrc ${HOME}/.vimrc
 
 # install fnm
 which -s fnm
@@ -101,9 +101,9 @@ if [[ $? != 0 ]] ; then
 fi
 
 # use vim from brew instead of one shipped with OS
-if [[ "$(which vim)" != '/usr/local/bin/vim' ]]; then
-  brew install vim
-fi
+# if [[ "$(which vim)" != '/usr/local/bin/vim' ]]; then
+#   brew install vim
+# fi
 
 which -s kubectl
 if [[ $? != 0 ]] ; then
@@ -137,29 +137,26 @@ fi
 ln -s ${HOME}/.secrets/dotfiles/.aws ${HOME}/.aws
 
 # symlink .ssh
-printf "\nSYMLINKING SSH CONFIG:\n"
-if [ -d ${HOME}/.ssh ]; then
-	read -p "local ~/.ssh already found. Would you like to replace your local ~/.ssh ? " -n 1 -r
-	echo    # (optional) move to a new line
-	if ! [[ $REPLY =~ ^[Yy]$ ]]; then
-		echo "aborting script."
-		return 1
-	fi
-fi
+# printf "\nSYMLINKING SSH CONFIG:\n"
+# if [ -d ${HOME}/.ssh ]; then
+# 	read -p "local ~/.ssh already found. Would you like to replace your local ~/.ssh ? " -n 1 -r
+# 	echo    # (optional) move to a new line
+# 	if ! [[ $REPLY =~ ^[Yy]$ ]]; then
+# 		echo "aborting script."
+# 		return 1
+# 	fi
+# fi
 
-ln -s ${HOME}/.secrets/dotfiles/.ssh ${HOME}/.ssh
-
-# install zsh syntax highlighting plugin
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+# ln -s ${HOME}/.secrets/dotfiles/.ssh ${HOME}/.ssh
 
 # install vim plug
-if [ ! -f ~/.vim/autoload/plug.vim ]; then
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
+# if [ ! -f ~/.vim/autoload/plug.vim ]; then
+#   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+#     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# fi
 
 # add dir for vim swapfiles
-mkdir -p ~/.vim/swapfiles
+# mkdir -p ~/.vim/swapfiles
 
 echo 
 echo "finished"

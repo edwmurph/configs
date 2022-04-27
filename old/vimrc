@@ -277,7 +277,7 @@ endfunction
   vmap <Leader>; <Esc>
 
   " Ctrl-c copies visual selection to clipboard
-  vmap <C-c> "+y<CR>"
+  vmap <C-c> "*y
 
   " align imports
   vmap <Leader>ea <Plug>(EasyAlign)

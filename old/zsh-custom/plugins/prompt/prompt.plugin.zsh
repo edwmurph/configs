@@ -7,12 +7,12 @@ git_info() {
   # Git branch/tag, or name-rev if on detached head
   local GIT_LOCATION=${$(git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD)#(refs/heads/|tags/)}
 
-  local AHEAD="%{$fg[red]%}⇡NUM%{$reset_color%}"
-  local BEHIND="%{$fg[cyan]%}⇣NUM%{$reset_color%}"
-  local MERGING="%{$fg[magenta]%}⚡︎%{$reset_color%}"
-  local UNTRACKED="%{$fg[red]%}●%{$reset_color%}"
-  local MODIFIED="%{$fg[yellow]%}●%{$reset_color%}"
-  local STAGED="%{$fg[green]%}●%{$reset_color%}"
+  local AHEAD="%F{red}%n%f⇡NUM%{$reset_color%}"
+  local BEHIND="%F{cyan}%n%f⇣NUM%{$reset_color%}"
+  local MERGING="%F{magenta}%n%f⚡︎%{$reset_color%}"
+  local UNTRACKED="%F{red}%n%f●%{$reset_color%}"
+  local MODIFIED="%F{yellow}%n%f●%{$reset_color%}"
+  local STAGED="%F{green}%n%f●%{$reset_color%}"
 
   local -a DIVERGENCES
   local -a FLAGS
@@ -62,7 +62,7 @@ function preexec() {
 }
 
 function get_prompt() {
-  echo '%{$fg[blue]%}'${1-0}s %D{%L:%M:%S}'%{$fg[white]%}' $(get_pwd)⟩' '
+  echo '%F{blue}%n%f '${1-0}s %D{%L:%M:%S}'%F{white}%n%f' $(get_pwd)⟩' '
 }
 
 function precmd() {

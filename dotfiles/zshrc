@@ -1,20 +1,28 @@
-
 #### FIG ENV VARIABLES ####
 # Please make sure this block is at the start of this file.
 [ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
 #### END FIG ENV VARIABLES ####
+
 # ln -s ${HOME}/code/personal/configs/dotfiles/zshrc ${HOME}/.zshrc
 
-export ZSH="/Users/emurphy/.oh-my-zsh"
-
-# ZSH_THEME="Avit"
-ZSH_CUSTOM="${HOME}/code/personal/configs/zsh_custom"
-
-plugins=(git helpers prompt configs aliases funcs bf starry context)
-
-source $ZSH/oh-my-zsh.sh
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+CONFIGS_PATH="${HOME}/code/personal/configs"
+
+. "${CONFIGS_PATH}/zsh/init/init.zsh"
+
+for file in $CONFIGS_PATH/zsh/**/*(.); do
+  local name=$(echo "$file" | sed -e "s~^$CONFIGS_PATH/zsh/~~")
+
+  if ! [[ $name = init/* ]] && [[ $name == *.zsh ]]; then
+    . "$file"
+  fi
+done
+
+# tab completion
+autoload -Uz compinit && compinit
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/emurphy/dev/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/emurphy/dev/google-cloud-sdk/path.zsh.inc'; fi

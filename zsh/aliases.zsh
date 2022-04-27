@@ -1,0 +1,20 @@
+# general
+alias e="exit"
+alias vim="nvim"
+
+# git
+alias gst="git status"
+alias gaa="git add ."
+alias gcmsg="git commit -m"
+alias gclean="git gc --prune=now && git remote prune origin"
+alias grr="git reset HEAD~1"
+alias gdm="git diff master -- . ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
+alias gdsm="git diff --staged master -- . ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
+alias gdst="git diff HEAD --stat"
+alias gbdaa="git branch --no-color | command grep -vE '^(\+|\*|\s*(master|develop|dev)\s*$)' | command xargs -n 1 git branch -D"
+alias gp="git push"
+alias gd="git diff ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
+alias gds="git diff --staged ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
+alias gdd="git diff HEAD^ -- ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
+alias gpod="git push origin --delete"
+alias gcm="git checkout master"
