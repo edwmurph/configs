@@ -90,3 +90,13 @@ function precmd() {
 
 PROMPT=$(get_prompt)
 RPROMPT=$(git_info)
+
+# kubectl
+. <(kubectl completion zsh)
+
+# up arrow searches history based on current text as prefix
+. /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=white'
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red'

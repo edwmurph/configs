@@ -18,6 +18,7 @@ if [ -f ${HOME}/.gitignore ]; then
 	fi
 fi
 
+git config --global push.default current
 ln -fs ${HOME}/code/configs/dotfiles/gitignore ${HOME}/.gitignore
 git config --global core.excludesfile ~/.gitignore
 
