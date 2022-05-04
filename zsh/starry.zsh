@@ -1,4 +1,6 @@
 
+alias sra="goto ~/code/starry/radius-accounting"
+alias smm="goto ~/code/starry/mimir"
 alias sgf="goto ~/code/starry/grafana"
 alias shp="goto ~/code/starry/hapi-plugins"
 alias sjv="goto ~/code/starry/jarvis"

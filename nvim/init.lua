@@ -7,6 +7,8 @@ vim.g.mapleader = ' '
 vim.wo.wrap = false
 opt.mouse = 'a'
 opt.number = true
+vim.g.columns=80
+vim.cmd([[set colorcolumn=80]])
 
 -- tab behavior
 opt.expandtab = true
