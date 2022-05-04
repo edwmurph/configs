@@ -1,5 +1,3 @@
-require 'plugs'
-
 local opt = vim.opt
 
 -- general
@@ -25,3 +23,5 @@ vim.keymap.set('n', '<c-@>', ':FZF <Enter>')
 
 -- visual mode mappings
 vim.keymap.set('v', '<c-c>', '"*y :let @+=@*<CR>')
+
+require 'plugs'
