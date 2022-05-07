@@ -64,3 +64,8 @@ function nrd() {
     echo 'no dev or develop npm script'
   fi
 }
+
+function gcmsgf() {
+  local hash="$(git log --grep "fixup!" --invert-grep -n 1 --format='%H')"
+  git commit --fixup $hash -m $1
+}

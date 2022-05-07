@@ -20,7 +20,7 @@ git_info() {
   # Git branch/tag, or name-rev if on detached head
   local GIT_LOCATION=${$(git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD)#(refs/heads/|tags/)}
 
-  local AHEAD="%F{yellow}⇡NUM%{$reset_color%}"
+  local AHEAD="%F{cyan}⇡NUM%{$reset_color%}"
   local BEHIND="%F{cyan}⇣NUM%{$reset_color%}"
   local MERGING="%F{magenta}⚡︎%{$reset_color%}"
   local UNTRACKED="%F{red}●%{$reset_color%}"

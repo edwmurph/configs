@@ -1,4 +1,5 @@
 
+alias ssk="goto ~/code/starry/seeker"
 alias sra="goto ~/code/starry/radius-accounting"
 alias smm="goto ~/code/starry/mimir"
 alias sgf="goto ~/code/starry/grafana"
