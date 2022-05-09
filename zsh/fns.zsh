@@ -3,13 +3,13 @@ function upfind() {
   ORIG_DIR="$PWD"
   while [[ "$PWD" != / ]] ; do
     if find "$PWD"/ -maxdepth 1 -type f -name "$@" | grep -q "$@"; then
-      echo "$PWD/$1" && builtin cd "$ORIG_DIR"
+      echo "$PWD/$1" && cd "$ORIG_DIR"
       return 0
     else
-      builtin cd ..
+      cd ..
     fi
   done
-  builtin cd "$ORIG_DIR"
+  cd "$ORIG_DIR"
   return 1
 }
 
@@ -27,7 +27,7 @@ function v() {
 }
 
 function vn() {
-  file="$(find node_modules | fzfpreview)"
+  file="$(find node_modules | fzf_custom)"
   if [ -n "$file" ]; then
     vim "$file"
   fi
@@ -68,4 +68,8 @@ function nrd() {
 function gcmsgf() {
   local hash="$(git log --grep "fixup!" --invert-grep -n 1 --format='%H')"
   git commit --fixup $hash -m $1
+}
+
+function autosquash() {
+  EDITOR=true git rebase -i --autosquash $(git rev-parse --abbrev-ref HEAD)
 }

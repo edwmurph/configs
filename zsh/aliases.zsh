@@ -11,7 +11,6 @@ alias zh='open -a "Google Chrome" "https://hubspot.zoom.us/j/7972299201?pwd=UU5K
 
 
 # git
-alias gas="EDITOR=true git rebase -i --autosquash $(git rev-parse --abbrev-ref HEAD)"
 alias grbc="git rebase --continue"
 alias glo="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gl="git pull"

@@ -48,8 +48,8 @@ function context_switch() {
   fi
 }
 
+function chpwd () {
+  context_switch
+}
 
-cd () { builtin cd "$@" && context_switch; }
-pushd () { builtin pushd "$@" && context_switch; }
-popd () { builtin popd "$@" && context_switch; }
 cd .

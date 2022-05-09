@@ -13,7 +13,6 @@ export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 
 # Echoes information about Git repository status when inside a Git repository
 git_info() {
-
   # Exit if not inside a Git repository
   ! git rev-parse --is-inside-work-tree > /dev/null 2>&1 && return
 
