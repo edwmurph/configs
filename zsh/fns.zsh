@@ -1,15 +1,14 @@
 # find first instance of given file by looking upwards
 function upfind() {
-  ORIG_DIR="$PWD"
-  while [[ "$PWD" != / ]] ; do
-    if find "$PWD"/ -maxdepth 1 -type f -name "$@" | grep -q "$@"; then
-      echo "$PWD/$1" && cd "$ORIG_DIR"
+  local curr=$PWD
+  while [[ "$curr" != / ]] ; do
+    if find "$curr"/ -maxdepth 1 -type f -name "$@" | grep -q "$@"; then
+      echo "$curr/$1"
       return 0
     else
-      cd ..
+      curr="$(dirname $curr)"
     fi
   done
-  cd "$ORIG_DIR"
   return 1
 }
 
@@ -35,7 +34,7 @@ function vn() {
 }
 
 function tt() {
-  local gitignore_path=$(upfind .gitignore)
+  local gitignore_path="$(upfind .gitignore)"
 
   if [ -n $gitignore_path ]; then
     local gitignore="$(cat $gitignore_path)"
