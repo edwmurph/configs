@@ -16,6 +16,7 @@ opt.shiftwidth = 2
 
 -- mappings spanning multiple modes
 vim.keymap.set({ 'v', 'i' }, '<Leader>;', '<Esc>')
+vim.keymap.set({ 'v', 'i', 'n' }, '<Leader><Leader>wa', '<Esc>iconst wait = ( ms ) => new Promise( r => setTimeout( r, ms ) );<Esc>')
 
 -- normal mode mappings
 vim.keymap.set('n', '<Leader>;', '<Esc> :w <Enter>')

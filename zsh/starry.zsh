@@ -13,6 +13,10 @@ alias stu="goto ~/code/starry/starry-test-utils"
 alias sza2="goto ~/code/starry/zoma-v2"
 alias sam="goto ~/code/starry/amp"
 
+function s() {
+  goto ~/code/starry/${1?USAGE s <reponame>}
+}
+
 function cdt() {
   local CDT="$HOME/code/starry/cloud-dev-tools"
   local OLD_NODE_VERSION="$(node -v)"

@@ -32,6 +32,7 @@ Plug('dense-analysis/ale', {
     vim.g.ale_lint_on_text_changed = 'never'
 
     vim.g.ale_fixers = {
+      javascript = {'eslint'},
       vue = {'eslint'}
     }
 

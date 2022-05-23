@@ -3,6 +3,7 @@ alias e="exit"
 alias vim="nvim"
 alias kc="kubectl"
 alias nr="npm run"
+alias nrl="npm run lint"
 alias nrm="npm run mocha"
 alias agq="ag --hidden --ignore=.git -Q"
 alias agqt="ag --hidden --ignore=test --ignore=.git -Q"
@@ -12,7 +13,7 @@ alias zh='open -a "Google Chrome" "https://hubspot.zoom.us/j/7972299201?pwd=UU5K
 
 # git
 alias grbc="git rebase --continue"
-alias glo="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glo="git log --graph --pretty=format:'%Cred%h%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset %s%+b' --abbrev-commit"
 alias gl="git pull"
 alias gcb="git checkout -b"
 alias gco="git checkout"

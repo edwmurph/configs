@@ -14,7 +14,7 @@ function upfind() {
 
 function fzf_custom() {
   fzf --preview 'bat --style=numbers --color=always --line-range :500 {}' \
-    --preview-window up:80%,border-horizontal
+    --preview-window up:65%,border-horizontal
 }
 
 function v() {
@@ -69,5 +69,9 @@ function gcmsgf() {
 }
 
 function autosquash() {
-  EDITOR=true git rebase -i --autosquash $(git rev-parse --abbrev-ref HEAD)
+  EDITOR=true git rebase -i --autosquash ${1?USAGE:autosquash <branch>}
+}
+
+function p() {
+  goto ~/code/personal/${1?USAGE p <reponame>}
 }
