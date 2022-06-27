@@ -46,3 +46,9 @@ function smongo() {
 
   docker exec -it $(docker ps -aqf "name=mongodb.cloudenv") mongo $conn_url
 }
+
+function sdecrypt() {
+  local cipher="${1?USAGE: decrypt <cipher>}"
+
+  node -e "require('enigma').decrypt('${cipher}').then(console.log, console.log)"
+}

@@ -75,3 +75,10 @@ function autosquash() {
 function p() {
   goto ~/code/personal/${1?USAGE p <reponame>}
 }
+
+function docker_it() {
+  local image=${1?USAGE:docker_it <image> <command?>}
+  local command=${2-/bin/bash}
+  local container_id=$(docker run -d $1 sleep infinity)
+  docker exec -it $container_id $command
+}
