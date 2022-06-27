@@ -47,6 +47,20 @@ Plug('dense-analysis/ale', {
   end
 })
 
+Plug('ms-jpq/coq_nvim', {
+  branch = 'coq',
+  config = function()
+    vim.g.coq_settings = {
+      auto_start = 'shut-up'
+    }
+
+  end
+})
+
+Plug('ms-jpq/coq.artifacts', {
+  branch = 'artifacts'
+})
+
 Plug('posva/vim-vue')
 
 Plug.ends()

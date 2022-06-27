@@ -1,0 +1,11 @@
+snippet main
+  const main = async () => {
+    ${0}
+  }
+
+  main()
+  .then( console.log, console.log )
+  .finally(() => process.exit(0))
+
+snippet wait
+   const wait = ( ms ) => new Promise( r => setTimeout( r, ms ) );
