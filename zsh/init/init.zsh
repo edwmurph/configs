@@ -1,5 +1,3 @@
-export PATH=$PATH:/Users/emurphy/Library/Python/3.8/bin
-
 function pipe_deliminate() {
   echo $1 | sed '/^#/d;/^$/d' | tr '\n' '|' | sed 's/|$//'
 }

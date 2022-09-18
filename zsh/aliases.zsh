@@ -9,9 +9,13 @@ alias agq="ag --hidden --ignore=.git -Q"
 alias agqt="ag --hidden --ignore=test --ignore=.git -Q"
 alias zp='open -a "Google Chrome" "https://zoom.us/j/5597640531?pwd=bk5MYW5MSVBlMXJZbDBQQWtGRlJ3UT09"'
 alias zh='open -a "Google Chrome" "https://hubspot.zoom.us/j/7972299201?pwd=UU5KTC9aaWVBOUxtQ25jSVNxTFpoQT09"'
+alias nd='NODE_DEBUG=info node'
+alias dun='du -h node_modules | sort -h | tail -20'
 
 
 # git
+alias gbD="git branch -D"
+alias gb="git branch"
 alias grbc="git rebase --continue"
 alias glo="git log --graph --pretty=format:'%Cred%h%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset %s%+b' --abbrev-commit"
 alias gl="git pull"

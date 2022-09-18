@@ -63,4 +63,6 @@ Plug('ms-jpq/coq.artifacts', {
 
 Plug('posva/vim-vue')
 
+Plug('tpope/vim-fugitive')
+
 Plug.ends()

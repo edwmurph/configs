@@ -9,3 +9,28 @@ snippet main
 
 snippet wait
    const wait = ( ms ) => new Promise( r => setTimeout( r, ms ) );
+
+snippet // eslint-disable-next-line max-len
+  // eslint-disable-next-line max-len
+
+snippet const module_path
+  const module_path = '';
+
+  describe( module_path, () => {
+
+    before( async() => {
+      await stu.db.clean();
+    });
+
+    beforeEach( () => {
+      rig({
+        ctx: this,
+        module_path
+      });
+    });
+
+    afterEach( async() => {
+      await stu.db.clean();
+    });
+
+  });

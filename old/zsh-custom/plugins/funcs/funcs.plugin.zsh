@@ -75,16 +75,16 @@ function dd() {
 }
 
 function gsetup() {
-  if [ "$1" = 'starry' ]; then
-    local name='edwmurph'
-    local email='emurphy@starry.com'
-  else
-    local name='edwmurph'
-    local email='edwmurph3@gmail.com'
-  fi
+  # if [ "$1" = 'starry' ]; then
+  #   local name='edwmurph'
+  #   local email='emurphy@starry.com'
+  # else
+  #   local name='edwmurph'
+  #   local email='edwmurph3@gmail.com'
+  # fi
 
-  git config user.name $name
-  git config user.email $email
+  # git config user.name $name
+  # git config user.email $email
 }
 
 function greset() {

@@ -82,3 +82,7 @@ function docker_it() {
   local container_id=$(docker run -d $1 sleep infinity)
   docker exec -it $container_id $command
 }
+
+function groh() {
+  git reset --hard origin/$(git branch --show-current)
+}

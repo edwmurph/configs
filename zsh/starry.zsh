@@ -52,3 +52,13 @@ function sdecrypt() {
 
   node -e "require('enigma').decrypt('${cipher}').then(console.log, console.log)"
 }
+
+function stunnel_ip() {
+  ssh -o 'CheckHostIP=no' -o 'IdentitiesOnly=yes' \
+    -i ${SECRETS}/dotfiles/.ssh/starry/aws/edward.pem \
+    -J cloudvpn "ubuntu@${1?missing ip}"
+}
+
+function stunnel_db() {
+  ssh -4 -L 27019:${1?missing db endpoint to tunnel} cloudvpn
+}

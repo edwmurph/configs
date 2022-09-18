@@ -22,15 +22,6 @@ function context_switch() {
   unset GOOGLE_CREDENTIALS
   if ! [[ $context =~ / ]]; then
     export AWS_PROFILE=$context
-    if [ -d '.git' ]; then
-      if [[ "$context" == 'starry' ]]; then
-        git config user.name emurphy
-        git config user.email emurphy@starry.com
-      else
-        git config user.name edwmurph
-        git config user.email edward@edwardmurphy.dev
-      fi
-    fi
     if [[ "$context" == 'personal' ]]; then
       # export SPACES_ACCESS_KEY_ID="${DO_SPACES_ACCESS_KEY_ID}"
       # export SPACES_SECRET_ACCESS_KEY="${DO_SPACES_SECRET_ACCESS_KEY}"
