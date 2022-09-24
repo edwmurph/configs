@@ -1,7 +1,0 @@
-. ~/.bashrc
-
-# aliases
-
-alias kc='sudo microk8s.kubectl'
-alias kubectl='sudo microk8s.kubectl'
-alias mk='sudo microk8s'
