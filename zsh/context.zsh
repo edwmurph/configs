@@ -15,6 +15,10 @@ function context_switch() {
   autoswitch_to_node_version
   # autoswitch_conda_env
   context=$(echo $PWD | sed -E 's/^\/Users\/emurphy\/code\/([^/]+).*$/\1/')
+
+  git config --global user.name "edwmurph"
+  git config --global user.email 20996513+edwmurph@users.noreply.github.com
+
   unset SPACES_ACCESS_KEY_ID
   unset SPACES_SECRET_ACCESS_KEY
   unset DIGITALOCEAN_ACCESS_TOKEN
@@ -26,6 +30,10 @@ function context_switch() {
       # export SPACES_ACCESS_KEY_ID="${DO_SPACES_ACCESS_KEY_ID}"
       # export SPACES_SECRET_ACCESS_KEY="${DO_SPACES_SECRET_ACCESS_KEY}"
       # export DIGITALOCEAN_ACCESS_TOKEN="${DO_DIGITALOCEAN_ACCESS_TOKEN}"
+
+      # export GOOGLE_CREDENTIALS="${PERSONAL_GOOGLE_CREDENTIALS}"
+      export ZEROTIER_CENTRAL_TOKEN="${PERSONAL_ZEROTIER_CENTRAL_TOKEN}"
+      export DIGITALOCEAN_TOKEN="${PERSONAL_DIGITALOCEAN_TOKEN}"
     elif [[ "$context" == 'starry' ]]; then
     elif [[ "$context" == 'do' ]]; then
     elif [[ "$context" == 'bitnado' ]]; then

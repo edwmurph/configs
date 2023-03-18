@@ -4,7 +4,7 @@
 which -s git 
 if [[ $? != 0 ]] ; then
 	printf "\nMANUALLY INSTALL GIT TO CONTINUE\n"
-	return 1
+	exit 1
 fi
 
 # symlink global gitignore
@@ -14,26 +14,48 @@ if [ -f ${HOME}/.gitignore ]; then
 	echo    # (optional) move to a new line
 	if ! [[ $REPLY =~ ^[Yy]$ ]]; then
 		echo "aborting script."
-		return 1
+		exit 1
 	fi
 fi
-
-git config --global push.default current
-ln -fs ${HOME}/code/configs/dotfiles/gitignore ${HOME}/.gitignore
-git config --global core.excludesfile ~/.gitignore
-
 
 # install brew
 which -s brew
 if [[ $? != 0 ]] ; then
 	printf "\nINSTALL HOMEBREW MANUALLY TO CONTINUE.\n"
 	printf "https://brew.sh"
-	return 1
+	exit 1
 else
 	printf "\nUPDATING HOMEBREW:\n"
 	brew update
 fi
 
+# install git stuff
+brew install gpg2 gnupg pinentry-mac
+
+ln -fs ${HOME}/.secrets/dotfiles/.gnupg ${HOME}/.gnupg
+chmod 700 ~/.gnupg
+git config --global push.default current
+ln -fs ${HOME}/code/personal/configs/dotfiles/gitignore ${HOME}/.gitignore
+git config --global core.excludesfile ~/.gitignore
+git config --global gpg.program $(which gpg)
+git config --global user.signingkey 60F96B0F
+git config --global commit.gpgsign true
+
+# install zsh stuff
+ln -fs ${HOME}/code/personal/configs/dotfiles/zshrc ${HOME}/.zshrc
+brew install zsh-history-substring-search
+
+# install terraform stuff
+brew install tfenv
+
+# install nvim
+which -s nvim
+if [[ $? != 0 ]] ; then
+	printf "\nINSTALLING NVIM"
+	brew install nvim
+	mkdir -p ~/.config/nvim
+	ln -fs ${HOME}/code/personal/configs/nvim ${HOME}/.config/nvim
+fi
 
 # install silver-searcher
 which -s ag
@@ -59,26 +81,7 @@ if [[ $? != 0 ]] ; then
   brew install --cask macdown
 fi
 
-
-# install vundle
-# if ! [ "$(ls -A ${HOME}/.vim/bundle/Vundle.vim)" ]; then
-# 	printf "\nINSTALLING VUNDLE:\n"
-# 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-# fi
-
-
-# symlink vimrc
-# printf "\nSYMLINKING VIMRC:\n"
-# if [ -f ${HOME}/.vimrc ]; then
-# 	read -p "local ~/.vimrc already found. Would you like to replace your local ~/.vimrc ? " -n 1 -r
-# 	echo    # (optional) move to a new line
-# 	if ! [[ $REPLY =~ ^[Yy]$ ]]; then
-# 		echo "aborting script."
-# 		return 1
-# 	fi
-# fi
-
-# ln -s ${HOME}/code/personal/configs/dotfiles/vimrc ${HOME}/.vimrc
+# ln -fs ${HOME}/code/personal/configs/dotfiles/vimrc ${HOME}/.vimrc
 
 # install fnm
 which -s fnm
@@ -131,33 +134,24 @@ if [ -d ${HOME}/.aws ]; then
 	echo    # (optional) move to a new line
 	if ! [[ $REPLY =~ ^[Yy]$ ]]; then
 		echo "aborting script."
-		return 1
+		exit 1
 	fi
 fi
 
-ln -s ${HOME}/.secrets/dotfiles/.aws ${HOME}/.aws
+ln -fs ${HOME}/.secrets/dotfiles/.aws ${HOME}/.aws
 
 # symlink .ssh
-# printf "\nSYMLINKING SSH CONFIG:\n"
-# if [ -d ${HOME}/.ssh ]; then
-# 	read -p "local ~/.ssh already found. Would you like to replace your local ~/.ssh ? " -n 1 -r
-# 	echo    # (optional) move to a new line
-# 	if ! [[ $REPLY =~ ^[Yy]$ ]]; then
-# 		echo "aborting script."
-# 		return 1
-# 	fi
-# fi
+printf "\nSYMLINKING SSH CONFIG:\n"
+if [ -d ${HOME}/.ssh ]; then
+	read -p "local ~/.ssh already found. Would you like to replace your local ~/.ssh ? " -n 1 -r
+	echo    # (optional) move to a new line
+	if ! [[ $REPLY =~ ^[Yy]$ ]]; then
+		echo "aborting script."
+		exit 1
+	fi
+fi
 
-# ln -s ${HOME}/.secrets/dotfiles/.ssh ${HOME}/.ssh
-
-# install vim plug
-# if [ ! -f ~/.vim/autoload/plug.vim ]; then
-#   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-#     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-# fi
-
-# add dir for vim swapfiles
-# mkdir -p ~/.vim/swapfiles
+ln -fs ${HOME}/.secrets/dotfiles/.ssh ${HOME}/.ssh
 
 echo 
 echo "finished"
