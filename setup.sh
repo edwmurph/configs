@@ -48,6 +48,12 @@ brew install zsh-history-substring-search
 # install terraform stuff
 brew install tfenv
 
+# flux stuff
+brew install fluxcd/tap/flux
+
+# talos stuff
+ln -fs ${HOME}/.secrets/dotfiles/.talos ${HOME}/.talos
+
 # install nvim
 which -s nvim
 if [[ $? != 0 ]] ; then
@@ -64,6 +70,12 @@ if [[ $? != 0 ]] ; then
 	brew install the_silver_searcher
 fi
 
+# install fzf for fuzzy vim file search
+which -s gawk
+if [[ $? != 0 ]] ; then
+  printf "\nINSTALLING GAWK:\n"
+  brew install gawk
+fi
 
 # install fzf for fuzzy vim file search
 which -s fzf
@@ -114,6 +126,7 @@ if [[ $? != 0 ]] ; then
 	printf "\nINSTALLING KUBECTL:\n"
 	brew install kubectl
 fi
+ln -fs ${HOME}/.secrets/dotfiles/.kube ${HOME}/.kube
 
 which -s jq
 if [[ $? != 0 ]] ; then
