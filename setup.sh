@@ -59,7 +59,7 @@ which -s nvim
 if [[ $? != 0 ]] ; then
 	printf "\nINSTALLING NVIM"
 	brew install nvim
-	mkdir -p ~/.config/nvim
+	mkdir -p ~/.config
 	ln -fs ${HOME}/code/personal/configs/nvim ${HOME}/.config/nvim
 fi
 
