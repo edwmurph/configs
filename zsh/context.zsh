@@ -36,13 +36,14 @@ function context_switch() {
       export DIGITALOCEAN_TOKEN="${PERSONAL_DIGITALOCEAN_TOKEN}"
     elif [[ "$context" == 'starry' ]]; then
     elif [[ "$context" == 'do' ]]; then
-    elif [[ "$context" == 'bitnado' ]]; then
+    elif [[ "$context" == 'bitforge' ]]; then
       export SPACES_ACCESS_KEY_ID="${BITNADO_SPACES_ACCESS_KEY_ID}"
       export SPACES_SECRET_ACCESS_KEY="${BITNADO_SPACES_SECRET_ACCESS_KEY}"
       export DIGITALOCEAN_ACCESS_TOKEN="${BITNADO_DIGITALOCEAN_ACCESS_TOKEN}"
       export AWS_ACCESS_KEY_ID="${BITNADO_SPACES_ACCESS_KEY_ID}"
       export AWS_SECRET_ACCESS_KEY="${BITNADO_SPACES_SECRET_ACCESS_KEY}"
       export GOOGLE_CREDENTIALS="${BITFORGE_GOOGLE_CREDENTIALS}"
+      export ZEROTIER_CENTRAL_TOKEN="${BITFORGE_ZEROTIER_CENTRAL_TOKEN}"
     fi
   fi
 }
