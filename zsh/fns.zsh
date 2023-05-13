@@ -1,3 +1,8 @@
+function pssh() {
+  local IP=${1?USAGE: pssh <public ip>}
+  ssh -i ~/.secrets/dotfiles/.ssh/aws/my-key-pair.pem ec2-user@$IP
+}
+
 # find first instance of given file by looking upwards
 function upfind() {
   local curr=$PWD

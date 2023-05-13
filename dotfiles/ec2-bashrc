@@ -1,0 +1,24 @@
+# e.g. metadata network/interfaces/macs
+function metadata() {
+  local API=${1?USAGE: metadata <API>}
+  local HOST='http://169.254.169.254'
+  local TOKEN=$(curl -s -X PUT "$HOST/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+  curl -s -H "X-aws-ec2-metadata-token: $TOKEN" "$HOST/latest/meta-data/$API"
+  echo ''
+}
+
+function subnet() {
+  local INTERFACE=$(metadata "network/interfaces/macs")
+  local SUBNET=$(metadata "network/interfaces/macs/${INTERFACE}/subnet-id")
+  echo $SUBNET
+}
+
+# e.g. format_and_mount_ebs /dev/sdf /data
+function format_and_mount_ebs() {
+  local USAGE='USAGE: format_and_mount_ebs <DISK> <MOUNT>'
+  local DISK=${1?$USAGE}
+  local MOUNT=${2?$USAGE}
+  sudo mkfs -t ext4 $DISK
+  sudo mkdir -p $MOUNT
+  sudo mount $DISK $MOUNT
+}
