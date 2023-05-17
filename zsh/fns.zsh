@@ -1,3 +1,36 @@
+function invoke() {
+  local USAGE='USAGE: invoke <FUNCTION_NAME> <PAYLOAD?> <PROFILE?>'
+  local FUNCTION_NAME=${1?$USAGE}
+  local PAYLOAD=${2-'{}'}
+  local PROFILE=${3-'edwmurph'}
+  local OUT_FILE='out.txt'
+
+  aws lambda invoke \
+    --function-name $FUNCTION_NAME \
+    --cli-binary-format raw-in-base64-out \
+    --payload $PAYLOAD \
+    --profile $PROFILE \
+    --log-type Tail $OUT_FILE \
+    --query 'LogResult' \
+    --output text \
+    | base64 -d
+
+  rm $OUT_FILE
+}
+
+function invoke_url() {
+  local USAGE='USAGE: invoke_url <LAMBDA_URL> <PAYLOAD?> <PROFILE?>'
+  local LAMBDA_URL=${1?$USAGE}
+  local PAYLOAD=${2-'{}'}
+  local PROFILE=${3-edwmurph}
+
+  awscurl \
+    --service lambda \
+    $LAMBDA_URL \
+    --profile $PROFILE \
+    -d $PAYLOAD
+}
+
 function pssh() {
   local IP=${1?USAGE: pssh <public ip>}
   ssh -i ~/.secrets/dotfiles/.ssh/aws/my-key-pair.pem ec2-user@$IP
