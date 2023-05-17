@@ -8,7 +8,7 @@ function goto() {
   cd ${1-.}
   # commented out because changing tab title messes with opening new split panes
   # sets the tab title to target directory
-  echo -e "\033];$(pwd)\007"
+  echo -e "\033];${PWD/$HOME/~}\007"
 }
 
 # initialize on new shell

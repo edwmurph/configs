@@ -52,6 +52,7 @@ function context_switch() {
 
 function chpwd () {
   context_switch
+  echo -e "\033];${PWD/$HOME/~}\007"
 }
 
 cd .
