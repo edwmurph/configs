@@ -24,6 +24,8 @@ function context_switch() {
   unset DIGITALOCEAN_ACCESS_TOKEN
   unset AWS_PROFILE
   unset GOOGLE_CREDENTIALS
+  unset AWS_ACCESS_KEY_ID
+  unset AWS_SECRET_ACCESS_KEY
   if ! [[ $context =~ / ]]; then
     export AWS_PROFILE=$context
     if [[ "$context" == 'personal' ]]; then
