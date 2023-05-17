@@ -66,7 +66,7 @@ git_info() {
 }
 
 function get_pwd() {
-  echo "${PWD/$HOME/~}"
+  echo '%(4~|.../%3~|%~)'
 }
 
 function preexec() {
