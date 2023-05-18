@@ -33,11 +33,13 @@ Plug('dense-analysis/ale', {
 
     vim.g.ale_fixers = {
       javascript = {'eslint'},
+      typescript = {'eslint', 'prettier'},
       vue = {'eslint'}
     }
 
     vim.g.ale_linters = {
-      javascript = {'eslint'}
+      javascript = {'eslint'},
+      typescript = {'eslint', 'prettier'}
     }
 
     vim.g.ale_pattern_options = {

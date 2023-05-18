@@ -5,8 +5,7 @@ alias kc="kubectl"
 alias nr="npm run"
 alias nrl="npm run lint"
 alias nrm="npm run mocha"
-alias agq="ag --hidden --ignore=.git -Q -p $CONFIGS_PATH/zsh/ignore-dirs.ignore"
-alias agqt="ag --hidden --ignore=test --ignore=.git -Q"
+alias agq="ag --hidden --ignore=package-lock.json -Q -p $CONFIGS_PATH/zsh/ignore-dirs.ignore"
 alias zp='open -a "Google Chrome" "https://zoom.us/j/5597640531?pwd=bk5MYW5MSVBlMXJZbDBQQWtGRlJ3UT09"'
 alias zh='open -a "Google Chrome" "https://hubspot.zoom.us/j/7972299201?pwd=UU5KTC9aaWVBOUxtQ25jSVNxTFpoQT09"'
 alias nd='NODE_DEBUG=info node'

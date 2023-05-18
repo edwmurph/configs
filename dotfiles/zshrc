@@ -9,6 +9,7 @@
 autoload -Uz compinit && compinit
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(pyenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
