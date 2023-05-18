@@ -1,12 +1,12 @@
 function enqueue() {
-  local QUEUE_URL=${1?USAGE: enqueue_batch <QUEUE_URL> <PROFILE?>}
+  local QUEUE_URL=${1?USAGE: enqueue <QUEUE_URL> <PROFILE?>}
   local PROFILE=${2-edwmurph}
 
-  for i in {1..9}; do
+  for i in {1..10}; do
     aws sqs send-message \
       --queue-url $QUEUE_URL \
       --profile $PROFILE \
-      --message-group-id $i \
+      --message-group-id 'test' \
       --message-body $i
     if [ $? -ne 0 ]; then
       return
