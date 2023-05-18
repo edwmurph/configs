@@ -1,6 +1,21 @@
+function enqueue() {
+  local QUEUE_URL=${1?USAGE: enqueue_batch <QUEUE_URL> <PROFILE?>}
+  local PROFILE=${2-edwmurph}
+
+  for i in {1..9}; do
+    aws sqs send-message \
+      --queue-url $QUEUE_URL \
+      --profile $PROFILE \
+      --message-group-id $i \
+      --message-body $i
+    if [ $? -ne 0 ]; then
+      return
+    fi
+  done
+}
+
 function invoke() {
-  local USAGE='USAGE: invoke <FUNCTION_NAME> <PAYLOAD?> <PROFILE?>'
-  local FUNCTION_NAME=${1?$USAGE}
+  local FUNCTION_NAME=${1?USAGE: invoke <FUNCTION_NAME> <PAYLOAD?> <PROFILE?>}
   local PAYLOAD=${2-'{}'}
   local PROFILE=${3-'edwmurph'}
   local OUT_FILE='out.txt'
@@ -19,8 +34,7 @@ function invoke() {
 }
 
 function invoke_url() {
-  local USAGE='USAGE: invoke_url <LAMBDA_URL> <PAYLOAD?> <PROFILE?>'
-  local LAMBDA_URL=${1?$USAGE}
+  local LAMBDA_URL=${1?USAGE: invoke_url <LAMBDA_URL> <PAYLOAD?> <PROFILE?>}
   local PAYLOAD=${2-'{}'}
   local PROFILE=${3-edwmurph}
 
@@ -75,7 +89,6 @@ function tt() {
   local gitignore_path="$(upfind .gitignore)"
 
   if [ -n "$gitignore_path" ]; then
-    echo cating "$gitignore_path"
     local gitignore="$(cat $gitignore_path)"
   else
     local gitignore='.git'
