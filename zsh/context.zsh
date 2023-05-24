@@ -27,7 +27,6 @@ function context_switch() {
   unset AWS_ACCESS_KEY_ID
   unset AWS_SECRET_ACCESS_KEY
   if ! [[ $context =~ / ]]; then
-    export AWS_PROFILE=$context
     if [[ "$context" == 'personal' ]]; then
       # export SPACES_ACCESS_KEY_ID="${DO_SPACES_ACCESS_KEY_ID}"
       # export SPACES_SECRET_ACCESS_KEY="${DO_SPACES_SECRET_ACCESS_KEY}"
@@ -39,6 +38,7 @@ function context_switch() {
     elif [[ "$context" == 'starry' ]]; then
     elif [[ "$context" == 'do' ]]; then
     elif [[ "$context" == 'bitforge' ]]; then
+      export AWS_PROFILE=$context
       export SPACES_ACCESS_KEY_ID="${BITNADO_SPACES_ACCESS_KEY_ID}"
       export SPACES_SECRET_ACCESS_KEY="${BITNADO_SPACES_SECRET_ACCESS_KEY}"
       export DIGITALOCEAN_ACCESS_TOKEN="${BITNADO_DIGITALOCEAN_ACCESS_TOKEN}"
