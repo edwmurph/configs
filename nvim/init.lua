@@ -8,7 +8,7 @@ opt.number = true
 vim.g.columns=80
 vim.cmd([[set colorcolumn=80]])
 vim.cmd([[set title]])
-vim.cmd([[set titlestring=%f]])
+vim.cmd([[set titlestring=%{expand(\"%:p:~\")}]])
 
 -- tab behavior
 opt.expandtab = true
