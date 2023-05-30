@@ -1,9 +1,6 @@
 .terraform
-.env
 node_modules
-ui
 coverage
-target
 .git
 .nyc_output
 *.swp
@@ -13,12 +10,8 @@ bootstrap-sass
 material-dashboard
 .ipynb_checkpoints
 __pycache__
-build
 .DS_Store
 jsm
-poc
-ios
 android
 __tests__
 .next
-logs

@@ -94,10 +94,11 @@ function tt() {
     local gitignore='.git'
   fi
 
-  local ignore_dirs="$(pipe_deliminate $IGNORE_DIRS)|$(pipe_deliminate $gitignore)"
+  # local ignore_dirs="$(pipe_deliminate $IGNORE_DIRS)|$(pipe_deliminate $gitignore)"
+  local ignore_dirs="$(pipe_deliminate $IGNORE_DIRS)"
   local ignore_dirs_escaped="$(echo $ignore_dirs | sed 's/*/\\*/g')"
 
-  tree -a -L 10 -C -n -F -I $ignore_dirs --noreport "${1-.}" \
+  tree -a -L 10 -C -F -I $ignore_dirs --noreport "${1-.}" \
     | grep -v -E "$ignore_dirs_escaped"
 }
 
