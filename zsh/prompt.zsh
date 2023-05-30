@@ -74,7 +74,8 @@ function preexec() {
 }
 
 function get_prompt() {
-  echo '%F{blue}'${1-0}s %D{%L:%M:%S}'%F{white}' $(get_pwd)⟩' '
+  # echo '%F{blue}'${1-0}s %D{%L:%M:%S}'%F{white}' $(get_pwd)⟩' '
+  echo '%F{blue}'${1-0}s %D{%L:%M:%S}'%F{white}' ⋯/${PWD##*/}⟩' '
 }
 
 function precmd() {
