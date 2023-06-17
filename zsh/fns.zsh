@@ -1,3 +1,7 @@
+function dt() {
+  (cd ~/code/personal/dev-tools && fnm use && node index.mjs "$@")
+}
+
 function enqueue() {
   local QUEUE_URL=${1?USAGE: enqueue <QUEUE_URL> <PROFILE?>}
   local PROFILE=${2-edwmurph}

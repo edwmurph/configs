@@ -28,6 +28,7 @@ function context_switch() {
   unset AWS_SECRET_ACCESS_KEY
   if ! [[ $context =~ / ]]; then
     if [[ "$context" == 'personal' ]]; then
+      export AWS_PROFILE=edwmurph
       # export SPACES_ACCESS_KEY_ID="${DO_SPACES_ACCESS_KEY_ID}"
       # export SPACES_SECRET_ACCESS_KEY="${DO_SPACES_SECRET_ACCESS_KEY}"
       # export DIGITALOCEAN_ACCESS_TOKEN="${DO_DIGITALOCEAN_ACCESS_TOKEN}"
