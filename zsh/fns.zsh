@@ -1,5 +1,5 @@
 function dt() {
-  (cd ~/code/personal/dev-tools && fnm use && node index.mjs "$@")
+  (cd ~/code/personal/dev-tools && node index.mjs "$@")
 }
 
 function enqueue() {
