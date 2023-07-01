@@ -11,6 +11,11 @@ Plug('joshdick/onedark.vim', {
   end
 })
 
+Plug('hashivim/vim-terraform', {
+  config = function()
+  end
+})
+
 Plug('ibhagwan/fzf-lua', {
   branch = 'main',
   config = function()
@@ -33,12 +38,14 @@ Plug('dense-analysis/ale', {
 
     vim.g.ale_fixers = {
       javascript = {'eslint'},
+      javascriptreact = {'eslint'},
       typescript = {'eslint', 'prettier'},
       vue = {'eslint'}
     }
 
     vim.g.ale_linters = {
       javascript = {'eslint'},
+      javascriptreact = {'eslint'},
       typescript = {'eslint', 'prettier'}
     }
 
@@ -256,6 +263,8 @@ Plug('neoclide/coc.nvim', {
 -- Plug('ms-jpq/coq.artifacts', {
 --   branch = 'artifacts'
 -- })
+
+-- Plug('sheerun/vim-polyglot')
 
 Plug('posva/vim-vue')
 

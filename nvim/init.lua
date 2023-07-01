@@ -9,6 +9,7 @@ vim.g.columns=80
 vim.cmd([[set colorcolumn=80]])
 vim.cmd([[set title]])
 vim.cmd([[set titlestring=%{expand(\"%:p:~\")}]])
+vim.cmd([[set statusline=%f%=%{&filetype}]])
 
 -- tab behavior
 opt.expandtab = true
