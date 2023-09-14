@@ -38,6 +38,8 @@ function context_switch() {
       export DIGITALOCEAN_TOKEN="${PERSONAL_DIGITALOCEAN_TOKEN}"
     elif [[ "$context" == 'starry' ]]; then
     elif [[ "$context" == 'do' ]]; then
+    elif [[ "$context" == 'claim-clock' ]]; then
+      export AWS_PROFILE=claimclock
     elif [[ "$context" == 'bitforge' ]]; then
       export AWS_PROFILE=$context
       export SPACES_ACCESS_KEY_ID="${BITNADO_SPACES_ACCESS_KEY_ID}"

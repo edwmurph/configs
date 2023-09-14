@@ -132,6 +132,10 @@ function p() {
   goto ~/code/personal/${1?USAGE p <reponame>}
 }
 
+function c() {
+  goto ~/code/claim-clock/${1?USAGE c <reponame>}
+}
+
 function docker_it() {
   local image=${1?USAGE:docker_it <image> <command?>}
   local command=${2-/bin/bash}
