@@ -10,3 +10,4 @@ material-dashboard/*
 local
 node_modules
 .next
+tmp

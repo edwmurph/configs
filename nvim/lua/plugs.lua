@@ -270,4 +270,12 @@ Plug('posva/vim-vue')
 
 Plug('tpope/vim-fugitive')
 
+Plug('github/copilot.vim', {
+  config = function()
+    vim.keymap.set('i', '<c-]>', '<Plug>(copilot-next)')
+    vim.keymap.set('i', '<c-[>', '<Plug>(copilot-previous)')
+    vim.g.copilot_node_command = "~/Library/Caches/fnm_multishells/94543_1694733076205/bin/node"
+  end
+})
+
 Plug.ends()
