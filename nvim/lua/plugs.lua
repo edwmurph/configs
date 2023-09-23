@@ -264,7 +264,7 @@ Plug('neoclide/coc.nvim', {
 --   branch = 'artifacts'
 -- })
 
--- Plug('sheerun/vim-polyglot')
+Plug('sheerun/vim-polyglot')
 
 Plug('posva/vim-vue')
 
