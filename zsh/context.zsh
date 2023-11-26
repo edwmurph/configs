@@ -16,9 +16,6 @@ function context_switch() {
   # autoswitch_conda_env
   context=$(echo $PWD | sed -E 's/^\/Users\/emurphy\/code\/([^/]+).*$/\1/')
 
-  git config --global user.name "edwmurph"
-  git config --global user.email 20996513+edwmurph@users.noreply.github.com
-
   unset SPACES_ACCESS_KEY_ID
   unset SPACES_SECRET_ACCESS_KEY
   unset DIGITALOCEAN_ACCESS_TOKEN

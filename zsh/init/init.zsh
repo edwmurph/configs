@@ -13,3 +13,9 @@ function goto() {
 
 # initialize on new shell
 goto
+
+git config --global user.name "edwmurph"
+git config --global user.email 20996513+edwmurph@users.noreply.github.com
+git config --global push.default current
+git config --global --add --bool push.autoSetupRemote true
+git config --global core.excludesfile ~/.gitignore

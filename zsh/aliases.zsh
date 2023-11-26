@@ -37,7 +37,9 @@ alias gd="git diff ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
 alias gds="git diff --staged ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
 alias gdd="git diff HEAD^ -- ':!*package-lock.json' ':!*pnpm-lock.yaml' ':!*yarn.lock'"
 alias gpod="git push origin --delete"
-alias gcm="git checkout master"
+alias gcm="git checkout main 2>/dev/null || git checkout master 2>/dev/null || echo 'no main or master branch found'"
+alias gbda="git branch | grep -v main | xargs git branch -d"
+alias gbDa="git branch | grep -v main | xargs git branch -D"
 
 # navigation
 alias se="goto ~/.secrets"
