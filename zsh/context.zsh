@@ -34,7 +34,8 @@ function context_switch() {
       export ZEROTIER_CENTRAL_TOKEN="${PERSONAL_ZEROTIER_CENTRAL_TOKEN}"
       export DIGITALOCEAN_TOKEN="${PERSONAL_DIGITALOCEAN_TOKEN}"
     elif [[ "$context" == 'starry' ]]; then
-    elif [[ "$context" == 'do' ]]; then
+    elif [[ "$context" == 'grantandco' ]]; then
+      export AWS_PROFILE=grantandco
     elif [[ "$context" == 'claim-clock' ]]; then
       export AWS_PROFILE=claimclock
     elif [[ "$context" == 'bitforge' ]]; then
