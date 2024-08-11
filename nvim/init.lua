@@ -11,6 +11,10 @@ vim.cmd([[set title]])
 vim.cmd([[set titlestring=%{expand(\"%:p:~\")}]])
 vim.cmd([[set statusline=%f\ %l\:%c%=%{&filetype}]])
 
+-- scss
+-- vim.cmd([[autocmd FileType scss setl iskeyword+=@-@]])
+
+
 -- tab behavior
 opt.expandtab = true
 opt.tabstop = 2
