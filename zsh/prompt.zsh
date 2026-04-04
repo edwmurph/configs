@@ -1,9 +1,13 @@
 # history setup
 setopt SHARE_HISTORY
 export HISTFILE=$HOME/.zhistory
-export SAVEHIST=100000
-export HISTSIZE=99999
-setopt HIST_EXPIRE_DUPS_FIRST
+export SAVEHIST=200000
+export HISTSIZE=200000
+setopt HIST_IGNORE_DUPS       # don’t store consecutive duplicates
+setopt HIST_REDUCE_BLANKS     # trim extra spaces
+setopt HIST_VERIFY            # edit before running recalled command
+setopt EXTENDED_HISTORY       # timestamps in history
+setopt SHARE_HISTORY          # share history across sessions
 bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
 
