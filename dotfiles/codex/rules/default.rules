@@ -1,0 +1,90 @@
+# Conservative starter rules for Codex command approvals.
+# Auto-allow read-only git/GitHub inspection, keep risky operations gated.
+
+prefix_rule(
+    pattern = ["git", ["status", "diff", "show", "log", "branch", "rev-parse", "ls-files"]],
+    decision = "allow",
+    justification = "Read-only git inspection commands are safe to run without approval",
+    match = [
+        "git status",
+        "git diff --name-only",
+        "git show HEAD~1",
+        "git log --oneline -n 20",
+        "git branch --show-current",
+        "git rev-parse --show-toplevel",
+        "git ls-files",
+    ],
+    not_match = [
+        "git add .",
+        "git commit -m update",
+        "git push",
+    ],
+)
+
+prefix_rule(
+    pattern = ["gh", "pr", ["view", "checks", "diff", "list", "status"]],
+    decision = "allow",
+    justification = "Read-only PR inspection commands are safe to run without approval",
+    match = [
+        "gh pr view 123",
+        "gh pr checks 123",
+        "gh pr diff 123",
+        "gh pr list --state open",
+        "gh pr status",
+    ],
+    not_match = [
+        "gh pr create --title T --body B",
+        "gh pr merge 123",
+        "gh pr close 123",
+    ],
+)
+
+prefix_rule(
+    pattern = ["gh", "repo", "view"],
+    decision = "allow",
+    justification = "Read-only repository metadata inspection is safe to run without approval",
+    match = [
+        "gh repo view",
+        "gh repo view openai/codex",
+    ],
+    not_match = [
+        "gh repo create my-repo --public",
+        "gh repo edit my-repo --enable-issues=false",
+    ],
+)
+
+prefix_rule(
+    pattern = ["git", ["add", "commit", "merge", "pull", "push", "rebase", "reset", "restore", "switch", "checkout", "clean"]],
+    decision = "prompt",
+    justification = "Git state-changing commands should always require approval",
+)
+
+prefix_rule(
+    pattern = ["gh", ["pr", "repo", "issue"], ["create", "edit", "merge", "close", "reopen", "delete"]],
+    decision = "prompt",
+    justification = "GitHub state-changing commands should always require approval",
+)
+
+prefix_rule(
+    pattern = ["bash", ["-c", "-lc"]],
+    decision = "prompt",
+    justification = "Shell wrappers can hide multiple commands and should be reviewed",
+)
+
+prefix_rule(
+    pattern = ["zsh", ["-c", "-lc"]],
+    decision = "prompt",
+    justification = "Shell wrappers can hide multiple commands and should be reviewed",
+)
+
+prefix_rule(
+    pattern = ["sh", "-c"],
+    decision = "prompt",
+    justification = "Shell wrappers can hide multiple commands and should be reviewed",
+)
+
+prefix_rule(
+    pattern = ["rm"],
+    decision = "forbidden",
+    justification = "Direct file deletion is blocked; use git-aware alternatives or manual review",
+)

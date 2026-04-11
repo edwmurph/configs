@@ -1,3 +1,8 @@
+---
+name: pr
+description: Use this skill when creating a pull request. It writes a minimal, clear, easy-to-scan PR description and follows any repository PR template when present.
+---
+
 # pr
 
 Use this skill when creating a pull request.

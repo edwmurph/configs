@@ -9,7 +9,6 @@
 autoload -Uz compinit && compinit
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(pyenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -27,10 +26,6 @@ for file in $CONFIGS_PATH/zsh/**/*(.); do
   fi
 done
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 #### FIG ENV VARIABLES ####
 # Please make sure this block is at the end of this file.

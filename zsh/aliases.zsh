@@ -11,6 +11,7 @@ alias zh='open -a "Google Chrome" "https://hubspot.zoom.us/j/7972299201?pwd=UU5K
 alias nd='NODE_DEBUG=info node'
 alias dun='du -h node_modules | sort -h | tail -20'
 alias todo='vim ~/.secrets/todo.md'
+alias cx="codex"
 
 
 # git
