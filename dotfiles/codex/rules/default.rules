@@ -54,6 +54,92 @@ prefix_rule(
 )
 
 prefix_rule(
+    pattern = ["git", "commit", "-m"],
+    decision = "allow",
+    justification = "Non-interactive commit with explicit message is a common, bounded operation",
+    match = [
+        "git commit -m 'chore: update config'",
+        "git commit -m 'fix: resolve shell keybinding'",
+    ],
+    not_match = [
+        "git commit --amend -m 'update'",
+        "git commit -a -m 'update'",
+        "git commit",
+    ],
+)
+
+prefix_rule(
+    pattern = ["git", "add"],
+    decision = "allow",
+    justification = "Staging explicit file paths is a common, bounded operation",
+    match = [
+        "git add dotfiles/codex/rules/default.rules",
+        "git add zsh/prompt.zsh setup.sh",
+    ],
+    not_match = [
+        "git add .",
+        "git add -A",
+        "git add --all",
+        "git add -u",
+    ],
+)
+
+prefix_rule(
+    pattern = ["git", "push", "--set-upstream", "origin"],
+    decision = "allow",
+    justification = "Setting upstream to origin for current branch is a common first push operation",
+    match = [
+        "git push --set-upstream origin feature/iterm-keybindings",
+        "git push --set-upstream origin my-branch",
+    ],
+    not_match = [
+        "git push --force",
+        "git push --force-with-lease",
+        "git push --tags",
+    ],
+)
+
+prefix_rule(
+    pattern = ["git", "push"],
+    decision = "allow",
+    justification = "Regular push is allowed; force variants are explicitly forbidden by separate rules",
+    match = [
+        "git push",
+        "git push origin my-branch",
+    ],
+    not_match = [
+        "git push --force",
+        "git push --force-with-lease",
+        "git push -f",
+        "git push --tags",
+    ],
+)
+
+prefix_rule(
+    pattern = ["git", ["reset", "checkout", "clean"]],
+    decision = "allow",
+    justification = "User-approved local working tree operations",
+)
+
+prefix_rule(
+    pattern = ["git", "push", ["--force", "--force-with-lease", "-f"]],
+    decision = "forbidden",
+    justification = "Force pushes are explicitly disallowed",
+)
+
+prefix_rule(
+    pattern = ["git", "push", ["origin", "upstream"], ["--force", "--force-with-lease", "-f"]],
+    decision = "forbidden",
+    justification = "Force pushes are explicitly disallowed, including remote-qualified pushes",
+)
+
+prefix_rule(
+    pattern = ["git", "push", ["-u", "--set-upstream"], "origin", ["--force", "--force-with-lease", "-f"]],
+    decision = "forbidden",
+    justification = "Force pushes are explicitly disallowed, including upstream setup flows",
+)
+
+prefix_rule(
     pattern = ["git", ["add", "commit", "merge", "pull", "push", "rebase", "reset", "restore", "switch", "checkout", "clean"]],
     decision = "prompt",
     justification = "Git state-changing commands should always require approval",

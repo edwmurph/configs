@@ -11,6 +11,16 @@ setopt SHARE_HISTORY          # share history across sessions
 bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
 
+# Word-wise cursor movement (Option/Ctrl arrows and Meta-b/f).
+for keymap in emacs viins; do
+  bindkey -M "$keymap" '^[b' backward-word
+  bindkey -M "$keymap" '^[f' forward-word
+  bindkey -M "$keymap" '^[[1;3D' backward-word
+  bindkey -M "$keymap" '^[[1;3C' forward-word
+  bindkey -M "$keymap" '^[[1;5D' backward-word
+  bindkey -M "$keymap" '^[[1;5C' forward-word
+done
+
 # ls color setup
 export CLICOLOR=1
 export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
