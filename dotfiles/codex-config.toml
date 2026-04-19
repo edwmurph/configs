@@ -24,6 +24,9 @@ trust_level = "trusted"
 [projects."/Users/emurphy/code/personal/eslint-config"]
 trust_level = "trusted"
 
+[projects."/Users/emurphy/code/personal/frontend-kit"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 

@@ -1,4 +1,5 @@
 prefix_rule(pattern=["git", "add", "-A"], decision="allow")
+prefix_rule(pattern=["git", "commit"], decision="prompt")
 prefix_rule(pattern=["git", "push"], decision="prompt")
 prefix_rule(pattern=["defaults", "read", "com.googlecode.iterm2", "PrefsCustomFolder"], decision="allow")
 prefix_rule(pattern=["uv", "run", "python", "skills/ynab/scripts/ynab_reconcile.py"], decision="allow")
