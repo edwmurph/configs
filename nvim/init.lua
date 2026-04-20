@@ -32,4 +32,5 @@ vim.keymap.set('n', '<c-@>', ':FZF <Enter>')
 -- visual mode mappings
 vim.keymap.set('v', '<c-c>', '"*y :let @+=@*<CR>')
 
+require('codex_pane').setup()
 require 'plugs'

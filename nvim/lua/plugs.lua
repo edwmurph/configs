@@ -34,13 +34,21 @@ Plug('dense-analysis/ale', {
     vim.keymap.set('n', '<Leader>an', ':ALENext <Enter>')
     vim.keymap.set('n', '<Leader>ap', ':ALEPrevious <Enter>')
 
+    vim.cmd([[
+      function! MarkdownTableAlignFix(buffer, lines) abort
+        return luaeval('require("markdown_table_fixer").fix(_A)', a:lines)
+      endfunction
+    ]])
+
     vim.g.ale_lint_on_text_changed = 'never'
 
     vim.g.ale_fixers = {
       javascript = {'eslint'},
       javascriptreact = {'eslint'},
       typescript = {'eslint', 'prettier'},
-      vue = {'eslint'}
+      vue = {'eslint'},
+      markdown = {'MarkdownTableAlignFix'},
+      json = {'jq'}
     }
 
     vim.g.ale_linters = {
