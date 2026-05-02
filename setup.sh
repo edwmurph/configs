@@ -45,6 +45,12 @@ git config --global commit.gpgsign true
 ln -fs ${HOME}/code/personal/configs/dotfiles/zshrc ${HOME}/.zshrc
 brew install zsh-history-substring-search
 
+# configure Codex
+mkdir -p ${HOME}/.codex/rules
+ln -fs ${HOME}/code/personal/configs/dotfiles/codex-config.toml ${HOME}/.codex/config.toml
+ln -fs ${HOME}/code/personal/configs/dotfiles/codex/AGENTS.md ${HOME}/.codex/AGENTS.md
+ln -fs ${HOME}/code/personal/configs/dotfiles/codex/rules/default.rules ${HOME}/.codex/rules/default.rules
+
 # configure iTerm2 to load tracked preferences from this repo
 ITERM_PREFS_DIR="${HOME}/code/personal/configs/iterm"
 if [ -f "${ITERM_PREFS_DIR}/com.googlecode.iterm2.plist" ]; then

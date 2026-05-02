@@ -1,7 +1,8 @@
-model = "gpt-5.4"
+model = "gpt-5.5"
 model_reasoning_effort = "xhigh"
 sandbox_mode = "danger-full-access"
 approval_policy = "on-request"
+plan_mode_reasoning_effort = "xhigh"
 
 [projects."/Users/emurphy/code/personal/configs"]
 trust_level = "trusted"
@@ -27,6 +28,15 @@ trust_level = "trusted"
 [projects."/Users/emurphy/code/personal/frontend-kit"]
 trust_level = "trusted"
 
+[projects."/Users/emurphy/code/personal/db-client"]
+trust_level = "trusted"
+
+[projects."/Users/emurphy/code/personal/personal"]
+trust_level = "trusted"
+
+[projects."/Users/emurphy"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 
@@ -35,3 +45,34 @@ enabled = true
 
 [plugins."github@openai-curated"]
 enabled = true
+
+[plugins."browser-use@openai-bundled"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[marketplaces.openai-bundled]
+last_updated = "2026-04-30T01:09:22Z"
+source_type = "local"
+source = "/Users/emurphy/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-04-29T21:52:41Z"
+source_type = "local"
+source = "/Users/emurphy/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[tui]
+status_line = ["model-with-reasoning", "current-dir", "context-remaining"]
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
