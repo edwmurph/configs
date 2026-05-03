@@ -73,6 +73,7 @@ source = "/Users/emurphy/.cache/codex-runtimes/codex-primary-runtime/plugins/ope
 
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "context-remaining"]
+terminal_title = ["activity", "project-name", "thread-title", "task-progress"]
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
