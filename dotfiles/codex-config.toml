@@ -46,9 +46,6 @@ enabled = true
 [plugins."github@openai-curated"]
 enabled = true
 
-[plugins."browser-use@openai-bundled"]
-enabled = true
-
 [plugins."documents@openai-primary-runtime"]
 enabled = true
 
@@ -61,13 +58,16 @@ enabled = true
 [plugins."computer-use@openai-bundled"]
 enabled = true
 
+[plugins."browser-use@openai-bundled"]
+enabled = true
+
 [marketplaces.openai-bundled]
-last_updated = "2026-04-30T01:09:22Z"
+last_updated = "2026-05-02T14:40:59Z"
 source_type = "local"
 source = "/Users/emurphy/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-04-29T21:52:41Z"
+last_updated = "2026-05-02T14:50:48Z"
 source_type = "local"
 source = "/Users/emurphy/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
