@@ -1,0 +1,113 @@
+ObjC.import("AppKit");
+
+function fail(message) {
+  throw new Error(message);
+}
+
+function readConfig(path) {
+  const app = Application.currentApplication();
+  app.includeStandardAdditions = true;
+  return JSON.parse(app.read(Path(path)));
+}
+
+function ensureBundle(bundleId) {
+  const url = $.NSWorkspace.sharedWorkspace.URLForApplicationWithBundleIdentifier(bundleId);
+  if (!url) {
+    fail(`application bundle is not registered: ${bundleId}`);
+  }
+}
+
+function appUrlForBundle(bundleId) {
+  const url = $.NSWorkspace.sharedWorkspace.URLForApplicationWithBundleIdentifier(bundleId);
+  if (!url) {
+    fail(`application bundle is not registered: ${bundleId}`);
+  }
+  return url;
+}
+
+function contentTypeForIdentifier(identifier) {
+  const type = $.NSClassFromString("UTType").typeWithIdentifier(identifier);
+  if (!type) {
+    fail(`content type is not registered: ${identifier}`);
+  }
+  return type;
+}
+
+function forEachMapping(mapping, callback) {
+  if (!mapping) {
+    return;
+  }
+
+  Object.keys(mapping).forEach((key) => callback(key, mapping[key]));
+}
+
+function pathForUrl(url) {
+  if (!url) {
+    return null;
+  }
+  return ObjC.unwrap(url.path);
+}
+
+function verifyUrlScheme(scheme, bundleId) {
+  const expected = pathForUrl(appUrlForBundle(bundleId));
+  const actual = pathForUrl(
+    $.NSWorkspace.sharedWorkspace.URLForApplicationToOpenURL(
+      $.NSURL.URLWithString(`${scheme}://example.com`)
+    )
+  );
+
+  if (actual !== expected) {
+    fail(`expected ${scheme} URLs to open with ${expected}, got ${actual || "none"}`);
+  }
+}
+
+function verifyContentType(contentType, bundleId) {
+  const expected = pathForUrl(appUrlForBundle(bundleId));
+  const actual = pathForUrl(
+    $.NSWorkspace.sharedWorkspace.URLForApplicationToOpenContentType(
+      contentTypeForIdentifier(contentType)
+    )
+  );
+
+  if (actual !== expected) {
+    fail(`expected ${contentType} to open with ${expected}, got ${actual || "none"}`);
+  }
+}
+
+function run(argv) {
+  if (argv.length !== 1) {
+    fail("usage: osascript -l JavaScript scripts/apply-default-apps.jxa macos/default-apps.json");
+  }
+
+  const config = readConfig(argv[0]);
+  const bundleIds = new Set();
+
+  forEachMapping(config.urlSchemes, (_, bundleId) => bundleIds.add(bundleId));
+  forEachMapping(config.contentTypes, (_, bundleId) => bundleIds.add(bundleId));
+  bundleIds.forEach(ensureBundle);
+
+  const workspace = $.NSWorkspace.sharedWorkspace;
+
+  forEachMapping(config.urlSchemes, (scheme, bundleId) => {
+    workspace.setDefaultApplicationAtURLToOpenURLsWithSchemeCompletionHandler(
+      appUrlForBundle(bundleId),
+      scheme,
+      null
+    );
+    console.log(`url scheme ${scheme}: ${bundleId}`);
+  });
+
+  forEachMapping(config.contentTypes, (contentType, bundleId) => {
+    workspace.setDefaultApplicationAtURLToOpenContentTypeCompletionHandler(
+      appUrlForBundle(bundleId),
+      contentTypeForIdentifier(contentType),
+      null
+    );
+    console.log(`content type ${contentType}: ${bundleId}`);
+  });
+
+  $.NSThread.sleepForTimeInterval(1);
+
+  forEachMapping(config.urlSchemes, verifyUrlScheme);
+  forEachMapping(config.contentTypes, verifyContentType);
+}

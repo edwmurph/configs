@@ -59,6 +59,13 @@ if [ -f "${ITERM_PREFS_DIR}/com.googlecode.iterm2.plist" ]; then
 	defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 fi
 
+# configure macOS default app handlers
+DEFAULT_APPS_CONFIG="${HOME}/code/personal/configs/macos/default-apps.json"
+if [ -f "${DEFAULT_APPS_CONFIG}" ]; then
+	printf "\nCONFIGURING DEFAULT APP HANDLERS:\n"
+	bash "${HOME}/code/personal/configs/scripts/apply-default-apps.sh" "${DEFAULT_APPS_CONFIG}"
+fi
+
 # install terraform stuff
 brew install tfenv
 

@@ -1,0 +1,10 @@
+{
+  "urlSchemes": {
+    "http": "com.openai.atlas",
+    "https": "com.openai.atlas"
+  },
+  "contentTypes": {
+    "com.apple.default-app.web-browser": "com.openai.atlas",
+    "public.html": "com.openai.atlas"
+  }
+}

@@ -11,3 +11,4 @@ local
 node_modules
 .next
 tmp
+.worktrees
