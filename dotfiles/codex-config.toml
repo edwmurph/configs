@@ -62,7 +62,7 @@ enabled = true
 enabled = true
 
 [marketplaces.openai-bundled]
-last_updated = "2026-05-02T14:40:59Z"
+last_updated = "2026-05-03T13:37:11Z"
 source_type = "local"
 source = "/Users/emurphy/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
@@ -73,7 +73,7 @@ source = "/Users/emurphy/.cache/codex-runtimes/codex-primary-runtime/plugins/ope
 
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "context-remaining"]
-terminal_title = ["activity", "run-state", "thread-title", "task-progress"]
+terminal_title = ["activity", "run-state", "thread-title"]
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
