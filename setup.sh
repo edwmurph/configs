@@ -45,11 +45,19 @@ git config --global commit.gpgsign true
 ln -fs ${HOME}/code/personal/configs/dotfiles/zshrc ${HOME}/.zshrc
 brew install zsh-history-substring-search
 
+# configure less
+ln -fs ${HOME}/code/personal/configs/dotfiles/lesskey ${HOME}/.lesskey
+if command -v lesskey >/dev/null 2>&1; then
+	lesskey ${HOME}/.lesskey
+fi
+
 # configure Codex
 mkdir -p ${HOME}/.codex/rules
+mkdir -p ${HOME}/.codex/hooks
 ln -fs ${HOME}/code/personal/configs/dotfiles/codex-config.toml ${HOME}/.codex/config.toml
 ln -fs ${HOME}/code/personal/configs/dotfiles/codex/AGENTS.md ${HOME}/.codex/AGENTS.md
 ln -fs ${HOME}/code/personal/configs/dotfiles/codex/rules/default.rules ${HOME}/.codex/rules/default.rules
+ln -fs ${HOME}/code/personal/configs/dotfiles/codex/hooks/codex_thread_title.py ${HOME}/.codex/hooks/codex_thread_title.py
 
 # configure iTerm2 to load tracked preferences from this repo
 ITERM_PREFS_DIR="${HOME}/code/personal/configs/iterm"

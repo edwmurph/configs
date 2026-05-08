@@ -1,0 +1,6 @@
+#command
+] forw-search \^(diff --git|commit )\n
+[ back-search \^(diff --git|commit )\n
+
+#env
+LESS = ${LESS} -A
