@@ -1,5 +1,15 @@
 # Global Codex Instructions
 
+## Communication Defaults
+
+- Default to shorter, simpler responses that are easy to skim.
+- Start with the direct answer or result before adding context.
+- Assume the user is a software engineer, but do not assume they know every tool, repo convention, or domain detail.
+- Explain non-obvious terms, acronyms, and repo-specific concepts briefly the first time they matter.
+- Keep plans compact: use a few clear steps, state the goal of each step, and avoid exhaustive implementation detail unless asked.
+- For completed work, summarize what changed, how it was checked, and anything the user needs to decide next.
+- Avoid long technical deep dives, broad background, and low-level mechanics unless the user asks for detail, a review, or debugging evidence.
+
 ## Git Defaults
 
 - Default to working directly on `main`.

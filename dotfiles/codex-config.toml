@@ -4,6 +4,9 @@ sandbox_mode = "danger-full-access"
 approval_policy = "on-request"
 plan_mode_reasoning_effort = "xhigh"
 
+
+notify = ["/Users/emurphy/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+
 [projects."/Users/emurphy/code/personal/configs"]
 trust_level = "trusted"
 
@@ -58,16 +61,16 @@ enabled = true
 [plugins."computer-use@openai-bundled"]
 enabled = true
 
-[plugins."browser-use@openai-bundled"]
+[plugins."browser@openai-bundled"]
 enabled = true
 
 [marketplaces.openai-bundled]
-last_updated = "2026-05-03T13:37:11Z"
+last_updated = "2026-05-17T10:43:25Z"
 source_type = "local"
 source = "/Users/emurphy/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-05-02T14:50:48Z"
+last_updated = "2026-05-17T10:50:42Z"
 source_type = "local"
 source = "/Users/emurphy/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
@@ -77,3 +80,8 @@ terminal_title = ["activity", "run-state", "thread-title"]
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
+
+[features]
+terminal_resize_reflow = true
+memories = true
+prevent_idle_sleep = true
