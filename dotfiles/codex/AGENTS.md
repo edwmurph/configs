@@ -10,6 +10,12 @@
 - For completed work, summarize what changed, how it was checked, and anything the user needs to decide next.
 - Avoid long technical deep dives, broad background, and low-level mechanics unless the user asks for detail, a review, or debugging evidence.
 
+## Skill Feedback
+
+- When a skill request reveals avoidable inefficiency in that skill's instructions, workflow, scripts, state layout, or examples, finish the user's requested work and also call out the friction briefly.
+- Phrase the improvement concretely, for example: `The skill would be more efficient if ...`.
+- Ask whether the user wants the skill updated as a follow-up, and do not edit the skill unless the user explicitly agrees.
+
 ## Git Defaults
 
 - Default to working directly on `main`.
