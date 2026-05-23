@@ -26,3 +26,9 @@
 - When writing code, leave changes as raw unstaged diffs by default.
 - Do not stage files, commit, or push unless the user explicitly asks.
 - If the user asks to stage or commit, stage only the files relevant to the requested work and leave unrelated local changes untouched.
+
+## Pull Requests
+
+- When creating a PR with a multi-line description via `gh`, prefer `--body-file` with a temporary markdown file over inline `--body` text.
+- Do not pass `\n` inside normal shell quotes for PR bodies; GitHub will receive literal backslash-n text instead of line breaks.
+- After opening or editing a PR, verify the rendered body source with `gh pr view <number> --json body --jq .body` when formatting matters.
