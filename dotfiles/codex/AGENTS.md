@@ -19,8 +19,8 @@
 ## Git Defaults
 
 - Default to working directly on `main`.
-- Do not create branches, create worktrees, switch branches, or use feature branches unless the user explicitly asks.
-- When the user explicitly asks to create a worktree, prefer creating it under the repository's `./.worktrees/...` directory.
+- When the user asks for a code change in a repo, assume work should happen in a worktree under the repository's `./.worktrees/...` directory (unless the user says otherwise).
+- Do not create branches, switch branches, or use feature branches unless the user explicitly asks.
 - Before committing or pushing, verify the current branch with `git branch --show-current`.
 - If the current branch is not `main` and the user did not explicitly ask to work on that branch, stop and ask before committing, merging, or pushing.
 - When writing code, leave changes as raw unstaged diffs by default.
