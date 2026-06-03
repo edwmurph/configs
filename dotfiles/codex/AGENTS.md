@@ -23,6 +23,7 @@
 - Do not create branches, switch branches, or use feature branches unless the user explicitly asks.
 - Before committing or pushing, verify the current branch with `git branch --show-current`.
 - If the current branch is not `main` and the user did not explicitly ask to work on that branch, stop and ask before committing, merging, or pushing.
+- Prefer Git SSH transport over HTTPS for GitHub fetch, pull, and push operations. When SSH auth is available, use `git@github.com:owner/repo.git` remotes or one-off SSH push/fetch URLs instead of HTTPS to avoid credential-helper hangs.
 - When writing code, leave changes as raw unstaged diffs by default.
 - Do not stage files, commit, or push unless the user explicitly asks.
 - If the user asks to stage or commit, stage only the files relevant to the requested work and leave unrelated local changes untouched.

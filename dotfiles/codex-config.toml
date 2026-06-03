@@ -2,10 +2,12 @@ model = "gpt-5.5"
 model_reasoning_effort = "xhigh"
 sandbox_mode = "danger-full-access"
 approval_policy = "on-request"
+suppress_unstable_features_warning = true
 plan_mode_reasoning_effort = "xhigh"
 
 
 notify = ["/Users/emurphy/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+service_tier = "default"
 
 [projects."/Users/emurphy/code/personal/configs"]
 trust_level = "trusted"
@@ -46,6 +48,18 @@ trust_level = "trusted"
 [projects."/Users/emurphy/code/personal/codux"]
 trust_level = "trusted"
 
+[projects."/private/tmp/codux-real-repro.TKaL8Z/workspace"]
+trust_level = "trusted"
+
+[projects."/private/tmp/codux-real-repro-fixed.SF9De2/workspace"]
+trust_level = "trusted"
+
+[projects."/private/tmp/codux-real-drift-fixed.fo0SrZ/workspace"]
+trust_level = "trusted"
+
+[projects."/Users/emurphy/code/personal/weft"]
+trust_level = "trusted"
+
 [notice]
 hide_rate_limit_model_nudge = true
 
@@ -75,7 +89,7 @@ enabled = true
 enabled = true
 
 [marketplaces.openai-bundled]
-last_updated = "2026-05-24T18:43:48Z"
+last_updated = "2026-05-27T02:53:03Z"
 source_type = "local"
 source = "/Users/emurphy/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
@@ -86,7 +100,7 @@ source = "/Users/emurphy/.cache/codex-runtimes/codex-primary-runtime/plugins/ope
 
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "context-remaining"]
-terminal_title = ["activity", "run-state", "thread-title"]
+terminal_title = ["activity", "run-state"]
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
@@ -107,14 +121,14 @@ command = "/Applications/Codex.app/Contents/Resources/node_repl"
 startup_timeout_sec = 120
 
 [mcp_servers.node_repl.env]
-BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
-BROWSER_USE_MARKETPLACE_NAME = "openai-bundled"
-CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
-CODEX_HOME = "/Users/emurphy/.codex"
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
 NODE_REPL_NODE_MODULE_DIRS = ""
 NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/node"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "167fdf579477181fba1773c1efb067b00c5a64fe85dafb50a2001bde198dc739"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/emurphy/.codex"
+CODEX_HOME = "/Users/emurphy/.codex"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "496c7b3cb95b4bc20cff49b513150606e0da0000c92bf752206bee5a6c248423"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_MARKETPLACE_NAME = "openai-bundled"
 NODE_REPL_UNTRUSTED_ENV_ALLOWLIST = "BROWSER_USE_MARKETPLACE_NAME"
 SKY_CUA_SERVICE_PATH = "/Users/emurphy/.codex/.tmp/bundled-marketplaces/openai-bundled/plugins/computer-use/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
