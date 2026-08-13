@@ -9,6 +9,8 @@
 - Keep plans compact: use a few clear steps, state the goal of each step, and avoid exhaustive implementation detail unless asked.
 - For completed work, summarize what changed, how it was checked, and anything the user needs to decide next.
 - Avoid long technical deep dives, broad background, and low-level mechanics unless the user asks for detail, a review, or debugging evidence.
+- Avoid heavy jargon in user-facing prose and authored documents. Prefer familiar, everyday wording. When a technical term is necessary, explain it briefly the first time it appears.
+- Do not use em dashes or semicolons in user-facing prose or authored documents. Rewrite with periods, commas, colons, or parentheses instead. Preserve them only when exact quoted text or required code syntax makes them necessary.
 - When reporting dates or times to the user, include Eastern Time by default, labeled as EST or EDT as appropriate for the date. If also showing UTC or another timezone, put the Eastern Time value first.
 
 ## Skill Feedback
@@ -33,5 +35,5 @@
 ## Pull Requests
 
 - When creating a PR with a multi-line description via `gh`, prefer `--body-file` with a temporary markdown file over inline `--body` text.
-- Do not pass `\n` inside normal shell quotes for PR bodies; GitHub will receive literal backslash-n text instead of line breaks.
+- Do not pass `\n` inside normal shell quotes for PR bodies. GitHub will receive literal backslash-n text instead of line breaks.
 - After opening or editing a PR, verify the rendered body source with `gh pr view <number> --json body --jq .body` when formatting matters.
